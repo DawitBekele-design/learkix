@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Lernix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fdfcfa;--bg2:#f7f5f0;--bg3:#edeae2;
+  --border:rgba(201,125,16,0.13);--border2:rgba(201,125,16,0.26);
+  --saffron:#C97D10;--saffron-dark:#a86508;--saffron-light:#E8A030;
+  --saffron-pale:#fdf3e0;--saffron-pale2:#f7e0b0;
+  --text:#2e2a22;--text2:#4a4438;--muted:#8a8070;
+  --green:#2d7a4f;--red:#b83232;--amber:#d97706;
+  --shadow-sm:0 1px 4px rgba(201,125,16,0.08);
+  --shadow:0 2px 14px rgba(201,125,16,0.10);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.11);
+  --radius:12px;
+  --font-head:'Cormorant Garamond',serif;
+  --font:'Jost',sans-serif;
+  /* Desktop-first sizes */
+  --fs-base: 15px;
+  --fs-sm: 13px;
+  --fs-xs: 12px;
+  --fs-lg: 17px;
+  --fs-xl: 19px;
+  --fs-h1: 2.6rem;
+  --fs-h2: 1.7rem;
+  --fs-h3: 1.3rem;
+  --nav-h: 66px;
+  --section-pad: 28px 36px 48px;
+  --card-pad: 22px;
+  --max-w: 1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;font-size:var(--fs-base);}
+
+input,select,textarea{color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:var(--fs-base);}
+input::placeholder,textarea::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+select option{color:var(--text2);background:#fff;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 22px;border-radius:99px;font-size:var(--fs-sm);font-weight:600;letter-spacing:0.2px;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all 0.18s;background:#fff;color:var(--saffron-dark);border:1.5px solid var(--saffron-light);box-shadow:var(--shadow-sm);}
+.btn:hover{background:var(--saffron-pale);border-color:var(--saffron);box-shadow:var(--shadow);}
+.btn-filled{background:var(--saffron);color:#fff;border:1.5px solid var(--saffron);box-shadow:0 3px 12px rgba(201,125,16,0.26);}
+.btn-filled:hover{background:var(--saffron-dark);border-color:var(--saffron-dark);color:#fff;}
+.btn-green{background:var(--green);color:#fff;border:1.5px solid var(--green);}
+.btn-green:hover{background:#245f3e;color:#fff;}
+.btn-red{background:var(--red);color:#fff;border:1.5px solid var(--red);}
+.btn-red:hover{background:#8b1f1f;color:#fff;}
+.btn-sm{padding:6px 15px;font-size:var(--fs-xs);}
+.btn:active{transform:translateY(1px);}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:var(--nav-h);
+  background:rgba(253,252,250,0.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border2);
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;padding:0 36px;gap:16px;
+}
+.hdr-left{display:flex;align-items:center;}
+.hdr-search{
+  display:flex;align-items:center;gap:9px;
+  background:#fff;border:1.5px solid var(--saffron-light);
+  border-radius:99px;padding:8px 18px;
+  width:280px;transition:all 0.2s;box-shadow:var(--shadow-sm);
+}
+.hdr-search:focus-within{border-color:var(--saffron);width:340px;box-shadow:0 0 0 3px rgba(201,125,16,0.1);}
+.hdr-search input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:var(--fs-sm);color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
+.hdr-search input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+.srch-ico{font-size:1rem;color:var(--saffron-light);flex-shrink:0;}
+
+.hdr-center{display:flex;align-items:center;justify-content:center;}
+.logo-wrap{display:flex;align-items:center;gap:9px;cursor:pointer;}
+.logo-mark{width:36px;height:36px;border-radius:9px;background:var(--saffron);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(201,125,16,0.32);flex-shrink:0;}
+.logo-mark svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-text{font-family:var(--font-head);font-size:1.85rem;font-weight:600;color:var(--saffron-light);line-height:1;}
+
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:10px;}
+
+/* Location */
+.loc-trigger{display:flex;align-items:center;gap:6px;font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:600;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:7px 15px 7px 12px;cursor:pointer;transition:all 0.15s;white-space:nowrap;box-shadow:var(--shadow-sm);}
+.loc-trigger:hover,.loc-trigger.open{border-color:var(--saffron);background:var(--saffron-pale);}
+.loc-caret{font-size:0.6rem;color:var(--saffron-light);transition:transform 0.2s;}
+.loc-trigger.open .loc-caret{transform:rotate(180deg);}
+.loc-dropdown{position:absolute;top:calc(100% + 10px);right:0;width:340px;background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:16px;box-shadow:var(--shadow-lg);padding:14px;z-index:400;opacity:0;transform:translateY(-6px) scale(0.98);pointer-events:none;transition:all 0.18s;}
+.loc-dropdown.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+.loc-search-wrap{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);border-radius:9px;padding:8px 13px;margin-bottom:10px;}
+.loc-search-wrap:focus-within{border-color:var(--saffron-light);background:#fff;}
+.loc-search-wrap input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:var(--fs-sm);color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
+.loc-search-wrap input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+.loc-list{max-height:240px;overflow-y:auto;}
+.loc-item{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:9px;cursor:pointer;font-size:var(--fs-sm);color:var(--text2);transition:background 0.12s;}
+.loc-item:hover{background:var(--saffron-pale);}
+.loc-item.active{background:var(--saffron-pale);color:var(--saffron-dark);font-weight:600;}
+.loc-item-detail{display:flex;flex-direction:column;flex:1;}
+.loc-item-name{font-size:var(--fs-sm);font-weight:500;color:var(--text2);}
+.loc-item-sub{font-size:var(--fs-xs);color:var(--muted);}
+.loc-region-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:8px 11px 3px;}
+
+.profile-btn{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--saffron-light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all 0.15s;color:var(--saffron-dark);box-shadow:var(--shadow-sm);position:relative;}
+.profile-btn:hover{background:var(--saffron-pale);border-color:var(--saffron);}
+.admin-badge{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:0.6rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff;}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:var(--nav-h);min-height:100vh;}
+.page.active{display:block;}
+
+/* ── DESKTOP LAYOUT WRAPPER ── */
+.desktop-layout{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  min-height:calc(100vh - var(--nav-h));
+  max-width:var(--max-w);
+  margin:0 auto;
+}
+
+/* ── SIDEBAR NAV ── */
+.sidebar{
+  border-right:1px solid var(--border2);
+  padding:24px 16px;
+  position:sticky;top:var(--nav-h);
+  height:calc(100vh - var(--nav-h));
+  overflow-y:auto;
+  background:var(--bg2);
+}
+.sidebar-nav{display:flex;flex-direction:column;gap:3px;}
+.snav-item{
+  display:flex;align-items:center;gap:11px;
+  padding:11px 14px;border-radius:10px;
+  font-size:var(--fs-sm);font-weight:500;color:var(--muted);
+  cursor:pointer;transition:all 0.15s;border:none;background:none;font-family:var(--font);text-align:left;width:100%;
+}
+.snav-item:hover{color:var(--text);background:var(--bg3);}
+.snav-item.active{color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600;}
+.snav-item.active .snav-icon{color:var(--saffron);}
+.snav-icon{font-size:1.1rem;width:22px;flex-shrink:0;}
+.snav-label{flex:1;}
+.snav-badge{font-size:0.65rem;font-weight:700;background:var(--red);color:#fff;padding:2px 7px;border-radius:99px;}
+.sidebar-divider{height:1px;background:var(--border2);margin:14px 0;}
+.sidebar-section-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:0 14px;margin-bottom:6px;}
+
+/* ── MAIN CONTENT ── */
+.main-content{
+  padding:28px 36px 48px;
+  min-width:0;
+}
+
+/* ── PAGE HEADER ── */
+.page-header{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.page-header-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.page-title{font-family:var(--font-head);font-size:var(--fs-h2);color:var(--text);line-height:1.1;}
+.page-sub{font-size:var(--fs-sm);color:var(--muted);margin-top:5px;}
+
+/* ── FIELDS ── */
+.field-input,.field-sel,.field-ta{width:100%;background:var(--bg2)!important;border:1.5px solid var(--border2)!important;border-radius:9px;padding:10px 14px;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:var(--fs-sm);outline:none;}
+.field-input:focus,.field-sel:focus,.field-ta:focus{border-color:var(--saffron)!important;background:#fff!important;}
+.field-ta{resize:vertical;min-height:90px;}
+.field-label{font-size:var(--fs-xs);font-weight:600;color:var(--text2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* ── HOME HERO (desktop: tighter, content-first) ── */
+.home-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  min-height:calc(100vh - var(--nav-h));
+}
+.hero-left{
+  padding:48px 48px 48px 0;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--border);
+}
+.hero-right{
+  padding:48px 0 48px 48px;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:18px;
+}
+.home-eyebrow{font-size:var(--fs-xs);font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--saffron);margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;}
+.home-eyebrow::before,.home-eyebrow::after{content:'';width:20px;height:1px;background:var(--saffron-light);}
+.home-title{font-family:var(--font-head);font-size:var(--fs-h1);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:14px;}
+.home-title em{color:var(--saffron);font-style:italic;}
+.home-sub{font-size:var(--fs-base);color:var(--muted);line-height:1.72;margin-bottom:26px;max-width:420px;}
+.home-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* Info cards on the right */
+.info-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);}
+.info-card-title{font-family:var(--font-head);font-size:1.1rem;color:var(--text);margin-bottom:5px;}
+.info-card-text{font-size:var(--fs-sm);color:var(--muted);line-height:1.65;}
+.info-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+.info-pill{font-size:var(--fs-xs);font-weight:500;padding:5px 12px;border-radius:99px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);color:var(--text2);}
+.info-pill span{color:var(--saffron);margin-right:3px;}
+
+/* ── TEACHER GRID ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:15px;}
+.t-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:var(--card-pad);cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
+.t-card:hover{box-shadow:var(--shadow);border-color:var(--saffron);transform:translateY(-2px);}
+.tc-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
+.tc-ava{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0;}
+.tc-score{text-align:right;}
+.tc-num{font-family:var(--font-head);font-size:1.9rem;color:var(--text);line-height:1;}
+.tc-denom{font-size:var(--fs-xs);color:var(--muted);}
+.tc-name{font-size:var(--fs-base);font-weight:600;color:var(--text);margin-bottom:3px;}
+.tc-sub{font-size:var(--fs-sm);color:var(--muted);margin-bottom:12px;}
+.tc-meters{display:flex;flex-direction:column;gap:6px;margin-bottom:13px;}
+.meter-row{display:flex;align-items:center;gap:8px;}
+.meter-lbl{font-size:var(--fs-xs);color:var(--muted);width:65px;flex-shrink:0;}
+.meter-track{flex:1;height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.meter-fill{height:100%;border-radius:99px;}
+.meter-val{font-size:var(--fs-xs);color:var(--muted);width:24px;text-align:right;}
+.tc-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:var(--fs-xs);padding:3px 9px;border-radius:99px;border:1px solid var(--border2);color:var(--text2);background:var(--bg2);white-space:nowrap;}
+.chip.g{border-color:rgba(45,122,79,0.3);color:var(--green);background:rgba(45,122,79,0.06);}
+.chip.b{border-color:rgba(184,50,50,0.28);color:var(--red);background:rgba(184,50,50,0.06);}
+.dp{font-size:var(--fs-xs);font-weight:600;padding:3px 9px;border-radius:99px;}
+.dp-e{background:rgba(45,122,79,0.1);color:var(--green);}
+.dp-m{background:rgba(201,125,16,0.12);color:var(--saffron-dark);}
+.dp-h{background:rgba(184,50,50,0.1);color:var(--red);}
+
+/* ── EMPTY STATE ── */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;}
+.empty-icon{font-size:2.6rem;margin-bottom:14px;opacity:0.5;}
+.empty-title{font-family:var(--font-head);font-size:var(--fs-h3);color:var(--text);margin-bottom:8px;}
+.empty-sub{font-size:var(--fs-sm);color:var(--muted);max-width:340px;line-height:1.7;margin-bottom:20px;}
+
+/* ── DETAIL (two-column) ── */
+.detail-layout{display:grid;grid-template-columns:300px 1fr;gap:0;min-height:calc(100vh - var(--nav-h));max-width:var(--max-w);margin:0 auto;}
+.detail-sidebar{border-right:1px solid var(--border2);padding:28px 24px;background:var(--bg2);position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;}
+.detail-main{padding:28px 36px 48px;min-width:0;}
+.det-ava{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.6rem;color:#fff;font-weight:600;margin-bottom:14px;}
+.det-name{font-family:var(--font-head);font-size:1.8rem;color:var(--text);margin-bottom:3px;line-height:1.1;}
+.det-dept{font-size:var(--fs-sm);color:var(--muted);margin-bottom:10px;}
+.det-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.det-big{font-family:var(--font-head);font-size:3.2rem;color:var(--saffron);line-height:1;}
+.det-lbl{font-size:var(--fs-xs);color:var(--muted);margin-top:3px;}
+.det-score-wrap{text-align:center;padding:16px;background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);margin-bottom:14px;}
+.rating-grid{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:18px;}
+.r-pill{background:#fff;border:1px solid var(--border2);border-radius:10px;padding:13px 15px;}
+.r-lbl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:4px;}
+.r-val{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:5px;}
+.r-bar{height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.r-fill{height:100%;border-radius:99px;}
+.back-btn{display:flex;align-items:center;gap:5px;font-size:var(--fs-sm);color:var(--saffron-dark);cursor:pointer;background:none;border:none;font-family:var(--font);padding:0;margin-bottom:18px;font-weight:600;}
+.back-btn:hover{color:var(--saffron);}
+.rv-card{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:18px;margin-bottom:10px;box-shadow:var(--shadow-sm);}
+.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
+.rv-cls{font-size:var(--fs-xs);font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:4px 10px;border-radius:99px;}
+.rv-txt{font-size:var(--fs-sm);color:var(--text2);line-height:1.68;margin-bottom:11px;}
+.rv-acts{display:flex;gap:7px;align-items:center;}
+.vote-btn{display:flex;align-items:center;gap:4px;font-size:var(--fs-xs);cursor:pointer;padding:5px 11px;border-radius:8px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);font-family:var(--font);transition:all 0.15s;}
+.vote-btn:hover{background:var(--saffron-pale);border-color:var(--saffron-light);color:var(--saffron-dark);}
+
+/* ── WRITE REVIEW — two col form ── */
+.form-layout{display:grid;grid-template-columns:1fr 400px;gap:28px;align-items:start;}
+.form-card{background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);}
+.form-title{font-family:var(--font-head);font-size:var(--fs-h3);color:var(--text);margin-bottom:5px;}
+.form-subtitle{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;line-height:1.6;}
+.form-aside{display:flex;flex-direction:column;gap:14px;}
+.aside-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);}
+.aside-title{font-size:var(--fs-sm);font-weight:600;color:var(--text);margin-bottom:8px;}
+.aside-text{font-size:var(--fs-sm);color:var(--muted);line-height:1.65;}
+.aside-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.aside-list li{font-size:var(--fs-sm);color:var(--text2);display:flex;align-items:flex-start;gap:7px;line-height:1.45;}
+.aside-list li span{color:var(--green);flex-shrink:0;}
+.aside-list li span.x{color:var(--red);}
+.rf-stars{display:flex;gap:8px;font-size:1.7rem;cursor:pointer;margin-bottom:14px;}
+.rf-star{color:var(--bg3);transition:color 0.1s;}
+.rf-star.lit{color:var(--saffron);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.mb14{margin-bottom:14px;}
+.ai-scanning{display:flex;align-items:center;gap:10px;background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:14px 17px;margin-top:14px;}
+.ai-scanning.hide{display:none;}
+.scan-dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);animation:pulse 1.2s ease-in-out infinite;}
+.scan-dot:nth-child(2){animation-delay:0.2s;}
+.scan-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1.1);}}
+.scan-text{font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:500;}
+.pending-banner{background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:13px 16px;margin-top:13px;font-size:var(--fs-sm);color:var(--saffron-dark);display:flex;align-items:flex-start;gap:8px;line-height:1.55;}
+.pending-banner.hide{display:none;}
+
+/* ── PATHWAY ── */
+.pw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px;}
+.pw-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
+.pw-card:hover,.pw-card.sel{border-color:var(--saffron);box-shadow:var(--shadow);transform:translateY(-1px);}
+.pw-card.sel{background:var(--saffron-pale);}
+.pw-ico{font-size:1.7rem;margin-bottom:9px;}
+.pw-name{font-family:var(--font-head);font-size:1.15rem;color:var(--text);margin-bottom:4px;}
+.pw-desc{font-size:var(--fs-sm);color:var(--muted);line-height:1.55;}
+.roadmap-wrap{display:flex;overflow-x:auto;padding-bottom:8px;gap:0;}
+.grade-col{min-width:200px;flex-shrink:0;}
+.grade-hdr{font-size:var(--fs-xs);font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--saffron-dark);margin-bottom:10px;padding:0 3px;}
+.gc{background:#fff;border:1.5px solid var(--border2);border-radius:9px;padding:11px 13px;margin-bottom:7px;margin-right:10px;font-size:var(--fs-sm);font-weight:500;color:var(--text);box-shadow:var(--shadow-sm);}
+.gc-lv{font-size:var(--fs-xs);color:var(--muted);margin-top:3px;}
+
+/* ══ ADMIN PANEL ══ */
+.admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - var(--nav-h));max-width:var(--max-w);margin:0 auto;}
+.admin-sidebar{border-right:1px solid var(--border2);padding:24px 16px;background:var(--bg2);position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));}
+.admin-main{padding:28px 36px 48px;min-width:0;}
+.admin-title{font-family:var(--font-head);font-size:var(--fs-h2);color:var(--text);margin-bottom:4px;}
+.admin-subtitle{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+.stat-pill{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+.stat-num{font-family:var(--font-head);font-size:2.2rem;line-height:1;}
+.stat-num.amber{color:var(--amber);}
+.stat-num.green{color:var(--green);}
+.stat-num.red{color:var(--red);}
+.stat-lbl{font-size:var(--fs-xs);color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+.flag-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:all 0.2s;}
+.flag-card:hover{box-shadow:var(--shadow);}
+.flag-card.flagged{border-color:rgba(217,119,6,0.4);background:rgba(253,243,224,0.4);}
+.flag-card.approved{border-color:rgba(45,122,79,0.3);background:rgba(45,122,79,0.03);}
+.flag-card.rejected{border-color:rgba(184,50,50,0.25);background:rgba(184,50,50,0.03);opacity:0.7;}
+.flag-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;flex-wrap:wrap;gap:8px;}
+.flag-info{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.flag-school{font-size:var(--fs-xs);font-weight:600;color:var(--text2);background:var(--bg2);padding:4px 10px;border-radius:99px;border:1px solid var(--border2);}
+.flag-teacher{font-size:var(--fs-xs);color:var(--muted);}
+.flag-course{font-size:var(--fs-xs);font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:4px 10px;border-radius:99px;}
+.status-badge{font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:0.5px;}
+.status-pending{background:rgba(217,119,6,0.12);color:var(--amber);}
+.status-approved{background:rgba(45,122,79,0.12);color:var(--green);}
+.status-rejected{background:rgba(184,50,50,0.1);color:var(--red);}
+.status-clean{background:rgba(45,122,79,0.1);color:var(--green);}
+.ai-flag-box{background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;padding:11px 14px;margin-bottom:12px;}
+.ai-flag-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:4px;}
+.ai-flag-reason{font-size:var(--fs-sm);color:var(--text2);line-height:1.55;}
+.flag-text-box{font-size:var(--fs-sm);color:var(--text2);line-height:1.65;margin-bottom:14px;padding:13px 15px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
+.flag-actions{display:flex;gap:9px;flex-wrap:wrap;}
+.flag-rating-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+.flag-rating-item{font-size:var(--fs-sm);color:var(--muted);}
+.flag-rating-item strong{color:var(--text2);}
+
+/* Admin sidebar nav items */
+.admin-snav{display:flex;flex-direction:column;gap:3px;}
+.admin-snav-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:9px;font-size:var(--fs-sm);font-weight:500;color:var(--muted);cursor:pointer;transition:all 0.15s;border:none;background:none;font-family:var(--font);text-align:left;width:100%;}
+.admin-snav-item:hover{color:var(--text);background:var(--bg3);}
+.admin-snav-item.on{color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600;}
+.admin-snav-badge{font-size:0.65rem;font-weight:700;background:var(--amber);color:#fff;padding:2px 7px;border-radius:99px;margin-left:auto;}
+.admin-snav-badge.red{background:var(--red);}
+
+/* LOGIN */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(46,42,34,0.3);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;}
+.modal-bg.hide{display:none;}
+.modal{background:#fff;border-radius:16px;padding:32px;width:360px;box-shadow:var(--shadow-lg);position:relative;border:1.5px solid var(--saffron-pale2);}
+.modal-title{font-family:var(--font-head);font-size:1.6rem;color:var(--text);margin-bottom:3px;}
+.modal-sub{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;}
+.modal-close{position:absolute;top:14px;right:16px;cursor:pointer;font-size:1.1rem;color:var(--muted);background:none;border:none;font-family:var(--font);}
+.mode-toggle{display:flex;border:1.5px solid var(--saffron-pale2);border-radius:10px;overflow:hidden;margin-bottom:20px;}
+.mode-btn{flex:1;padding:9px;font-size:var(--fs-sm);font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s;background:none;color:var(--muted);}
+.mode-btn.on{background:var(--saffron);color:#fff;}
+
+.div{height:1px;background:var(--border2);margin:22px 0;}
+.toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(--saffron-pale);border:1.5px solid var(--saffron-light);border-radius:10px;padding:13px 19px;font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:600;transform:translateY(50px);opacity:0;transition:all 0.28s;box-shadow:var(--shadow);}
+.toast.show{transform:translateY(0);opacity:1;}
+
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--saffron-pale2);border-radius:99px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .desktop-layout,.detail-layout,.admin-layout{grid-template-columns:1fr;}
+  .sidebar,.detail-sidebar,.admin-sidebar{display:none;}
+  .home-hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .pw-grid{grid-template-columns:repeat(2,1fr);}
+  .form-layout{grid-template-columns:1fr;}
+  .form-aside{display:none;}
+  .admin-stats{grid-template-columns:repeat(2,1fr);}
+  .main-content,.detail-main,.admin-main{padding:20px 18px 36px;}
+  header{padding:0 18px;gap:10px;}
+  .hdr-search{width:180px;}
+  .hdr-search:focus-within{width:220px;}
+  #bottom-nav-mobile{display:flex!important;}
+}
+@media(max-width:600px){
+  .pw-grid{grid-template-columns:1fr 1fr;}
+  .two-col{grid-template-columns:1fr;}
+  .home-title{font-size:2.1rem;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+}
+
+/* Hide mobile bottom nav on desktop */
+#bottom-nav-mobile{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(253,252,250,0.97);backdrop-filter:blur(10px);
+  border-top:1px solid var(--border2);
+  justify-content:center;gap:3px;padding:8px 16px 10px;
+}
+.tab-btn{padding:7px 16px;border-radius:9px;font-size:var(--fs-xs);font-weight:500;cursor:pointer;color:var(--muted);transition:all 0.15s;border:none;background:none;font-family:var(--font);}
+.tab-btn.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
+.tab-btn:hover:not(.on){color:var(--saffron-dark);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-left">
+    <div class="hdr-search">
+      <span class="srch-ico">⌕</span>
+      <input type="text" id="main-search" placeholder="Search teachers or classes…"
+        oninput="liveSearch(this.value)"
+        onfocus="navTo('teachers');setSideNav('teachers')">
+    </div>
+  </div>
+  <div class="hdr-center">
+    <div class="logo-wrap" onclick="navTo('home');setSideNav('home')">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/><path d="M2 18l10 5 10-5"/></svg></div>
+      <span class="logo-text">Lernix</span>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div style="position:relative;" id="loc-wrap">
+      <div class="loc-trigger" id="loc-trigger" onclick="toggleLoc()">
+        <span>📍</span><span id="loc-label">Select School</span><span class="loc-caret">▾</span>
+      </div>
+      <div class="loc-dropdown" id="loc-dropdown">
+        <div class="loc-search-wrap">
+          <span style="font-size:1rem;color:var(--saffron-light)">⌕</span>
+          <input type="text" id="loc-search-input" placeholder="Search Washington schools…" oninput="filterSchools(this.value)" autocomplete="off">
+        </div>
+        <div class="loc-list" id="loc-list"></div>
+      </div>
+    </div>
+    <button class="btn btn-filled btn-sm" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
+    <div class="profile-btn" id="profile-btn" onclick="openLogin()">
+      👤
+      <span class="admin-badge hide" id="admin-notif">0</span>
+    </div>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="modal-bg hide" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
+    <div class="modal-title">Sign in to Lernix</div>
+    <div class="modal-sub">Students leave reviews. Teachers manage class info. Admins moderate content.</div>
+    <div class="mode-toggle">
+      <button class="mode-btn on" id="mode-student" onclick="setMode('student')">Student</button>
+      <button class="mode-btn" id="mode-teacher" onclick="setMode('teacher')">Teacher</button>
+      <button class="mode-btn" id="mode-admin" onclick="setMode('admin')">Admin</button>
+    </div>
+    <label class="field-label" style="margin-bottom:5px">Email</label>
+    <input class="field-input" type="email" placeholder="you@school.edu" style="margin-bottom:12px;display:block">
+    <label class="field-label" style="margin-bottom:5px">Password</label>
+    <input class="field-input" id="admin-pw-field" type="password" placeholder="••••••••" style="margin-bottom:18px;display:block">
+    <button class="btn btn-filled" style="width:100%" onclick="doLogin()">Sign In →</button>
+    <div id="login-hint" style="font-size:0.74rem;color:var(--muted);text-align:center;margin-top:10px;display:none">Demo admin password: <strong style="color:var(--saffron-dark)">admin123</strong></div>
+  </div>
+</div>
+
+<!-- ══ HOME ══ -->
+<div id="page-home" class="page active">
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 36px;">
+    <div class="home-hero">
+      <div class="hero-left">
+        <div class="home-eyebrow">Student-Powered Ratings</div>
+        <h1 class="home-title">Find the right teacher,<br><em>before</em> you enroll.</h1>
+        <p class="home-sub">Real reviews from real students at your school. Compare teachers, check workload, and plan your schedule with confidence.</p>
+        <div class="home-actions">
+          <button class="btn btn-filled" style="padding:11px 26px;font-size:var(--fs-base)" onclick="navTo('teachers');setSideNav('teachers')">
+            Find Classes
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="btn" style="padding:11px 22px;font-size:var(--fs-base)" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="info-card">
+          <div class="info-card-title">What is Lernix?</div>
+          <div class="info-card-text">A student-driven platform for honest teacher and class ratings at your Washington high school. See difficulty, workload, test formats, and anonymous reviews from students who've been in the seat.</div>
+          <div class="info-pills">
+            <div class="info-pill"><span>📊</span>Honest Ratings</div>
+            <div class="info-pill"><span>🗂</span>Comparisons</div>
+            <div class="info-pill"><span>🗺</span>Pathways</div>
+            <div class="info-pill"><span>🔒</span>Anonymous</div>
+            <div class="info-pill"><span>🛡</span>AI Moderated</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">How reviews work</div>
+          <div class="info-card-text">Every review is scanned by AI for appropriateness before going to admin review. Clean reviews publish quickly. Flagged reviews get manual attention. No fake data, no mock ratings — everything you see is real.</div>
+        </div>
+        <div class="info-card" style="background:var(--saffron-pale);border-color:var(--saffron-pale2)">
+          <div class="info-card-title" style="color:var(--saffron-dark)">Select your school to get started</div>
+          <div class="info-card-text" style="margin-bottom:12px">Use the 📍 button in the top right to pick your Washington high school.</div>
+          <button class="btn btn-filled btn-sm" onclick="toggleLoc()">Choose School →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TEACHERS ══ -->
+<div id="page-teachers" class="page">
+  <div class="desktop-layout">
+    <div class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <div class="sidebar-nav" id="sidebar-nav"></div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section-label">Filter</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <button class="snav-item" onclick="filterDept('')" id="dept-all" style="color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600">All Departments</button>
+        <button class="snav-item" onclick="filterDept('Math')"><span class="snav-icon">📐</span>Math</button>
+        <button class="snav-item" onclick="filterDept('Science')"><span class="snav-icon">🔬</span>Science</button>
+        <button class="snav-item" onclick="filterDept('English')"><span class="snav-icon">📖</span>English</button>
+        <button class="snav-item" onclick="filterDept('History / Social Studies')"><span class="snav-icon">🌍</span>History</button>
+        <button class="snav-item" onclick="filterDept('PE / Health')"><span class="snav-icon">⚽</span>PE / Health</button>
+        <button class="snav-item" onclick="filterDept('Arts')"><span class="snav-icon">🎨</span>Arts</button>
+        <button class="snav-item" onclick="filterDept('World Languages')"><span class="snav-icon">🌐</span>Languages</button>
+        <button class="snav-item" onclick="filterDept('CTE')"><span class="snav-icon">🛠</span>CTE</button>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div>
+            <div class="page-title">Teachers</div>
+            <div class="page-sub" id="school-sub">Select a school to see teachers</div>
+          </div>
+          <button class="btn btn-filled btn-sm" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
+        </div>
+      </div>
+      <div id="teachers-content">
+        <div class="empty-state">
+          <div class="empty-icon">📍</div>
+          <div class="empty-title">Choose your school</div>
+          <div class="empty-sub">Use the location button in the top right to select your Washington high school.</div>
+          <button class="btn btn-filled" onclick="toggleLoc()">Select School →</button>
+        </div>
+      </div>
+      <div id="find-more-wrap" style="display:none;text-align:center;margin-top:24px">
+        <button class="btn" onclick="toast('All teachers shown.')">Load More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DETAIL ══ -->
+<div id="page-detail" class="page">
+  <div class="detail-layout">
+    <div class="detail-sidebar" id="detail-sidebar-content"></div>
+    <div class="detail-main" id="detail-main-content"></div>
+  </div>
+</div>
+
+<!-- ══ PATHWAYS ══ -->
+<div id="page-pathways" class="page">
+  <div class="desktop-layout">
+    <div class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <div class="sidebar-nav" id="sidebar-nav-pw"></div>
+    </div>
+    <div class="main-content">
+      <div class="page-header">
+        <div class="page-title">Career Pathway Explorer</div>
+        <div class="page-sub">Recommended 4-year course sequences for Washington high schools</div>
+      </div>
+      <div class="pw-grid" id="pw-grid"></div>
+      <div id="pw-detail" style="display:none"><div class="div"></div><div id="pw-roadmap"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WRITE REVIEW ══ -->
+<div id="page-write" class="page">
+  <div style="max-width:var(--max-w);margin:0 auto;padding:28px 36px 48px;">
+    <button class="back-btn" onclick="navTo('teachers');setSideNav('teachers')">← Back to Teachers</button>
+    <div class="form-layout">
+      <div class="form-card">
+        <div class="form-title">Leave an Anonymous Review</div>
+        <div class="form-subtitle">Your review will be scanned by AI for appropriateness before going to admin review. Honest feedback — positive or negative — is always welcome.</div>
+
+        <label class="field-label">School</label>
+        <select class="field-sel" id="rv-school-sel" style="margin-bottom:14px"></select>
+
+        <label class="field-label">Teacher Name</label>
+        <input class="field-input mb14" id="rv-teacher-input" type="text" placeholder="Teacher's last name (e.g. Smith)">
+
+        <label class="field-label">Class / Course</label>
+        <input class="field-input mb14" id="rv-class-input" type="text" placeholder="e.g. AP Calculus BC">
+
+        <label class="field-label">Overall Rating</label>
+        <div class="rf-stars" id="rf-stars" onmouseleave="resetStars()">
+          <span class="rf-star" onmouseenter="hoverS(0)" onclick="pickS(0)">★</span>
+          <span class="rf-star" onmouseenter="hoverS(1)" onclick="pickS(1)">★</span>
+          <span class="rf-star" onmouseenter="hoverS(2)" onclick="pickS(2)">★</span>
+          <span class="rf-star" onmouseenter="hoverS(3)" onclick="pickS(3)">★</span>
+          <span class="rf-star" onmouseenter="hoverS(4)" onclick="pickS(4)">★</span>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <label class="field-label">Difficulty</label>
+            <select class="field-sel" id="rv-diff">
+              <option value="">Select…</option>
+              <option value="1">1 – Very Easy</option><option value="2">2 – Easy</option>
+              <option value="3">3 – Medium</option><option value="4">4 – Hard</option>
+              <option value="5">5 – Very Hard</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label">Workload</label>
+            <select class="field-sel" id="rv-workload">
+              <option value="">Select…</option>
+              <option value="light">Light</option><option value="moderate">Moderate</option><option value="heavy">Heavy</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="field-label">Your Review</label>
+        <textarea class="field-ta mb14" id="rv-text" placeholder="Share your honest experience. What should the next student know?"></textarea>
+
+        <div class="ai-scanning hide" id="ai-scanning">
+          <div class="scan-dot"></div><div class="scan-dot"></div><div class="scan-dot"></div>
+          <span class="scan-text">AI is reviewing your submission for appropriateness…</span>
+        </div>
+        <div class="pending-banner hide" id="pending-banner"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:16px" id="submit-btn-wrap">
+          <button class="btn btn-filled" onclick="submitReview()">Submit Anonymously →</button>
+        </div>
+      </div>
+
+      <div class="form-aside">
+        <div class="aside-card">
+          <div class="aside-title">✅ What's encouraged</div>
+          <ul class="aside-list">
+            <li><span>✓</span>Honest feedback about teaching quality</li>
+            <li><span>✓</span>Comments on workload, difficulty, grading</li>
+            <li><span>✓</span>Low ratings with honest reasoning</li>
+            <li><span>✓</span>Tips that help future students</li>
+          </ul>
+        </div>
+        <div class="aside-card">
+          <div class="aside-title">🚫 What gets flagged</div>
+          <ul class="aside-list">
+            <li><span class="x">✗</span>Personal attacks or harassment</li>
+            <li><span class="x">✗</span>Profanity or offensive language</li>
+            <li><span class="x">✗</span>False accusations of crimes</li>
+            <li><span class="x">✗</span>Content unrelated to academics</li>
+            <li><span class="x">✗</span>Personal identifying information</li>
+          </ul>
+        </div>
+        <div class="aside-card" style="background:var(--saffron-pale);border-color:var(--saffron-pale2)">
+          <div class="aside-title" style="color:var(--saffron-dark)">🛡 How moderation works</div>
+          <div class="aside-text">Every submission is scanned by Claude AI and then reviewed by a Lernix admin before appearing publicly. Clean reviews are published quickly. Flagged reviews get manual attention.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN ══ -->
+<div id="page-admin" class="page">
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:0 13px;margin-bottom:8px;">Moderation</div>
+      <div class="admin-snav">
+        <button class="admin-snav-item on" id="atab-pending" onclick="setAdminTab('pending',this)">⏳ Pending <span class="admin-snav-badge" id="badge-pending">0</span></button>
+        <button class="admin-snav-item" id="atab-flagged" onclick="setAdminTab('flagged',this)">🚩 AI Flagged <span class="admin-snav-badge red" id="badge-flagged">0</span></button>
+        <button class="admin-snav-item" id="atab-approved" onclick="setAdminTab('approved',this)">✅ Approved</button>
+        <button class="admin-snav-item" id="atab-rejected" onclick="setAdminTab('rejected',this)">🗑 Rejected</button>
+      </div>
+      <div class="div" style="margin:16px 0"></div>
+      <button class="admin-snav-item" onclick="doLogout()">← Sign Out</button>
+    </div>
+    <div class="admin-main">
+      <div class="admin-title">Admin Panel</div>
+      <div class="admin-subtitle">Review AI-flagged submissions before they go live on Lernix.</div>
+      <div class="admin-stats" id="admin-stats"></div>
+      <div id="admin-queue"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile bottom nav -->
+<div id="bottom-nav-mobile">
+  <button class="tab-btn on" id="bn-home" onclick="navTo('home');setSideNav('home')">Home</button>
+  <button class="tab-btn" id="bn-teachers" onclick="navTo('teachers');setSideNav('teachers')">Teachers</button>
+  <button class="tab-btn" id="bn-pathways" onclick="navTo('pathways');renderPathways();setSideNav('pathways')">Pathways</button>
+  <button class="tab-btn" id="bn-write" onclick="navTo('write');setSideNav('write')">+ Rate</button>
+</div>
+
+<div class="toast" id="toast-el"></div>
+
+<script>
+const ADMIN_PASSWORD = 'admin123';
+let currentMode='student', currentUser=null, currentSchool=null;
+let locOpen=false, selPw=null, star=-1, votes={}, adminTab='pending';
+
+// ── DB ────────────────────────────────────────────────────────────────────────
+function readDB(){try{return JSON.parse(localStorage.getItem('lernix_db')||'{}')}catch{return{}}}
+function writeDB(db){try{localStorage.setItem('lernix_db',JSON.stringify(db))}catch{}}
+function getApprovedReviews(school,key){const db=readDB();return((db.reviews||{})[school]||{})[key]||[];}
+function getAllTeachers(school){const db=readDB();return Object.values((db.teachers||{})[school]||{});}
+
+// ── SCHOOLS ───────────────────────────────────────────────────────────────────
+const SCHOOLS=[
+  {name:"Kamiak High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
+  {name:"Mariner High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
+  {name:"Edmonds-Woodway HS",district:"Edmonds SD",city:"Edmonds",region:"Snohomish County"},
+  {name:"Meadowdale High School",district:"Edmonds SD",city:"Lynnwood",region:"Snohomish County"},
+  {name:"Mountlake Terrace HS",district:"Edmonds SD",city:"Mountlake Terrace",region:"Snohomish County"},
+  {name:"Glacier Peak HS",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
+  {name:"Snohomish High School",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
+  {name:"Henry M. Jackson HS",district:"Everett SD",city:"Mill Creek",region:"Snohomish County"},
+  {name:"Everett High School",district:"Everett SD",city:"Everett",region:"Snohomish County"},
+  {name:"Marysville-Pilchuck HS",district:"Marysville SD",city:"Marysville",region:"Snohomish County"},
+  {name:"Arlington High School",district:"Arlington SD",city:"Arlington",region:"Snohomish County"},
+  {name:"Ballard High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Garfield High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Roosevelt High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Franklin High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"West Seattle High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Rainier Beach High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Skyline High School",district:"Issaquah SD",city:"Sammamish",region:"King County – Eastside"},
+  {name:"Issaquah High School",district:"Issaquah SD",city:"Issaquah",region:"King County – Eastside"},
+  {name:"Eastlake High School",district:"Lake Washington SD",city:"Sammamish",region:"King County – Eastside"},
+  {name:"Lake Washington HS",district:"Lake Washington SD",city:"Kirkland",region:"King County – Eastside"},
+  {name:"Inglemoor High School",district:"Northshore SD",city:"Kenmore",region:"King County – Eastside"},
+  {name:"Bothell High School",district:"Northshore SD",city:"Bothell",region:"King County – Eastside"},
+  {name:"Shorecrest High School",district:"Shoreline SD",city:"Shoreline",region:"King County – Eastside"},
+  {name:"Newport High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
+  {name:"Bellevue High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
+  {name:"Mercer Island HS",district:"Mercer Island SD",city:"Mercer Island",region:"King County – Eastside"},
+  {name:"Stadium High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
+  {name:"Lincoln High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
+  {name:"Emerald Ridge HS",district:"Puyallup SD",city:"Puyallup",region:"Pierce County"},
+  {name:"Lewis & Clark HS",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
+  {name:"Ferris High School",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
+  {name:"Richland High School",district:"Richland SD",city:"Richland",region:"Eastern WA"},
+  {name:"Kennewick High School",district:"Kennewick SD",city:"Kennewick",region:"Eastern WA"},
+  {name:"Pasco High School",district:"Pasco SD",city:"Pasco",region:"Eastern WA"},
+  {name:"Olympia High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
+  {name:"Capital High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
+  {name:"Eisenhower High School",district:"Yakima SD",city:"Yakima",region:"South / Central WA"},
+];
+
+const PW=[
+  {ico:"🔬",nm:"Engineering",ds:"Math & physics heavy sequence for future engineers.",rm:[{g:"9th",cs:[["Algebra 2","R"],["Biology","H"],["English 9","R"]]},{g:"10th",cs:[["Pre-Calculus","H"],["Chemistry","AP"],["CS Principles","R"]]},{g:"11th",cs:[["AP Calculus BC","AP"],["AP Physics 1","AP"],["AP CS A","AP"]]},{g:"12th",cs:[["AP Physics C","AP"],["Engineering Design","H"],["AP Statistics","AP"]]}]},
+  {ico:"🩺",nm:"Pre-Med",ds:"Biology & chemistry track for healthcare careers.",rm:[{g:"9th",cs:[["Honors Biology","H"],["Algebra 2","R"],["English 9","R"]]},{g:"10th",cs:[["AP Biology","AP"],["AP Chemistry","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Physics 1","AP"],["AP Psychology","AP"],["AP Statistics","AP"]]},{g:"12th",cs:[["AP Environmental Science","AP"],["Anatomy & Physiology","H"],["Research Methods","H"]]}]},
+  {ico:"📊",nm:"Business",ds:"Economics, stats, and communication for future leaders.",rm:[{g:"9th",cs:[["Algebra 2","R"],["English 9","H"],["World History","R"]]},{g:"10th",cs:[["AP US History","AP"],["AP Lang & Comp","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Macroeconomics","AP"],["AP Statistics","AP"],["AP Gov & Politics","AP"]]},{g:"12th",cs:[["AP Microeconomics","AP"],["AP Literature","AP"],["Business Management","H"]]}]},
+  {ico:"🎨",nm:"Arts & Design",ds:"Creative portfolio-building for designers and writers.",rm:[{g:"9th",cs:[["English 9","H"],["Art Studio","R"],["World History","R"]]},{g:"10th",cs:[["AP Lang & Comp","AP"],["Digital Media","H"],["Photography","R"]]},{g:"11th",cs:[["AP Literature","AP"],["AP Art History","AP"],["Graphic Design","H"]]},{g:"12th",cs:[["AP Studio Art","AP"],["Film Studies","H"],["Portfolio Prep","R"]]}]},
+];
+
+// ── SIDEBAR NAV ITEMS ─────────────────────────────────────────────────────────
+const NAV_ITEMS = [
+  {id:'home',icon:'🏠',label:'Home'},
+  {id:'teachers',icon:'👩‍🏫',label:'Teachers'},
+  {id:'pathways',icon:'🗺',label:'Career Pathways'},
+  {id:'write',icon:'✍️',label:'Rate a Teacher'},
+];
+
+function buildSideNav(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = NAV_ITEMS.map(n => `
+    <button class="snav-item ${currentPage===n.id?'active':''}" id="snav-${n.id}-${containerId}" onclick="navTo('${n.id}');setSideNav('${n.id}')">
+      <span class="snav-icon">${n.icon}</span>
+      <span class="snav-label">${n.label}</span>
+    </button>`).join('');
+}
+
+let currentPage = 'home';
+function setSideNav(page) {
+  currentPage = page;
+  buildSideNav('sidebar-nav');
+  buildSideNav('sidebar-nav-pw');
+  // Mobile bottom nav
+  ['home','teachers','pathways','write'].forEach(id => {
+    const el = document.getElementById('bn-'+id);
+    if (el) el.classList.toggle('on', id===page);
+  });
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function navTo(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  if (id==='pathways') renderPathways();
+  // Hide mobile nav on admin
+  document.getElementById('bottom-nav-mobile').style.display = id==='admin' ? 'none' : '';
+}
+
+// ── LOCATION ──────────────────────────────────────────────────────────────────
+function toggleLoc(){locOpen=!locOpen;document.getElementById('loc-trigger').classList.toggle('open',locOpen);document.getElementById('loc-dropdown').classList.toggle('open',locOpen);if(locOpen){setTimeout(()=>document.getElementById('loc-search-input').focus(),80);renderSchoolList('');}}
+function closeLoc(){locOpen=false;document.getElementById('loc-trigger').classList.remove('open');document.getElementById('loc-dropdown').classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('loc-wrap').contains(e.target))closeLoc();});
+function filterSchools(q){renderSchoolList(q);}
+function renderSchoolList(q){
+  const list=document.getElementById('loc-list');
+  const filtered=SCHOOLS.filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase())||s.city.toLowerCase().includes(q.toLowerCase())||s.district.toLowerCase().includes(q.toLowerCase()));
+  if(!filtered.length){list.innerHTML=`<div style="padding:14px;font-size:13px;color:var(--muted);text-align:center">No schools found</div>`;return;}
+  const regions=[...new Set(filtered.map(s=>s.region))];
+  let html='';
+  regions.forEach(r=>{
+    html+=`<div class="loc-region-label">${r}</div>`;
+    filtered.filter(s=>s.region===r).forEach(s=>{
+      const active=currentSchool&&s.name===currentSchool.name;
+      html+=`<div class="loc-item ${active?'active':''}" onclick="selectSchool('${s.name.replace(/'/g,"\\'")}')">
+        <span style="font-size:1rem;flex-shrink:0">🏫</span>
+        <div class="loc-item-detail"><span class="loc-item-name">${s.name}</span><span class="loc-item-sub">${s.district} · ${s.city}</span></div>
+        ${active?'<span style="color:var(--saffron-dark);font-weight:700;margin-left:auto">✓</span>':''}
+      </div>`;
+    });
+  });
+  list.innerHTML=html;
+}
+function selectSchool(name){
+  const s=SCHOOLS.find(x=>x.name===name);if(!s)return;
+  currentSchool=s;
+  document.getElementById('loc-label').textContent=name.replace(' High School','').replace(' HS','')+' HS';
+  const sub=document.getElementById('school-sub');if(sub)sub.textContent=`${s.name} · ${s.district}`;
+  closeLoc();renderTeachersPage();
+  const sel=document.getElementById('rv-school-sel');if(sel)sel.value=name;
+}
+
+// ── TEACHER CARDS ─────────────────────────────────────────────────────────────
+const COLORS=['#3a5a8c','#2d6e5e','#7a4a1e','#6b4c8a','#4a6e3a','#6e4a5e'];
+function tColor(name){return COLORS[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0))%COLORS.length];}
+function tInit(name){return name.split(' ').filter(Boolean).slice(-2).map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function computeRatings(reviews){if(!reviews.length)return null;const avg=arr=>arr.length?(arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1):null;return{overall:avg(reviews.map(r=>r.rating)),diff:avg(reviews.filter(r=>r.diff).map(r=>r.diff)),count:reviews.length};}
+
+let currentTeachers = [];
+
+function renderTeachersPage(list) {
+  if (!currentSchool) return;
+  const all = list || getAllTeachers(currentSchool.name);
+  currentTeachers = all;
+  const content = document.getElementById('teachers-content');
+  const fmw = document.getElementById('find-more-wrap');
+  if (!all.length) {
+    content.innerHTML = `<div class="empty-state"><div class="empty-icon">✍️</div><div class="empty-title">No reviews yet for ${currentSchool.name}</div><div class="empty-sub">Be the first to rate a teacher at your school. Your anonymous review helps every student who comes after you.</div><button class="btn btn-filled" onclick="navTo('write');setSideNav('write')">Write the First Review →</button></div>`;
+    fmw.style.display='none'; return;
+  }
+  content.innerHTML = `<div class="cards-grid">${all.map(t => {
+    const reviews = getApprovedReviews(currentSchool.name, t.key);
+    const stats = computeRatings(reviews);
+    const col = tColor(t.name), init = tInit(t.name);
+    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
+      <div class="tc-row1">
+        <div class="tc-ava" style="background:${col}">${init}</div>
+        <div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:`<div style="font-size:13px;color:var(--muted);text-align:right">No<br>ratings</div>`}</div>
+      </div>
+      <div class="tc-name">${t.name}</div>
+      <div class="tc-sub">${t.courses.join(', ')||'No classes listed'}</div>
+      <div class="tc-tags">
+        <span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span>
+        ${stats&&stats.diff?`<span class="dp ${parseFloat(stats.diff)<3?'dp-e':parseFloat(stats.diff)<4?'dp-m':'dp-h'}">${parseFloat(stats.diff)<3?'Easy':parseFloat(stats.diff)<4?'Med':'Hard'}</span>`:''}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+  fmw.style.display = all.length >= 4 ? 'block' : 'none';
+}
+
+function liveSearch(q) {
+  if (!currentSchool) return;
+  const all = getAllTeachers(currentSchool.name);
+  const f = q ? all.filter(t=>t.name.toLowerCase().includes(q.toLowerCase())||t.courses.some(c=>c.toLowerCase().includes(q.toLowerCase()))) : all;
+  renderTeachersPage(f);
+}
+function filterDept(dept) {
+  if (!currentSchool) return;
+  const all = getAllTeachers(currentSchool.name);
+  renderTeachersPage(dept ? all.filter(t=>t.dept===dept||!t.dept) : all);
+}
+
+// ── TEACHER DETAIL ────────────────────────────────────────────────────────────
+function openTeacher(key) {
+  if (!currentSchool) return;
+  const db = readDB();
+  const t = ((db.teachers||{})[currentSchool.name]||{})[key];
+  if (!t) return;
+  const reviews = getApprovedReviews(currentSchool.name, key);
+  const stats = computeRatings(reviews);
+  const col = tColor(t.name), init = tInit(t.name);
+  const stH = r=>Array.from({length:5},(_,i)=>`<span style="color:${i<r?'#C97D10':'#d8d0c4'}">★</span>`).join('');
+
+  // Sidebar
+  document.getElementById('detail-sidebar-content').innerHTML = `
+    <button class="back-btn" onclick="navTo('teachers');setSideNav('teachers')">← All Teachers</button>
+    <div class="det-ava" style="background:${col}">${init}</div>
+    <div class="det-name">${t.name}</div>
+    <div class="det-dept">${currentSchool.name}</div>
+    <div class="det-chips">${t.courses.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+    <div class="det-score-wrap">
+      ${stats?`<div class="det-big">${stats.overall}</div><div style="display:flex;gap:2px;justify-content:center;margin:4px 0">${stH(Math.round(parseFloat(stats.overall)))}</div><div class="det-lbl">Overall Rating</div><div style="font-size:13px;color:var(--muted);margin-top:4px">${stats.count} review${stats.count!==1?'s':''}</div>`:`<div style="font-family:var(--font-head);font-size:1.1rem;color:var(--muted)">No ratings yet</div>`}
+    </div>
+    ${stats?`<div class="rating-grid">
+      <div class="r-pill"><div class="r-lbl">Overall</div><div class="r-val">${stats.overall}<span style="font-size:13px;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.overall)/5*100}%;background:#C97D10"></div></div></div>
+      ${stats.diff?`<div class="r-pill"><div class="r-lbl">Difficulty</div><div class="r-val">${stats.diff}<span style="font-size:13px;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.diff)/5*100}%;background:var(--red)"></div></div></div>`:''}
+    </div>`:''}
+    <button class="btn btn-filled" style="width:100%;margin-top:6px" onclick="navTo('write');setSideNav('write')">+ Write a Review</button>`;
+
+  // Main content
+  document.getElementById('detail-main-content').innerHTML = `
+    <div style="font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:16px">Student Reviews <span style="font-size:1rem;color:var(--muted);font-family:var(--font);font-weight:400">(${reviews.length})</span></div>
+    ${reviews.length ? [...reviews].reverse().map(r=>`
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-cls">${r.course}</span>
+          <span style="font-size:13px">${stH(r.rating)}</span>
+        </div>
+        <div class="rv-txt">${r.text}</div>
+        <div class="rv-acts">
+          <button class="vote-btn" onclick="handleUpvote('${currentSchool.name}','${key}',${r.id},this)">👍 ${r.upvotes}</button>
+          <span style="font-size:12px;color:var(--muted)">${r.upvotes} found helpful</span>
+        </div>
+      </div>`).join('') :
+    `<div class="empty-state" style="padding:32px 0"><div class="empty-icon">💬</div><div class="empty-title">No reviews yet</div><div class="empty-sub">Be the first to share your experience.</div></div>`}`;
+
+  navTo('detail');
+}
+
+function handleUpvote(school,key,id,btn){
+  const vk=`${school}-${key}-${id}`;
+  if(!votes[vk]){votes[vk]=1;const db=readDB();const rv=((db.reviews||{})[school]||{})[key]||[];const r=rv.find(r=>r.id===id);if(r){r.upvotes++;writeDB(db);}const cur=parseInt(btn.textContent.replace(/\D/g,''));btn.textContent=`👍 ${cur+1}`;btn.style.color='var(--green)';toast('Upvoted!');}
+}
+
+// ── PATHWAYS ──────────────────────────────────────────────────────────────────
+function renderPathways(){
+  document.getElementById('pw-grid').innerHTML=PW.map((p,i)=>`<div class="pw-card ${selPw===i?'sel':''}" onclick="pickPw(${i})"><div class="pw-ico">${p.ico}</div><div class="pw-name">${p.nm}</div><div class="pw-desc">${p.ds}</div></div>`).join('');
+  if(selPw!==null)renderRoadmap(selPw);
+}
+function pickPw(i){selPw=i;renderPathways();document.getElementById('pw-detail').style.display='block';renderRoadmap(i);}
+function renderRoadmap(i){
+  const p=PW[i];const badge=l=>l==='AP'?'<span class="dp dp-h">AP</span>':l==='H'?'<span class="dp dp-m">Honors</span>':'<span class="dp dp-e">Regular</span>';
+  document.getElementById('pw-roadmap').innerHTML=`<div style="font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:14px">${p.ico} ${p.nm} — 4-Year Roadmap</div><div class="roadmap-wrap">${p.rm.map(g=>`<div class="grade-col"><div class="grade-hdr">${g.g} Grade</div>${g.cs.map(([n,l])=>`<div class="gc">${n}<div class="gc-lv">${badge(l)}</div></div>`).join('')}</div>`).join('')}</div>`;
+}
+
+// ── AI MODERATION ─────────────────────────────────────────────────────────────
+async function moderateWithAI(text, teacher, course) {
+  const prompt=`You are a content moderator for Lernix, a high school teacher rating platform used by students aged 14-18.
+
+Analyze this student review and determine if it should be flagged.
+
+Teacher: ${teacher}
+Course: ${course}
+Review: "${text}"
+
+Flag if it contains: personal attacks, profanity, slurs, threats, false accusations of crimes, sexual content, personally identifying info, or content completely unrelated to the academic experience.
+
+Do NOT flag for: honest negative feedback about teaching, low ratings with reasoning, complaints about workload or grading.
+
+Respond with ONLY valid JSON:
+{"flagged":true or false,"reason":"brief reason or null","severity":"low","medium","high" or null}`;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    return JSON.parse((d.content?.[0]?.text||'{}').replace(/```json|```/g,'').trim());
+  }catch{return{flagged:true,reason:'AI unavailable — flagged for manual review',severity:'low'};}
+}
+
+// ── SUBMIT REVIEW ─────────────────────────────────────────────────────────────
+async function submitReview(){
+  const school=document.getElementById('rv-school-sel').value;
+  const teacher=document.getElementById('rv-teacher-input').value.trim();
+  const course=document.getElementById('rv-class-input').value.trim();
+  const text=document.getElementById('rv-text').value.trim();
+  const diff=document.getElementById('rv-diff').value;
+  const workload=document.getElementById('rv-workload').value;
+  if(!school){toast('Please select your school.');return;}
+  if(!teacher){toast('Please enter the teacher\'s name.');return;}
+  if(!course){toast('Please enter the class name.');return;}
+  if(star<0){toast('Please pick a star rating.');return;}
+  if(!text){toast('Please write your review.');return;}
+  const scanEl=document.getElementById('ai-scanning'),pendEl=document.getElementById('pending-banner'),btnW=document.getElementById('submit-btn-wrap');
+  scanEl.classList.remove('hide');btnW.style.opacity='0.4';btnW.style.pointerEvents='none';
+  const result=await moderateWithAI(text,teacher,course);
+  scanEl.classList.add('hide');btnW.style.opacity='1';btnW.style.pointerEvents='auto';
+  const teacherKey=teacher.toLowerCase().replace(/[^a-z0-9]/g,'_');
+  const review={id:Date.now(),school,teacherName:teacher,teacherKey,course,text,rating:star+1,diff:parseInt(diff)||0,workload,upvotes:0,ts:Date.now(),aiFlag:result.flagged,aiReason:result.reason||null,aiSeverity:result.severity||null,status:result.flagged?'pending_flagged':'pending_clean'};
+  const db=readDB();
+  if(!db.pendingReviews)db.pendingReviews=[];
+  db.pendingReviews.push(review);
+  if(!db.teachers)db.teachers={};
+  if(!db.teachers[school])db.teachers[school]={};
+  if(!db.teachers[school][teacherKey])db.teachers[school][teacherKey]={name:teacher,key:teacherKey,courses:[],portalData:{}};
+  const t=db.teachers[school][teacherKey];
+  if(!t.courses.includes(course))t.courses.push(course);
+  writeDB(db);updateAdminBadge();
+  pendEl.classList.remove('hide');
+  pendEl.textContent=result.flagged?'🚩 Your review was flagged by AI for admin review. It will appear once approved — usually within 24 hours.':'✅ Your review looks great and is queued for admin approval. It will appear shortly.';
+  document.getElementById('rv-teacher-input').value='';
+  document.getElementById('rv-class-input').value='';
+  document.getElementById('rv-text').value='';
+  document.getElementById('rv-diff').value='';
+  document.getElementById('rv-workload').value='';
+  star=-1;resetStars();
+}
+
+// ── ADMIN ─────────────────────────────────────────────────────────────────────
+function approveReview(id){
+  const db=readDB();const idx=(db.pendingReviews||[]).findIndex(r=>r.id===id);if(idx===-1)return;
+  const rv=db.pendingReviews[idx];rv.status='approved';rv.reviewedAt=Date.now();
+  if(!db.reviews)db.reviews={};if(!db.reviews[rv.school])db.reviews[rv.school]={};if(!db.reviews[rv.school][rv.teacherKey])db.reviews[rv.school][rv.teacherKey]=[];
+  db.reviews[rv.school][rv.teacherKey].push(rv);writeDB(db);renderTeachersPage();updateAdminBadge();renderAdminQueue();toast('✅ Review approved and published.');
+}
+function rejectReview(id){const db=readDB();const rv=(db.pendingReviews||[]).find(r=>r.id===id);if(!rv)return;rv.status='rejected';rv.reviewedAt=Date.now();writeDB(db);updateAdminBadge();renderAdminQueue();toast('🗑 Review rejected.');}
+function approveAll(){
+  const db=readDB();const pending=(db.pendingReviews||[]).filter(r=>r.status==='pending_clean');
+  pending.forEach(rv=>{rv.status='approved';rv.reviewedAt=Date.now();if(!db.reviews)db.reviews={};if(!db.reviews[rv.school])db.reviews[rv.school]={};if(!db.reviews[rv.school][rv.teacherKey])db.reviews[rv.school][rv.teacherKey]=[];db.reviews[rv.school][rv.teacherKey].push(rv);});
+  writeDB(db);renderTeachersPage();updateAdminBadge();renderAdminQueue();toast(`✅ ${pending.length} review${pending.length!==1?'s':''} approved.`);
+}
+
+function updateAdminBadge(){
+  const db=readDB();
+  const pending=(db.pendingReviews||[]).filter(r=>r.status==='pending_clean').length;
+  const flagged=(db.pendingReviews||[]).filter(r=>r.status==='pending_flagged').length;
+  const badge=document.getElementById('admin-notif');
+  const total=pending+flagged;
+  if(currentUser==='admin'){badge.classList.toggle('hide',total===0);badge.textContent=total>9?'9+':total;}
+  else badge.classList.add('hide');
+  const bp=document.getElementById('badge-pending');if(bp)bp.textContent=pending;
+  const bf=document.getElementById('badge-flagged');if(bf)bf.textContent=flagged;
+}
+
+function setAdminTab(tab,btn){
+  adminTab=tab;
+  document.querySelectorAll('.admin-snav-item').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  renderAdminQueue();
+}
+
+function renderAdminStats(){
+  const db=readDB();const all=db.pendingReviews||[];
+  const pending=all.filter(r=>r.status==='pending_clean').length;
+  const flagged=all.filter(r=>r.status==='pending_flagged').length;
+  const approved=all.filter(r=>r.status==='approved').length;
+  const rejected=all.filter(r=>r.status==='rejected').length;
+  document.getElementById('admin-stats').innerHTML=`
+    <div class="stat-pill"><div class="stat-num amber">${pending}</div><div class="stat-lbl">Pending (Clean)</div></div>
+    <div class="stat-pill"><div class="stat-num amber">${flagged}</div><div class="stat-lbl">AI Flagged</div></div>
+    <div class="stat-pill"><div class="stat-num green">${approved}</div><div class="stat-lbl">Approved</div></div>
+    <div class="stat-pill"><div class="stat-num red">${rejected}</div><div class="stat-lbl">Rejected</div></div>`;
+}
+
+function renderAdminQueue(){
+  renderAdminStats();
+  const db=readDB();const all=db.pendingReviews||[];
+  let filtered;
+  if(adminTab==='pending')filtered=all.filter(r=>r.status==='pending_clean');
+  else if(adminTab==='flagged')filtered=all.filter(r=>r.status==='pending_flagged');
+  else if(adminTab==='approved')filtered=all.filter(r=>r.status==='approved');
+  else filtered=all.filter(r=>r.status==='rejected');
+  const wrap=document.getElementById('admin-queue');
+  if(!filtered.length){const labels={pending:'No clean reviews waiting',flagged:'No AI-flagged reviews',approved:'No approved reviews yet',rejected:'No rejected reviews'};wrap.innerHTML=`<div class="empty-state"><div class="empty-icon">${adminTab==='pending'?'⏳':adminTab==='flagged'?'🚩':adminTab==='approved'?'✅':'🗑'}</div><div class="empty-title">${labels[adminTab]}</div></div>`;return;}
+  let bulkBtn='';
+  if(adminTab==='pending'&&filtered.length>0){bulkBtn=`<div style="margin-bottom:16px;display:flex;align-items:center;gap:12px"><button class="btn btn-green btn-sm" onclick="approveAll()">✅ Approve All ${filtered.length} Clean Review${filtered.length!==1?'s':''}</button><span style="font-size:13px;color:var(--muted)">These passed AI screening and are ready to publish.</span></div>`;}
+  const cards=[...filtered].reverse().map(rv=>{
+    const date=new Date(rv.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const stars=Array.from({length:5},(_,i)=>`<span style="color:${i<rv.rating?'#C97D10':'#d8d0c4'}">★</span>`).join('');
+    const statusLabel={pending_clean:'<span class="status-badge status-clean">✅ AI Clean</span>',pending_flagged:'<span class="status-badge status-pending">🚩 AI Flagged</span>',approved:'<span class="status-badge status-approved">✅ Approved</span>',rejected:'<span class="status-badge status-rejected">🗑 Rejected</span>'}[rv.status]||'';
+    const flagBox=rv.aiFlag?`<div class="ai-flag-box"><div class="ai-flag-label">🤖 AI Flag · Severity: ${rv.aiSeverity||'unknown'}</div><div class="ai-flag-reason">${rv.aiReason}</div></div>`:'';
+    const actions=(rv.status==='pending_clean'||rv.status==='pending_flagged')?`<div class="flag-actions"><button class="btn btn-green btn-sm" onclick="approveReview(${rv.id})">✅ Approve</button><button class="btn btn-red btn-sm" onclick="rejectReview(${rv.id})">🗑 Reject</button></div>`:`<div style="font-size:13px;color:var(--muted)">Reviewed ${new Date(rv.reviewedAt||rv.ts).toLocaleDateString()}</div>`;
+    return `<div class="flag-card ${rv.aiFlag&&rv.status.startsWith('pending')?'flagged':rv.status==='approved'?'approved':rv.status==='rejected'?'rejected':''}">
+      <div class="flag-meta"><div class="flag-info"><span class="flag-school">${rv.school}</span><span class="flag-teacher">→ ${rv.teacherName}</span><span class="flag-course">${rv.course}</span></div><div>${statusLabel}</div></div>
+      <div class="flag-rating-row"><span>${stars}</span>${rv.diff?`<span class="flag-rating-item">Difficulty: <strong>${rv.diff}/5</strong></span>`:''}${rv.workload?`<span class="flag-rating-item">Workload: <strong>${rv.workload}</strong></span>`:''}<span class="flag-rating-item" style="margin-left:auto">${date}</span></div>
+      ${flagBox}
+      <div class="flag-text-box">"${rv.text}"</div>
+      ${actions}
+    </div>`;
+  }).join('');
+  wrap.innerHTML=bulkBtn+cards;
+}
+
+// ── STARS ─────────────────────────────────────────────────────────────────────
+function hoverS(i){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=i));}
+function resetStars(){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=star));}
+function pickS(i){star=i;resetStars();}
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function openLogin(){document.getElementById('login-modal').classList.remove('hide');document.getElementById('login-hint').style.display='none';}
+function closeLogin(){document.getElementById('login-modal').classList.add('hide');}
+function setMode(m){currentMode=m;['student','teacher','admin'].forEach(x=>document.getElementById('mode-'+x).classList.toggle('on',x===m));document.getElementById('login-hint').style.display=m==='admin'?'block':'none';}
+function doLogin(){
+  if(currentMode==='admin'){const pw=document.getElementById('admin-pw-field').value;if(pw!==ADMIN_PASSWORD){toast('Incorrect admin password.');return;}currentUser='admin';closeLogin();document.getElementById('admin-pw-field').value='';updateAdminBadge();navTo('admin');document.getElementById('bottom-nav-mobile').style.display='none';renderAdminStats();renderAdminQueue();toast('Welcome, Admin!');}
+  else if(currentMode==='teacher'){closeLogin();toast('Teacher dashboard coming soon.');}
+  else{closeLogin();toast('Signed in as student.');}
+}
+function doLogout(){currentUser=null;document.getElementById('admin-notif').classList.add('hide');navTo('home');setSideNav('home');document.getElementById('bottom-nav-mobile').style.display='';toast('Signed out.');}
+
+// ── SCHOOL SELECT ─────────────────────────────────────────────────────────────
+function populateSchoolSelect(){
+  const sel=document.getElementById('rv-school-sel');if(!sel)return;
+  const regions=[...new Set(SCHOOLS.map(s=>s.region))];
+  let html='<option value="">— Select your school —</option>';
+  regions.forEach(r=>{html+=`<optgroup label="${r}">`;SCHOOLS.filter(s=>s.region===r).forEach(s=>{html+=`<option value="${s.name}" ${currentSchool&&s.name===currentSchool.name?'selected':''}>${s.name}</option>`;});html+=`</optgroup>`;});
+  sel.innerHTML=html;
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function toast(msg){const el=document.getElementById('toast-el');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+populateSchoolSelect();
+renderPathways();
+renderSchoolList('');
+buildSideNav('sidebar-nav');
+buildSideNav('sidebar-nav-pw');
+updateAdminBadge();
+</script>
+</body>
+</html>

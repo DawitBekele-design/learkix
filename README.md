@@ -1,0 +1,1148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Lernix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#fdfcfa;--bg2:#f7f5f0;--bg3:#edeae2;
+  --border:rgba(201,125,16,0.13);--border2:rgba(201,125,16,0.26);
+  --saffron:#C97D10;--saffron-dark:#a86508;--saffron-light:#E8A030;
+  --saffron-pale:#fdf3e0;--saffron-pale2:#f7e0b0;
+  --text:#2e2a22;--text2:#4a4438;--muted:#8a8070;
+  --green:#2d7a4f;--red:#b83232;--amber:#d97706;
+  --shadow-sm:0 1px 4px rgba(201,125,16,0.08);
+  --shadow:0 2px 14px rgba(201,125,16,0.10);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.11);
+  --radius:12px;
+  --font-head:'Cormorant Garamond',serif;
+  --font:'Jost',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+input,select,textarea{color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);}
+input::placeholder,textarea::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+select option{color:var(--text2);background:#fff;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:7px 18px;border-radius:99px;font-size:0.8rem;font-weight:600;letter-spacing:0.2px;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all 0.18s;background:#fff;color:var(--saffron-dark);border:1.5px solid var(--saffron-light);box-shadow:var(--shadow-sm);}
+.btn:hover{background:var(--saffron-pale);border-color:var(--saffron);box-shadow:var(--shadow);}
+.btn-filled{background:var(--saffron);color:#fff;border:1.5px solid var(--saffron);box-shadow:0 3px 12px rgba(201,125,16,0.26);}
+.btn-filled:hover{background:var(--saffron-dark);border-color:var(--saffron-dark);color:#fff;}
+.btn-green{background:var(--green);color:#fff;border:1.5px solid var(--green);}
+.btn-green:hover{background:#245f3e;border-color:#245f3e;color:#fff;}
+.btn-red{background:var(--red);color:#fff;border:1.5px solid var(--red);}
+.btn-red:hover{background:#8b1f1f;border-color:#8b1f1f;color:#fff;}
+.btn-sm{padding:5px 13px;font-size:0.74rem;}
+.btn:active{transform:translateY(1px);}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;background:rgba(253,252,250,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border2);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 24px;gap:12px;}
+.hdr-left{display:flex;align-items:center;}
+.hdr-search{display:flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:6px 14px;width:215px;transition:all 0.2s;box-shadow:var(--shadow-sm);}
+.hdr-search:focus-within{border-color:var(--saffron);width:255px;box-shadow:0 0 0 3px rgba(201,125,16,0.1);}
+.hdr-search input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:0.81rem;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
+.hdr-search input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+.srch-ico{font-size:0.8rem;color:var(--saffron-light);flex-shrink:0;}
+.hdr-center{display:flex;align-items:center;justify-content:center;}
+.logo-wrap{display:flex;align-items:center;gap:7px;cursor:pointer;}
+.logo-mark{width:30px;height:30px;border-radius:7px;background:var(--saffron);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(201,125,16,0.32);flex-shrink:0;}
+.logo-mark svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-text{font-family:var(--font-head);font-size:1.5rem;font-weight:600;color:var(--saffron-light);line-height:1;}
+.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:7px;}
+.loc-trigger{display:flex;align-items:center;gap:5px;font-size:0.76rem;color:var(--saffron-dark);font-weight:600;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:5px 12px 5px 10px;cursor:pointer;transition:all 0.15s;white-space:nowrap;box-shadow:var(--shadow-sm);}
+.loc-trigger:hover,.loc-trigger.open{border-color:var(--saffron);background:var(--saffron-pale);}
+.loc-caret{font-size:0.58rem;color:var(--saffron-light);transition:transform 0.2s;}
+.loc-trigger.open .loc-caret{transform:rotate(180deg);}
+.loc-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:300px;background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:14px;box-shadow:var(--shadow-lg);padding:12px;z-index:400;opacity:0;transform:translateY(-6px) scale(0.98);pointer-events:none;transition:all 0.18s;}
+.loc-dropdown.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
+.loc-search-wrap{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);border-radius:8px;padding:7px 11px;margin-bottom:10px;}
+.loc-search-wrap:focus-within{border-color:var(--saffron-light);background:#fff;}
+.loc-search-wrap input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:0.82rem;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
+.loc-search-wrap input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
+.loc-list{max-height:210px;overflow-y:auto;}
+.loc-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:0.82rem;color:var(--text2);transition:background 0.12s;}
+.loc-item:hover{background:var(--saffron-pale);}
+.loc-item.active{background:var(--saffron-pale);color:var(--saffron-dark);font-weight:600;}
+.loc-item-detail{display:flex;flex-direction:column;flex:1;}
+.loc-item-name{font-size:0.82rem;font-weight:500;color:var(--text2);}
+.loc-item-sub{font-size:0.68rem;color:var(--muted);}
+.loc-region-label{font-size:0.61rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:7px 10px 3px;}
+.profile-btn{width:33px;height:33px;border-radius:50%;background:#fff;border:1.5px solid var(--saffron-light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;transition:all 0.15s;color:var(--saffron-dark);box-shadow:var(--shadow-sm);position:relative;}
+.profile-btn:hover{background:var(--saffron-pale);border-color:var(--saffron);}
+.admin-badge{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:var(--red);border-radius:50%;font-size:0.55rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff;}
+
+.page{display:none;padding-top:62px;min-height:100vh;}
+.page.active{display:block;}
+.section{padding:32px 28px 52px;max-width:1060px;margin:0 auto;}
+.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.sec-title{font-family:var(--font-head);font-size:1.45rem;color:var(--text);}
+.sec-sub{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+
+/* Fields */
+.field-input,.field-sel,.field-ta{width:100%;background:var(--bg2)!important;border:1.5px solid var(--border2)!important;border-radius:8px;padding:9px 12px;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:0.82rem;outline:none;}
+.field-input:focus,.field-sel:focus,.field-ta:focus{border-color:var(--saffron)!important;background:#fff!important;}
+.field-ta{resize:vertical;min-height:80px;}
+.field-label{font-size:0.72rem;font-weight:600;color:var(--text2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:0.4px;}
+
+/* HOME */
+.home-wrap{display:flex;flex-direction:column;min-height:calc(100vh - 62px);}
+.home-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 24px 48px;text-align:center;}
+.home-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--saffron);margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;}
+.home-eyebrow::before,.home-eyebrow::after{content:'';width:24px;height:1px;background:var(--saffron-light);}
+.home-title{font-family:var(--font-head);font-size:3.5rem;font-weight:400;color:var(--text);line-height:1.15;margin-bottom:14px;max-width:580px;}
+.home-title em{color:var(--saffron);font-style:italic;}
+.home-sub{font-size:0.92rem;color:var(--muted);max-width:400px;margin:0 auto 36px;line-height:1.75;}
+.home-caption{padding:36px 24px 52px;text-align:center;border-top:1px solid var(--border2);background:var(--bg2);}
+.caption-inner{max-width:660px;margin:0 auto;}
+.caption-title{font-family:var(--font-head);font-size:1.6rem;color:var(--text);margin-bottom:10px;}
+.caption-text{font-size:0.86rem;color:var(--muted);line-height:1.78;max-width:500px;margin:0 auto;}
+.caption-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+.cap-pill{font-size:0.74rem;font-weight:500;padding:5px 13px;border-radius:99px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);}
+.cap-pill span{color:var(--saffron);margin-right:3px;}
+
+/* Cards */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px;}
+.t-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
+.t-card:hover{box-shadow:var(--shadow);border-color:var(--saffron);transform:translateY(-2px);}
+.tc-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.tc-ava{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1rem;color:#fff;font-weight:600;flex-shrink:0;}
+.tc-score{text-align:right;}
+.tc-num{font-family:var(--font-head);font-size:1.7rem;color:var(--text);line-height:1;}
+.tc-denom{font-size:0.68rem;color:var(--muted);}
+.tc-name{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.tc-sub{font-size:0.73rem;color:var(--muted);margin-bottom:11px;}
+.tc-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.chip{font-size:0.64rem;padding:2px 8px;border-radius:99px;border:1px solid var(--border2);color:var(--text2);background:var(--bg2);white-space:nowrap;}
+.dp{font-size:0.63rem;font-weight:600;padding:2px 8px;border-radius:99px;}
+.dp-e{background:rgba(45,122,79,0.1);color:var(--green);}
+.dp-m{background:rgba(201,125,16,0.12);color:var(--saffron-dark);}
+.dp-h{background:rgba(184,50,50,0.1);color:var(--red);}
+
+/* Detail */
+.detail-band{background:var(--bg2);border-bottom:1px solid var(--border2);padding:28px 28px 22px;}
+.detail-inner{max-width:1060px;margin:0 auto;display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;}
+.det-ava{width:62px;height:62px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;color:#fff;font-weight:600;flex-shrink:0;}
+.det-info{flex:1;min-width:160px;}
+.det-name{font-family:var(--font-head);font-size:1.9rem;color:var(--text);margin-bottom:3px;}
+.det-dept{font-size:0.8rem;color:var(--muted);margin-bottom:9px;}
+.det-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.det-score{text-align:center;}
+.det-big{font-family:var(--font-head);font-size:3.6rem;color:var(--saffron);line-height:1;}
+.det-lbl{font-size:0.7rem;color:var(--muted);margin-top:3px;}
+.back-btn{display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--saffron-dark);cursor:pointer;background:none;border:none;font-family:var(--font);padding:0;margin-bottom:16px;font-weight:600;}
+.back-btn:hover{color:var(--saffron);}
+.rating-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px;}
+.r-pill{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:14px;}
+.r-lbl{font-size:0.67rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
+.r-val{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:5px;}
+.r-bar{height:4px;background:var(--bg3);border-radius:99px;overflow:hidden;}
+.r-fill{height:100%;border-radius:99px;}
+.rv-card{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:17px;margin-bottom:9px;box-shadow:var(--shadow-sm);}
+.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.rv-cls{font-size:0.7rem;font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:3px 9px;border-radius:99px;}
+.rv-txt{font-size:0.83rem;color:var(--text2);line-height:1.67;margin-bottom:10px;}
+.rv-acts{display:flex;gap:7px;align-items:center;}
+.vote-btn{display:flex;align-items:center;gap:4px;font-size:0.73rem;cursor:pointer;padding:4px 10px;border-radius:8px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);font-family:var(--font);transition:all 0.15s;}
+.vote-btn:hover{background:var(--saffron-pale);border-color:var(--saffron-light);color:var(--saffron-dark);}
+
+/* EMPTY STATE */
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;text-align:center;}
+.empty-icon{font-size:2.8rem;margin-bottom:16px;opacity:0.5;}
+.empty-title{font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:8px;}
+.empty-sub{font-size:0.85rem;color:var(--muted);max-width:340px;line-height:1.7;margin-bottom:22px;}
+
+/* WRITE REVIEW */
+.form-card{background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);}
+.form-title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:6px;}
+.form-subtitle{font-size:0.81rem;color:var(--muted);margin-bottom:20px;}
+.rf-stars{display:flex;gap:6px;font-size:1.5rem;cursor:pointer;margin-bottom:13px;}
+.rf-star{color:var(--bg3);transition:color 0.1s;}
+.rf-star.lit{color:var(--saffron);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px;}
+
+/* AI SCANNING ANIMATION */
+.ai-scanning{display:flex;align-items:center;gap:10px;background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:14px 16px;margin-top:14px;}
+.ai-scanning.hide{display:none;}
+.scan-dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);animation:pulse 1.2s ease-in-out infinite;}
+.scan-dot:nth-child(2){animation-delay:0.2s;}
+.scan-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1.1);}}
+.scan-text{font-size:0.8rem;color:var(--saffron-dark);font-weight:500;}
+
+/* PENDING REVIEW BANNER */
+.pending-banner{background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:13px 16px;margin-top:13px;font-size:0.81rem;color:var(--saffron-dark);display:flex;align-items:center;gap:8px;}
+.pending-banner.hide{display:none;}
+
+/* PATHWAY */
+.pw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:11px;margin-bottom:26px;}
+.pw-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:19px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
+.pw-card:hover,.pw-card.sel{border-color:var(--saffron);box-shadow:var(--shadow);transform:translateY(-1px);}
+.pw-card.sel{background:var(--saffron-pale);}
+.pw-ico{font-size:1.5rem;margin-bottom:8px;}
+.pw-name{font-family:var(--font-head);font-size:1.05rem;color:var(--text);margin-bottom:4px;}
+.pw-desc{font-size:0.73rem;color:var(--muted);line-height:1.55;}
+.roadmap-wrap{display:flex;overflow-x:auto;padding-bottom:8px;}
+.grade-col{min-width:182px;flex-shrink:0;}
+.grade-hdr{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--saffron-dark);margin-bottom:9px;}
+.gc{background:#fff;border:1.5px solid var(--border2);border-radius:9px;padding:10px 12px;margin-bottom:6px;margin-right:9px;font-size:0.78rem;font-weight:500;color:var(--text);box-shadow:var(--shadow-sm);}
+.gc-lv{font-size:0.63rem;color:var(--muted);margin-top:3px;}
+
+/* ══════════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════════ */
+.admin-wrap{max-width:960px;margin:0 auto;padding:30px 28px 64px;}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+.admin-title{font-family:var(--font-head);font-size:2rem;color:var(--text);}
+.admin-subtitle{font-size:0.83rem;color:var(--muted);}
+.admin-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
+.stat-pill{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:14px 18px;flex:1;min-width:120px;box-shadow:var(--shadow-sm);}
+.stat-num{font-family:var(--font-head);font-size:2rem;line-height:1;}
+.stat-num.amber{color:var(--amber);}
+.stat-num.green{color:var(--green);}
+.stat-num.red{color:var(--red);}
+.stat-lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
+.admin-tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:10px;width:fit-content;margin-bottom:22px;border:1px solid var(--border2);}
+.atab{padding:7px 18px;border-radius:8px;font-size:0.8rem;font-weight:500;cursor:pointer;color:var(--muted);border:none;background:none;font-family:var(--font);transition:all 0.15s;}
+.atab.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
+.atab:hover:not(.on){color:var(--text);}
+
+/* FLAGGED REVIEW CARD */
+.flag-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:all 0.2s;}
+.flag-card:hover{box-shadow:var(--shadow);}
+.flag-card.flagged{border-color:rgba(217,119,6,0.4);background:rgba(253,243,224,0.4);}
+.flag-card.approved{border-color:rgba(45,122,79,0.3);background:rgba(45,122,79,0.03);}
+.flag-card.rejected{border-color:rgba(184,50,50,0.25);background:rgba(184,50,50,0.03);opacity:0.7;}
+.flag-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
+.flag-info{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.flag-school{font-size:0.72rem;font-weight:600;color:var(--text2);background:var(--bg2);padding:3px 9px;border-radius:99px;border:1px solid var(--border2);}
+.flag-teacher{font-size:0.72rem;color:var(--muted);}
+.flag-course{font-size:0.72rem;font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:3px 9px;border-radius:99px;}
+.flag-status{display:flex;align-items:center;gap:5px;}
+.status-badge{font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:0.5px;}
+.status-pending{background:rgba(217,119,6,0.12);color:var(--amber);}
+.status-approved{background:rgba(45,122,79,0.12);color:var(--green);}
+.status-rejected{background:rgba(184,50,50,0.1);color:var(--red);}
+.status-clean{background:rgba(45,122,79,0.1);color:var(--green);}
+.ai-flag-box{background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;padding:10px 13px;margin-bottom:12px;}
+.ai-flag-label{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:4px;}
+.ai-flag-reason{font-size:0.8rem;color:var(--text2);line-height:1.55;}
+.flag-text-box{font-size:0.84rem;color:var(--text2);line-height:1.65;margin-bottom:14px;padding:12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
+.flag-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.flag-rating-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.flag-rating-item{font-size:0.75rem;color:var(--muted);}
+.flag-rating-item strong{color:var(--text2);}
+
+/* LOGIN */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(46,42,34,0.3);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;}
+.modal-bg.hide{display:none;}
+.modal{background:#fff;border-radius:16px;padding:30px;width:340px;box-shadow:var(--shadow-lg);position:relative;border:1.5px solid var(--saffron-pale2);}
+.modal-title{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:3px;}
+.modal-sub{font-size:0.8rem;color:var(--muted);margin-bottom:20px;}
+.modal-close{position:absolute;top:13px;right:15px;cursor:pointer;font-size:1rem;color:var(--muted);background:none;border:none;font-family:var(--font);}
+.mode-toggle{display:flex;border:1.5px solid var(--saffron-pale2);border-radius:9px;overflow:hidden;margin-bottom:18px;}
+.mode-btn{flex:1;padding:8px;font-size:0.79rem;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s;background:none;color:var(--muted);}
+.mode-btn.on{background:var(--saffron);color:#fff;}
+
+.div{height:1px;background:var(--border2);margin:20px 0;}
+.toast{position:fixed;bottom:70px;right:20px;z-index:999;background:var(--saffron-pale);border:1.5px solid var(--saffron-light);border-radius:9px;padding:11px 17px;font-size:0.81rem;color:var(--saffron-dark);font-weight:600;transform:translateY(50px);opacity:0;transition:all 0.28s;box-shadow:var(--shadow);}
+.toast.show{transform:translateY(0);opacity:1;}
+#bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(253,252,250,0.97);backdrop-filter:blur(10px);border-top:1px solid var(--border2);display:flex;justify-content:center;gap:3px;padding:8px 16px 10px;}
+.tab-btn{padding:6px 15px;border-radius:8px;font-size:0.79rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all 0.15s;border:none;background:none;font-family:var(--font);}
+.tab-btn.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
+.tab-btn:hover:not(.on){color:var(--saffron-dark);}
+
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--saffron-pale2);border-radius:99px;}
+@media(max-width:600px){header{padding:0 12px;gap:7px;}.hdr-search{width:140px;}.logo-text{font-size:1.3rem;}.section{padding:22px 14px 36px;}.two-col{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-left">
+    <div class="hdr-search">
+      <span class="srch-ico">⌕</span>
+      <input type="text" id="main-search" placeholder="Search teachers or classes…" oninput="liveSearch(this.value)" onfocus="showPage('teachers');setbn('bn-teachers')">
+    </div>
+  </div>
+  <div class="hdr-center">
+    <div class="logo-wrap" onclick="goHome()">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/><path d="M2 18l10 5 10-5"/></svg></div>
+      <span class="logo-text">Lernix</span>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div style="position:relative;" id="loc-wrap">
+      <div class="loc-trigger" id="loc-trigger" onclick="toggleLoc()">
+        <span>📍</span><span id="loc-label">Select School</span><span class="loc-caret">▾</span>
+      </div>
+      <div class="loc-dropdown" id="loc-dropdown">
+        <div class="loc-search-wrap">
+          <span style="font-size:0.8rem;color:var(--saffron-light)">⌕</span>
+          <input type="text" id="loc-search-input" placeholder="Search Washington schools…" oninput="filterSchools(this.value)" autocomplete="off">
+        </div>
+        <div class="loc-list" id="loc-list"></div>
+      </div>
+    </div>
+    <button class="btn btn-sm" onclick="showPage('write')">+ Rate</button>
+    <div class="profile-btn" id="profile-btn" onclick="openLogin()">
+      👤
+      <span class="admin-badge hide" id="admin-notif">0</span>
+    </div>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="modal-bg hide" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
+    <div class="modal-title">Sign in to Lernix</div>
+    <div class="modal-sub">Students leave reviews. Teachers manage class info. Admins moderate content.</div>
+    <div class="mode-toggle">
+      <button class="mode-btn on" id="mode-student" onclick="setMode('student')">Student</button>
+      <button class="mode-btn" id="mode-teacher" onclick="setMode('teacher')">Teacher</button>
+      <button class="mode-btn" id="mode-admin" onclick="setMode('admin')">Admin</button>
+    </div>
+    <label class="field-label" style="margin-bottom:5px">Email</label>
+    <input class="field-input" type="email" placeholder="you@school.edu" style="margin-bottom:11px;display:block">
+    <label class="field-label" style="margin-bottom:5px">Password</label>
+    <input class="field-input" id="admin-pw-field" type="password" placeholder="••••••••" style="margin-bottom:17px;display:block">
+    <button class="btn btn-filled" style="width:100%" onclick="doLogin()">Sign In →</button>
+    <div id="login-hint" style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;display:none">Admin demo password: <strong style="color:var(--saffron-dark)">admin123</strong></div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="home-wrap">
+    <div class="home-main">
+      <div class="home-eyebrow">Student-Powered Ratings</div>
+      <h1 class="home-title">Find the right teacher,<br><em>before</em> you enroll.</h1>
+      <p class="home-sub">Real reviews from real students at your school. Compare teachers, check workload, and plan smarter.</p>
+      <button class="btn btn-filled" style="padding:12px 30px;font-size:0.88rem" onclick="showPage('teachers');setbn('bn-teachers')">
+        Find Classes
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+    <div class="home-caption">
+      <div class="caption-inner">
+        <div class="caption-title">What is Lernix?</div>
+        <p class="caption-text">Lernix is a student-driven platform where you can read honest ratings of teachers and classes at your high school. Difficulty levels, workload estimates, test formats, and real anonymous reviews — from students who've actually been in the seat.</p>
+        <div class="caption-pills">
+          <div class="cap-pill"><span>📊</span>Honest Ratings</div>
+          <div class="cap-pill"><span>🗂</span>Comparisons</div>
+          <div class="cap-pill"><span>🗺</span>Career Pathways</div>
+          <div class="cap-pill"><span>🔒</span>Anonymous</div>
+          <div class="cap-pill"><span>🛡</span>AI Moderated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEACHERS -->
+<div id="page-teachers" class="page">
+  <div class="section">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-title">Teachers</div>
+        <div class="sec-sub" id="school-sub">Select a school to see teachers</div>
+      </div>
+      <select class="field-sel" style="width:auto;margin:0" onchange="filterDept(this.value)">
+        <option value="">All Departments</option>
+        <option>Math</option><option>Science</option><option>English</option>
+        <option>History / Social Studies</option><option>PE / Health</option><option>Arts</option><option>World Languages</option><option>CTE</option>
+      </select>
+    </div>
+    <div id="teachers-content">
+      <div class="empty-state">
+        <div class="empty-icon">📍</div>
+        <div class="empty-title">Choose your school</div>
+        <div class="empty-sub">Use the location button to select your Washington high school. Teacher profiles appear as students submit reviews.</div>
+        <button class="btn btn-filled" onclick="toggleLoc()">Select School →</button>
+      </div>
+    </div>
+    <div id="find-more-wrap" style="display:none;text-align:center;margin-top:28px">
+      <button class="btn" style="padding:11px 28px;font-size:0.84rem" onclick="toast('All teachers shown.')">Load More</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="page-detail" class="page">
+  <div id="detail-band-wrap"></div>
+  <div class="section" id="detail-body"></div>
+</div>
+
+<!-- PATHWAYS -->
+<div id="page-pathways" class="page">
+  <div class="section">
+    <div class="sec-title" style="margin-bottom:4px">Career Pathway Explorer</div>
+    <div style="font-size:0.81rem;color:var(--muted);margin-bottom:22px">Recommended 4-year course sequences for Washington high schools.</div>
+    <div class="pw-grid" id="pw-grid"></div>
+    <div id="pw-detail" style="display:none"><div class="div"></div><div id="pw-roadmap"></div></div>
+  </div>
+</div>
+
+<!-- WRITE REVIEW -->
+<div id="page-write" class="page">
+  <div class="section" style="max-width:580px">
+    <button class="back-btn" onclick="showPage('teachers');setbn('bn-teachers')">← Back to Teachers</button>
+    <div class="form-card">
+      <div class="form-title">Leave an Anonymous Review</div>
+      <div class="form-subtitle">Your review will be scanned by AI for appropriateness before it goes live. This keeps the platform honest and respectful for everyone.</div>
+
+      <label class="field-label">School</label>
+      <select class="field-sel" id="rv-school-sel" style="margin-bottom:13px"></select>
+
+      <label class="field-label">Teacher Name</label>
+      <input class="field-input" id="rv-teacher-input" type="text" placeholder="Enter teacher's last name (e.g. Smith)" style="margin-bottom:13px">
+
+      <label class="field-label">Class / Course</label>
+      <input class="field-input" id="rv-class-input" type="text" placeholder="e.g. AP Calculus BC" style="margin-bottom:13px">
+
+      <label class="field-label">Overall Rating</label>
+      <div class="rf-stars" id="rf-stars" onmouseleave="resetStars()">
+        <span class="rf-star" onmouseenter="hoverS(0)" onclick="pickS(0)">★</span>
+        <span class="rf-star" onmouseenter="hoverS(1)" onclick="pickS(1)">★</span>
+        <span class="rf-star" onmouseenter="hoverS(2)" onclick="pickS(2)">★</span>
+        <span class="rf-star" onmouseenter="hoverS(3)" onclick="pickS(3)">★</span>
+        <span class="rf-star" onmouseenter="hoverS(4)" onclick="pickS(4)">★</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <label class="field-label">Difficulty</label>
+          <select class="field-sel" id="rv-diff">
+            <option value="">Select…</option>
+            <option value="1">1 – Very Easy</option><option value="2">2 – Easy</option>
+            <option value="3">3 – Medium</option><option value="4">4 – Hard</option>
+            <option value="5">5 – Very Hard</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Workload</label>
+          <select class="field-sel" id="rv-workload">
+            <option value="">Select…</option>
+            <option value="light">Light</option><option value="moderate">Moderate</option><option value="heavy">Heavy</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="field-label" style="margin-top:4px">Your Review</label>
+      <textarea class="field-ta" id="rv-text" placeholder="Share your honest experience. Help the next student make a better decision…" style="margin-bottom:14px"></textarea>
+
+      <!-- AI scanning indicator -->
+      <div class="ai-scanning hide" id="ai-scanning">
+        <div class="scan-dot"></div><div class="scan-dot"></div><div class="scan-dot"></div>
+        <span class="scan-text">AI is reviewing your submission for appropriateness…</span>
+      </div>
+
+      <!-- Pending message (shown after clean or flagged) -->
+      <div class="pending-banner hide" id="pending-banner">
+        ⏳ Your review has been submitted and is pending admin approval. It will appear once reviewed.
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:14px" id="submit-btn-wrap">
+        <button class="btn btn-filled" onclick="submitReview()">Submit Anonymously →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ADMIN PANEL
+══════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <div>
+        <div class="admin-title">Admin Panel</div>
+        <div class="admin-subtitle">Review AI-flagged submissions before they go live.</div>
+      </div>
+      <button class="btn btn-red btn-sm" onclick="doLogout()">Sign Out</button>
+    </div>
+
+    <div class="admin-stats" id="admin-stats"></div>
+
+    <div class="admin-tabs">
+      <button class="atab on" id="atab-pending" onclick="setAdminTab('pending',this)">⏳ Pending Review</button>
+      <button class="atab" id="atab-flagged" onclick="setAdminTab('flagged',this)">🚩 AI Flagged</button>
+      <button class="atab" id="atab-approved" onclick="setAdminTab('approved',this)">✅ Approved</button>
+      <button class="atab" id="atab-rejected" onclick="setAdminTab('rejected',this)">🗑 Rejected</button>
+    </div>
+
+    <div id="admin-queue"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast-el"></div>
+<div id="bottom-nav">
+  <button class="tab-btn on" id="bn-home" onclick="showPage('home');setbn('bn-home')">Home</button>
+  <button class="tab-btn" id="bn-teachers" onclick="showPage('teachers');setbn('bn-teachers')">Teachers</button>
+  <button class="tab-btn" id="bn-pathways" onclick="showPage('pathways');renderPathways();setbn('bn-pathways')">Pathways</button>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   LERNIX v8 — AI MODERATION + ADMIN PANEL
+   ─────────────────────────────────────────────────────────────────────────
+   Flow:
+     1. Student submits review
+     2. Claude AI scans it via Anthropic API
+     3. If clean  → status "pending_clean"  (admin can bulk-approve)
+     4. If flagged → status "pending_flagged" (admin must manually review)
+     5. Admin approves/rejects from the Admin Panel
+     6. Approved reviews become visible to all students
+   ─────────────────────────────────────────────────────────────────────────
+   Admin credentials (demo): password = "admin123"
+   In production: replace with real auth + server-side moderation endpoint
+══════════════════════════════════════════════════════════════════════════ */
+
+const ADMIN_PASSWORD = 'admin123';
+let currentMode = 'student';
+let currentUser = null; // 'admin' | null
+let currentSchool = null;
+let locOpen = false;
+let selPw = null;
+let star = -1;
+let votes = {};
+let adminTab = 'pending';
+
+// ── DB ───────────────────────────────────────────────────────────────────────
+function readDB() { try { return JSON.parse(localStorage.getItem('lernix_db')||'{}'); } catch { return {}; } }
+function writeDB(db) { try { localStorage.setItem('lernix_db', JSON.stringify(db)); } catch {} }
+
+function getPendingReviews() {
+  const db = readDB();
+  return db.pendingReviews || [];
+}
+function getApprovedReviews(school, key) {
+  const db = readDB();
+  return ((db.reviews||{})[school]||{})[key] || [];
+}
+function getAllTeachers(school) {
+  const db = readDB();
+  return Object.values((db.teachers||{})[school]||{});
+}
+
+// ── SCHOOLS ──────────────────────────────────────────────────────────────────
+const SCHOOLS = [
+  {name:"Kamiak High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
+  {name:"Mariner High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
+  {name:"Edmonds-Woodway HS",district:"Edmonds SD",city:"Edmonds",region:"Snohomish County"},
+  {name:"Meadowdale High School",district:"Edmonds SD",city:"Lynnwood",region:"Snohomish County"},
+  {name:"Mountlake Terrace HS",district:"Edmonds SD",city:"Mountlake Terrace",region:"Snohomish County"},
+  {name:"Glacier Peak HS",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
+  {name:"Snohomish High School",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
+  {name:"Henry M. Jackson HS",district:"Everett SD",city:"Mill Creek",region:"Snohomish County"},
+  {name:"Everett High School",district:"Everett SD",city:"Everett",region:"Snohomish County"},
+  {name:"Marysville-Pilchuck HS",district:"Marysville SD",city:"Marysville",region:"Snohomish County"},
+  {name:"Arlington High School",district:"Arlington SD",city:"Arlington",region:"Snohomish County"},
+  {name:"Ballard High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Garfield High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Roosevelt High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Franklin High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"West Seattle High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Rainier Beach High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
+  {name:"Skyline High School",district:"Issaquah SD",city:"Sammamish",region:"King County – Eastside"},
+  {name:"Issaquah High School",district:"Issaquah SD",city:"Issaquah",region:"King County – Eastside"},
+  {name:"Eastlake High School",district:"Lake Washington SD",city:"Sammamish",region:"King County – Eastside"},
+  {name:"Lake Washington HS",district:"Lake Washington SD",city:"Kirkland",region:"King County – Eastside"},
+  {name:"Inglemoor High School",district:"Northshore SD",city:"Kenmore",region:"King County – Eastside"},
+  {name:"Bothell High School",district:"Northshore SD",city:"Bothell",region:"King County – Eastside"},
+  {name:"Shorecrest High School",district:"Shoreline SD",city:"Shoreline",region:"King County – Eastside"},
+  {name:"Newport High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
+  {name:"Bellevue High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
+  {name:"Mercer Island HS",district:"Mercer Island SD",city:"Mercer Island",region:"King County – Eastside"},
+  {name:"Stadium High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
+  {name:"Lincoln High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
+  {name:"Emerald Ridge HS",district:"Puyallup SD",city:"Puyallup",region:"Pierce County"},
+  {name:"Lewis & Clark HS",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
+  {name:"Ferris High School",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
+  {name:"Richland High School",district:"Richland SD",city:"Richland",region:"Eastern WA"},
+  {name:"Kennewick High School",district:"Kennewick SD",city:"Kennewick",region:"Eastern WA"},
+  {name:"Pasco High School",district:"Pasco SD",city:"Pasco",region:"Eastern WA"},
+  {name:"Olympia High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
+  {name:"Capital High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
+  {name:"Eisenhower High School",district:"Yakima SD",city:"Yakima",region:"South / Central WA"},
+];
+
+// ── PATHWAYS ─────────────────────────────────────────────────────────────────
+const PW=[
+  {ico:"🔬",nm:"Engineering",ds:"Math & physics heavy sequence for future engineers.",
+   rm:[{g:"9th",cs:[["Algebra 2","R"],["Biology","H"],["English 9","R"]]},{g:"10th",cs:[["Pre-Calculus","H"],["Chemistry","AP"],["CS Principles","R"]]},{g:"11th",cs:[["AP Calculus BC","AP"],["AP Physics 1","AP"],["AP CS A","AP"]]},{g:"12th",cs:[["AP Physics C","AP"],["Engineering Design","H"],["AP Statistics","AP"]]}]},
+  {ico:"🩺",nm:"Pre-Med",ds:"Biology & chemistry track for healthcare careers.",
+   rm:[{g:"9th",cs:[["Honors Biology","H"],["Algebra 2","R"],["English 9","R"]]},{g:"10th",cs:[["AP Biology","AP"],["AP Chemistry","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Physics 1","AP"],["AP Psychology","AP"],["AP Statistics","AP"]]},{g:"12th",cs:[["AP Environmental Science","AP"],["Anatomy & Physiology","H"],["Research Methods","H"]]}]},
+  {ico:"📊",nm:"Business",ds:"Economics, stats, and communication for future leaders.",
+   rm:[{g:"9th",cs:[["Algebra 2","R"],["English 9","H"],["World History","R"]]},{g:"10th",cs:[["AP US History","AP"],["AP Lang & Comp","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Macroeconomics","AP"],["AP Statistics","AP"],["AP Gov & Politics","AP"]]},{g:"12th",cs:[["AP Microeconomics","AP"],["AP Literature","AP"],["Business Management","H"]]}]},
+  {ico:"🎨",nm:"Arts & Design",ds:"Creative portfolio-building for designers and writers.",
+   rm:[{g:"9th",cs:[["English 9","H"],["Art Studio","R"],["World History","R"]]},{g:"10th",cs:[["AP Lang & Comp","AP"],["Digital Media","H"],["Photography","R"]]},{g:"11th",cs:[["AP Literature","AP"],["AP Art History","AP"],["Graphic Design","H"]]},{g:"12th",cs:[["AP Studio Art","AP"],["Film Studies","H"],["Portfolio Prep","R"]]}]},
+];
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  AI MODERATION  — calls Claude via Anthropic API
+// ══════════════════════════════════════════════════════════════════════════════
+async function moderateWithAI(reviewText, teacherName, course) {
+  const prompt = `You are a content moderator for Lernix, a high school teacher rating platform used by students aged 14-18.
+
+Analyze this student review submission and determine if it should be flagged for admin review.
+
+Review details:
+- Teacher: ${teacherName}
+- Course: ${course}
+- Review text: "${reviewText}"
+
+Flag the review if it contains ANY of the following:
+- Personal attacks, bullying, or harassment targeting the teacher as a person (not their teaching)
+- Profanity, slurs, or offensive language
+- False accusations of illegal behavior
+- Personally identifying information (home address, phone number, etc.)
+- Sexual content or innuendo
+- Threats of any kind
+- Content unrelated to the academic experience
+- Attempts to spam or game the system
+
+Do NOT flag for:
+- Honest negative feedback about teaching quality, difficulty, grading, or class organization
+- Complaints about workload, fairness, or communication style
+- Low star ratings with legitimate reasoning
+- Strong opinions that are still respectful
+
+Respond with ONLY valid JSON in this exact format:
+{
+  "flagged": true or false,
+  "reason": "Brief explanation of why it was flagged, or null if clean",
+  "severity": "low" or "medium" or "high" or null
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 256,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const raw = data.content?.[0]?.text || '{}';
+    const clean = raw.replace(/```json|```/g,'').trim();
+    return JSON.parse(clean);
+  } catch (err) {
+    console.error('AI moderation error:', err);
+    // On API failure, flag for manual review to be safe
+    return { flagged: true, reason: 'AI moderation unavailable — flagged for manual review', severity: 'low' };
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  SUBMIT REVIEW
+// ══════════════════════════════════════════════════════════════════════════════
+async function submitReview() {
+  const school    = document.getElementById('rv-school-sel').value;
+  const teacher   = document.getElementById('rv-teacher-input').value.trim();
+  const course    = document.getElementById('rv-class-input').value.trim();
+  const text      = document.getElementById('rv-text').value.trim();
+  const diff      = document.getElementById('rv-diff').value;
+  const workload  = document.getElementById('rv-workload').value;
+
+  if (!school)  { toast('Please select your school.'); return; }
+  if (!teacher) { toast('Please enter the teacher\'s name.'); return; }
+  if (!course)  { toast('Please enter the class name.'); return; }
+  if (star < 0) { toast('Please pick a star rating.'); return; }
+  if (!text)    { toast('Please write your review.'); return; }
+
+  // Show AI scanning indicator
+  const scanEl    = document.getElementById('ai-scanning');
+  const pendEl    = document.getElementById('pending-banner');
+  const btnWrap   = document.getElementById('submit-btn-wrap');
+  scanEl.classList.remove('hide');
+  btnWrap.style.opacity = '0.4';
+  btnWrap.style.pointerEvents = 'none';
+
+  // Call AI moderation
+  const result = await moderateWithAI(text, teacher, course);
+
+  scanEl.classList.add('hide');
+  btnWrap.style.opacity = '1';
+  btnWrap.style.pointerEvents = 'auto';
+
+  // Build review object
+  const teacherKey = teacher.toLowerCase().replace(/[^a-z0-9]/g,'_');
+  const review = {
+    id:         Date.now(),
+    school,
+    teacherName: teacher,
+    teacherKey,
+    course,
+    text,
+    rating:     star + 1,
+    diff:       parseInt(diff) || 0,
+    workload,
+    upvotes:    0,
+    ts:         Date.now(),
+    // Moderation fields
+    aiFlag:     result.flagged,
+    aiReason:   result.reason || null,
+    aiSeverity: result.severity || null,
+    status:     result.flagged ? 'pending_flagged' : 'pending_clean'
+  };
+
+  // Save to pending queue
+  const db = readDB();
+  if (!db.pendingReviews) db.pendingReviews = [];
+  db.pendingReviews.push(review);
+
+  // Ensure teacher record exists
+  if (!db.teachers) db.teachers = {};
+  if (!db.teachers[school]) db.teachers[school] = {};
+  if (!db.teachers[school][teacherKey]) {
+    db.teachers[school][teacherKey] = { name: teacher, key: teacherKey, courses: [], portalData: {} };
+  }
+  const t = db.teachers[school][teacherKey];
+  if (!t.courses.includes(course)) t.courses.push(course);
+  writeDB(db);
+
+  // Update admin badge
+  updateAdminBadge();
+
+  // Show pending message
+  pendEl.classList.remove('hide');
+  pendEl.innerHTML = result.flagged
+    ? `🚩 Your review has been flagged by our AI for admin review. It will appear once approved — this usually takes less than 24 hours.`
+    : `✅ Your review looks great! It's been queued for final admin approval and will appear shortly.`;
+
+  // Reset form fields
+  document.getElementById('rv-teacher-input').value = '';
+  document.getElementById('rv-class-input').value = '';
+  document.getElementById('rv-text').value = '';
+  document.getElementById('rv-diff').value = '';
+  document.getElementById('rv-workload').value = '';
+  star = -1; resetStars();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  ADMIN ACTIONS
+// ══════════════════════════════════════════════════════════════════════════════
+function approveReview(id) {
+  const db = readDB();
+  const idx = (db.pendingReviews||[]).findIndex(r => r.id === id);
+  if (idx === -1) return;
+  const rv = db.pendingReviews[idx];
+  rv.status = 'approved';
+  rv.reviewedAt = Date.now();
+
+  // Move to live reviews
+  if (!db.reviews) db.reviews = {};
+  if (!db.reviews[rv.school]) db.reviews[rv.school] = {};
+  if (!db.reviews[rv.school][rv.teacherKey]) db.reviews[rv.school][rv.teacherKey] = [];
+  db.reviews[rv.school][rv.teacherKey].push(rv);
+
+  writeDB(db);
+  renderTeachersPage();
+  updateAdminBadge();
+  renderAdminQueue();
+  toast('✅ Review approved and published.');
+}
+
+function rejectReview(id) {
+  const db = readDB();
+  const rv = (db.pendingReviews||[]).find(r => r.id === id);
+  if (!rv) return;
+  rv.status = 'rejected';
+  rv.reviewedAt = Date.now();
+  writeDB(db);
+  updateAdminBadge();
+  renderAdminQueue();
+  toast('🗑 Review rejected.');
+}
+
+function approveAll() {
+  const db = readDB();
+  const pending = (db.pendingReviews||[]).filter(r => r.status === 'pending_clean');
+  pending.forEach(rv => {
+    rv.status = 'approved'; rv.reviewedAt = Date.now();
+    if (!db.reviews) db.reviews = {};
+    if (!db.reviews[rv.school]) db.reviews[rv.school] = {};
+    if (!db.reviews[rv.school][rv.teacherKey]) db.reviews[rv.school][rv.teacherKey] = [];
+    db.reviews[rv.school][rv.teacherKey].push(rv);
+  });
+  writeDB(db);
+  renderTeachersPage();
+  updateAdminBadge();
+  renderAdminQueue();
+  toast(`✅ ${pending.length} clean review${pending.length!==1?'s':''} approved.`);
+}
+
+function updateAdminBadge() {
+  const db = readDB();
+  const count = (db.pendingReviews||[]).filter(r => r.status==='pending_clean'||r.status==='pending_flagged').length;
+  const badge = document.getElementById('admin-notif');
+  if (currentUser === 'admin') {
+    badge.classList.toggle('hide', count===0);
+    badge.textContent = count > 9 ? '9+' : count;
+  } else {
+    badge.classList.add('hide');
+  }
+}
+
+function setAdminTab(tab, btn) {
+  adminTab = tab;
+  document.querySelectorAll('.atab').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  renderAdminQueue();
+}
+
+function renderAdminStats() {
+  const db = readDB();
+  const all = db.pendingReviews || [];
+  const pending  = all.filter(r => r.status==='pending_clean').length;
+  const flagged  = all.filter(r => r.status==='pending_flagged').length;
+  const approved = all.filter(r => r.status==='approved').length;
+  const rejected = all.filter(r => r.status==='rejected').length;
+  document.getElementById('admin-stats').innerHTML = `
+    <div class="stat-pill"><div class="stat-num amber">${pending}</div><div class="stat-lbl">Pending (Clean)</div></div>
+    <div class="stat-pill"><div class="stat-num" style="color:var(--amber)">${flagged}</div><div class="stat-lbl">AI Flagged</div></div>
+    <div class="stat-pill"><div class="stat-num green">${approved}</div><div class="stat-lbl">Approved</div></div>
+    <div class="stat-pill"><div class="stat-num red">${rejected}</div><div class="stat-lbl">Rejected</div></div>`;
+}
+
+function renderAdminQueue() {
+  renderAdminStats();
+  const db = readDB();
+  const all = db.pendingReviews || [];
+  let filtered;
+  if (adminTab === 'pending')  filtered = all.filter(r => r.status==='pending_clean');
+  if (adminTab === 'flagged')  filtered = all.filter(r => r.status==='pending_flagged');
+  if (adminTab === 'approved') filtered = all.filter(r => r.status==='approved');
+  if (adminTab === 'rejected') filtered = all.filter(r => r.status==='rejected');
+
+  const wrap = document.getElementById('admin-queue');
+  if (!filtered.length) {
+    const labels = {pending:'No clean reviews waiting',flagged:'No AI-flagged reviews',approved:'No approved reviews yet',rejected:'No rejected reviews'};
+    wrap.innerHTML = `<div class="empty-state"><div class="empty-icon">${adminTab==='pending'?'⏳':adminTab==='flagged'?'🚩':adminTab==='approved'?'✅':'🗑'}</div><div class="empty-title">${labels[adminTab]}</div></div>`;
+    return;
+  }
+
+  // Show bulk-approve button for clean pending
+  let bulkBtn = '';
+  if (adminTab === 'pending' && filtered.length > 0) {
+    bulkBtn = `<div style="margin-bottom:14px;display:flex;align-items:center;gap:10px">
+      <button class="btn btn-green btn-sm" onclick="approveAll()">✅ Approve All ${filtered.length} Clean Review${filtered.length!==1?'s':''}</button>
+      <span style="font-size:0.76rem;color:var(--muted)">These passed AI screening and are ready to publish.</span>
+    </div>`;
+  }
+
+  const cards = [...filtered].reverse().map(rv => {
+    const date = new Date(rv.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const stars = Array.from({length:5},(_,i)=>`<span style="color:${i<rv.rating?'#C97D10':'#d8d0c4'}">★</span>`).join('');
+    const statusLabel = {
+      pending_clean: '<span class="status-badge status-clean">✅ AI Clean</span>',
+      pending_flagged: '<span class="status-badge status-pending">🚩 AI Flagged</span>',
+      approved: '<span class="status-badge status-approved">✅ Approved</span>',
+      rejected: '<span class="status-badge status-rejected">🗑 Rejected</span>',
+    }[rv.status] || '';
+
+    const flagBox = rv.aiFlag ? `
+      <div class="ai-flag-box">
+        <div class="ai-flag-label">🤖 AI Flag · Severity: ${rv.aiSeverity||'unknown'}</div>
+        <div class="ai-flag-reason">${rv.aiReason}</div>
+      </div>` : '';
+
+    const actions = (rv.status==='pending_clean'||rv.status==='pending_flagged') ? `
+      <div class="flag-actions">
+        <button class="btn btn-green btn-sm" onclick="approveReview(${rv.id})">✅ Approve</button>
+        <button class="btn btn-red btn-sm" onclick="rejectReview(${rv.id})">🗑 Reject</button>
+      </div>` : `<div style="font-size:0.76rem;color:var(--muted)">Reviewed ${new Date(rv.reviewedAt||rv.ts).toLocaleDateString()}</div>`;
+
+    return `
+      <div class="flag-card ${rv.aiFlag&&rv.status.startsWith('pending')?'flagged':rv.status==='approved'?'approved':rv.status==='rejected'?'rejected':''}">
+        <div class="flag-meta">
+          <div class="flag-info">
+            <span class="flag-school">${rv.school}</span>
+            <span class="flag-teacher">→ ${rv.teacherName}</span>
+            <span class="flag-course">${rv.course}</span>
+          </div>
+          <div class="flag-status">${statusLabel}</div>
+        </div>
+        <div class="flag-rating-row">
+          <span class="flag-rating-item">${stars}</span>
+          ${rv.diff?`<span class="flag-rating-item">Difficulty: <strong>${rv.diff}/5</strong></span>`:''}
+          ${rv.workload?`<span class="flag-rating-item">Workload: <strong>${rv.workload}</strong></span>`:''}
+          <span class="flag-rating-item" style="margin-left:auto">${date}</span>
+        </div>
+        ${flagBox}
+        <div class="flag-text-box">"${rv.text}"</div>
+        ${actions}
+      </div>`;
+  }).join('');
+
+  wrap.innerHTML = bulkBtn + cards;
+}
+
+// ── TEACHER CARDS ─────────────────────────────────────────────────────────────
+const COLORS = ['#3a5a8c','#2d6e5e','#7a4a1e','#6b4c8a','#4a6e3a','#6e4a5e'];
+function teacherColor(name) { return COLORS[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0)) % COLORS.length]; }
+function teacherInitials(name) { return name.split(' ').filter(Boolean).slice(-2).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+function computeRatings(reviews) {
+  if (!reviews.length) return null;
+  const avg = arr => arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : null;
+  return { overall: avg(reviews.map(r=>r.rating)), diff: avg(reviews.filter(r=>r.diff).map(r=>r.diff)), count: reviews.length };
+}
+
+function renderTeachersPage() {
+  if (!currentSchool) return;
+  const teachers = getAllTeachers(currentSchool.name);
+  const content  = document.getElementById('teachers-content');
+  const fmw      = document.getElementById('find-more-wrap');
+  if (!teachers.length) {
+    content.innerHTML = `<div class="empty-state"><div class="empty-icon">✍️</div><div class="empty-title">No reviews yet for ${currentSchool.name}</div><div class="empty-sub">Be the first to rate a teacher at your school. Your anonymous review helps every student who comes after you.</div><button class="btn btn-filled" onclick="showPage('write')">Write the First Review →</button></div>`;
+    fmw.style.display = 'none'; return;
+  }
+  content.innerHTML = `<div class="cards-grid">${teachers.map(t => {
+    const reviews = getApprovedReviews(currentSchool.name, t.key);
+    const stats = computeRatings(reviews);
+    const col = teacherColor(t.name);
+    const init = teacherInitials(t.name);
+    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
+      <div class="tc-row1">
+        <div class="tc-ava" style="background:${col}">${init}</div>
+        <div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:`<div style="font-size:0.72rem;color:var(--muted);text-align:right">No ratings<br>yet</div>`}</div>
+      </div>
+      <div class="tc-name">${t.name}</div>
+      <div class="tc-sub">${t.courses.join(', ')||'No classes listed'}</div>
+      <div class="tc-tags">
+        <span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span>
+        ${stats&&stats.diff?`<span class="dp ${parseFloat(stats.diff)<3?'dp-e':parseFloat(stats.diff)<4?'dp-m':'dp-h'}">${parseFloat(stats.diff)<3?'Easy':parseFloat(stats.diff)<4?'Med':'Hard'}</span>`:''}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+  fmw.style.display = teachers.length >= 4 ? 'block' : 'none';
+}
+
+function liveSearch(q) {
+  if (!currentSchool) return;
+  const teachers = getAllTeachers(currentSchool.name);
+  const filtered = q ? teachers.filter(t => t.name.toLowerCase().includes(q.toLowerCase()) || t.courses.some(c=>c.toLowerCase().includes(q.toLowerCase()))) : teachers;
+  const content  = document.getElementById('teachers-content');
+  if (!filtered.length) { content.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-sub">No teachers match "${q}".</div></div>`; return; }
+  content.innerHTML = `<div class="cards-grid">${filtered.map(t => {
+    const reviews = getApprovedReviews(currentSchool.name, t.key);
+    const stats = computeRatings(reviews);
+    const col = teacherColor(t.name); const init = teacherInitials(t.name);
+    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
+      <div class="tc-row1"><div class="tc-ava" style="background:${col}">${init}</div><div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:'<div style="font-size:0.72rem;color:var(--muted)">No ratings</div>'}</div></div>
+      <div class="tc-name">${t.name}</div><div class="tc-sub">${t.courses.join(', ')||'—'}</div>
+      <div class="tc-tags"><span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span></div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function filterDept() { renderTeachersPage(); }
+
+// ── TEACHER DETAIL ────────────────────────────────────────────────────────────
+function openTeacher(key) {
+  if (!currentSchool) return;
+  const db = readDB();
+  const t  = ((db.teachers||{})[currentSchool.name]||{})[key];
+  if (!t) return;
+  const reviews = getApprovedReviews(currentSchool.name, key);
+  const stats   = computeRatings(reviews);
+  const col     = teacherColor(t.name);
+  const init    = teacherInitials(t.name);
+  const starsH  = r => Array.from({length:5},(_,i)=>`<span style="color:${i<r?'#C97D10':'#d8d0c4'}">★</span>`).join('');
+
+  document.getElementById('detail-band-wrap').innerHTML = `
+    <div class="detail-band"><div class="detail-inner">
+      <div class="det-ava" style="background:${col}">${init}</div>
+      <div class="det-info">
+        <div class="det-name">${t.name}</div>
+        <div class="det-dept">${currentSchool.name}</div>
+        <div class="det-chips">${t.courses.map(c=>`<span class="chip">${c}</span>`).join('')}<span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span></div>
+      </div>
+      <div class="det-score">
+        ${stats?`<div class="det-big">${stats.overall}</div><div style="display:flex;gap:2px;justify-content:center;margin:3px 0">${starsH(Math.round(parseFloat(stats.overall)))}</div><div class="det-lbl">Overall Rating</div>`:`<div style="font-family:var(--font-head);font-size:1.1rem;color:var(--muted)">No ratings yet</div>`}
+      </div>
+    </div></div>`;
+
+  document.getElementById('detail-body').innerHTML = `
+    <button class="back-btn" onclick="showPage('teachers');setbn('bn-teachers')">← All Teachers</button>
+    ${stats?`<div class="rating-grid">
+      <div class="r-pill"><div class="r-lbl">Overall</div><div class="r-val">${stats.overall}<span style="font-size:0.82rem;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.overall)/5*100}%;background:#C97D10"></div></div></div>
+      ${stats.diff?`<div class="r-pill"><div class="r-lbl">Difficulty</div><div class="r-val">${stats.diff}<span style="font-size:0.82rem;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.diff)/5*100}%;background:var(--red)"></div></div></div>`:''}
+      <div class="r-pill"><div class="r-lbl">Total Reviews</div><div class="r-val">${stats.count}</div></div>
+    </div>`:''}
+    <div class="div"></div>
+    <div style="font-family:var(--font-head);font-size:1.25rem;color:var(--text);margin-bottom:13px">Student Reviews</div>
+    ${reviews.length ? [...reviews].reverse().map(r=>`
+      <div class="rv-card">
+        <div class="rv-top">
+          <span class="rv-cls">${r.course}</span>
+          <span style="font-size:0.68rem">${starsH(r.rating)}</span>
+        </div>
+        <div class="rv-txt">${r.text}</div>
+        <div class="rv-acts">
+          <button class="vote-btn" onclick="handleUpvote('${currentSchool.name}','${key}',${r.id},this)">👍 ${r.upvotes}</button>
+          <span style="font-size:0.68rem;color:var(--muted)">${r.upvotes} found helpful</span>
+        </div>
+      </div>`).join('') : `<div class="empty-state" style="padding:32px 0"><div class="empty-icon">💬</div><div class="empty-title">No reviews yet</div><div class="empty-sub">Be the first to share your experience.</div></div>`}
+    <div style="margin-top:16px"><button class="btn" onclick="showPage('write')">+ Write a Review for ${t.name}</button></div>`;
+
+  showPage('detail');
+}
+
+function handleUpvote(school, key, id, btn) {
+  const vk = `${school}-${key}-${id}`;
+  if (!votes[vk]) {
+    votes[vk] = 1;
+    const db = readDB();
+    const rv = ((db.reviews||{})[school]||{})[key]||[];
+    const r  = rv.find(r=>r.id===id);
+    if (r) { r.upvotes++; writeDB(db); }
+    const cur = parseInt(btn.textContent.replace(/\D/g,''));
+    btn.textContent = `👍 ${cur+1}`;
+    btn.style.color = 'var(--green)';
+    toast('Upvoted!');
+  }
+}
+
+// ── PATHWAYS ──────────────────────────────────────────────────────────────────
+function renderPathways() {
+  document.getElementById('pw-grid').innerHTML = PW.map((p,i)=>`
+    <div class="pw-card ${selPw===i?'sel':''}" onclick="pickPw(${i})">
+      <div class="pw-ico">${p.ico}</div><div class="pw-name">${p.nm}</div><div class="pw-desc">${p.ds}</div>
+    </div>`).join('');
+  if (selPw!==null) renderRoadmap(selPw);
+}
+function pickPw(i){selPw=i;renderPathways();document.getElementById('pw-detail').style.display='block';renderRoadmap(i);}
+function renderRoadmap(i){
+  const p=PW[i];
+  const badge=l=>l==='AP'?'<span class="dp dp-h">AP</span>':l==='H'?'<span class="dp dp-m">Honors</span>':'<span class="dp dp-e">Regular</span>';
+  document.getElementById('pw-roadmap').innerHTML=`
+    <div style="font-family:var(--font-head);font-size:1.25rem;color:var(--text);margin-bottom:13px">${p.ico} ${p.nm} — 4-Year Roadmap</div>
+    <div class="roadmap-wrap">${p.rm.map(g=>`<div class="grade-col"><div class="grade-hdr">${g.g} Grade</div>${g.cs.map(([n,l])=>`<div class="gc">${n}<div class="gc-lv">${badge(l)}</div></div>`).join('')}</div>`).join('')}</div>`;
+}
+
+// ── LOCATION ──────────────────────────────────────────────────────────────────
+function toggleLoc(){locOpen=!locOpen;document.getElementById('loc-trigger').classList.toggle('open',locOpen);document.getElementById('loc-dropdown').classList.toggle('open',locOpen);if(locOpen){setTimeout(()=>document.getElementById('loc-search-input').focus(),80);renderSchoolList('');}}
+function closeLoc(){locOpen=false;document.getElementById('loc-trigger').classList.remove('open');document.getElementById('loc-dropdown').classList.remove('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('loc-wrap').contains(e.target))closeLoc();});
+function filterSchools(q){renderSchoolList(q);}
+function renderSchoolList(q){
+  const list=document.getElementById('loc-list');
+  const filtered=SCHOOLS.filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase())||s.city.toLowerCase().includes(q.toLowerCase())||s.district.toLowerCase().includes(q.toLowerCase()));
+  if(!filtered.length){list.innerHTML=`<div style="padding:14px;font-size:0.8rem;color:var(--muted);text-align:center">No schools found</div>`;return;}
+  const regions=[...new Set(filtered.map(s=>s.region))];
+  let html='';
+  regions.forEach(r=>{
+    html+=`<div class="loc-region-label">${r}</div>`;
+    filtered.filter(s=>s.region===r).forEach(s=>{
+      const active=currentSchool&&s.name===currentSchool.name;
+      html+=`<div class="loc-item ${active?'active':''}" onclick="selectSchool('${s.name.replace(/'/g,"\\'")}')">
+        <span style="font-size:0.85rem;flex-shrink:0">🏫</span>
+        <div class="loc-item-detail"><span class="loc-item-name">${s.name}</span><span class="loc-item-sub">${s.district} · ${s.city}</span></div>
+        ${active?'<span style="color:var(--saffron-dark);font-weight:700;margin-left:auto;font-size:0.8rem">✓</span>':''}
+      </div>`;
+    });
+  });
+  list.innerHTML=html;
+}
+function selectSchool(name){
+  const s=SCHOOLS.find(x=>x.name===name);if(!s)return;
+  currentSchool=s;
+  document.getElementById('loc-label').textContent=name.replace(' High School','').replace(' HS','')+' HS';
+  const sub=document.getElementById('school-sub');if(sub)sub.textContent=`${s.name} · ${s.district}`;
+  closeLoc();renderTeachersPage();
+  // Sync school select in review form
+  const sel=document.getElementById('rv-school-sel');if(sel)sel.value=name;
+}
+
+// ── SCHOOL SELECT POPULATE ────────────────────────────────────────────────────
+function populateSchoolSelect(){
+  const sel=document.getElementById('rv-school-sel');if(!sel)return;
+  const regions=[...new Set(SCHOOLS.map(s=>s.region))];
+  let html='<option value="">— Select your school —</option>';
+  regions.forEach(r=>{
+    html+=`<optgroup label="${r}">`;
+    SCHOOLS.filter(s=>s.region===r).forEach(s=>{html+=`<option value="${s.name}" ${currentSchool&&s.name===currentSchool.name?'selected':''}>${s.name}</option>`;});
+    html+=`</optgroup>`;
+  });
+  sel.innerHTML=html;
+}
+
+// ── STARS ─────────────────────────────────────────────────────────────────────
+function hoverS(i){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=i));}
+function resetStars(){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=star));}
+function pickS(i){star=i;resetStars();}
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function openLogin(){
+  document.getElementById('login-modal').classList.remove('hide');
+  document.getElementById('login-hint').style.display='none';
+}
+function closeLogin(){document.getElementById('login-modal').classList.add('hide');}
+function setMode(m){
+  currentMode=m;
+  ['student','teacher','admin'].forEach(x=>document.getElementById('mode-'+x).classList.toggle('on',x===m));
+  document.getElementById('login-hint').style.display=m==='admin'?'block':'none';
+}
+function doLogin(){
+  if(currentMode==='admin'){
+    const pw=document.getElementById('admin-pw-field').value;
+    if(pw!==ADMIN_PASSWORD){toast('Incorrect admin password.');return;}
+    currentUser='admin';
+    closeLogin();
+    document.getElementById('admin-pw-field').value='';
+    updateAdminBadge();
+    showPage('admin');
+    document.getElementById('bottom-nav').style.display='none';
+    renderAdminStats();
+    renderAdminQueue();
+    toast('Welcome, Admin!');
+  } else if(currentMode==='teacher'){
+    closeLogin();toast('Teacher dashboard coming soon.');
+  } else {
+    closeLogin();toast('Signed in as student.');
+  }
+}
+function doLogout(){
+  currentUser=null;
+  document.getElementById('admin-notif').classList.add('hide');
+  document.getElementById('bottom-nav').style.display='flex';
+  showPage('home');setbn('bn-home');
+  toast('Signed out.');
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id!=='admin') document.getElementById('bottom-nav').style.display=(id==='admin')?'none':'flex';
+  // Reset pending banner when navigating away from write
+  if(id!=='write'){
+    const p=document.getElementById('pending-banner');if(p)p.classList.add('hide');
+    const s=document.getElementById('submit-btn-wrap');if(s){s.style.opacity='1';s.style.pointerEvents='auto';}
+  }
+}
+function goHome(){showPage('home');setbn('bn-home');}
+function setbn(id){document.querySelectorAll('#bottom-nav .tab-btn').forEach(b=>b.classList.remove('on'));const el=document.getElementById(id);if(el)el.classList.add('on');}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function toast(msg){const el=document.getElementById('toast-el');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+populateSchoolSelect();
+renderPathways();
+renderSchoolList('');
+updateAdminBadge();
+</script>
+</body>
+</html>

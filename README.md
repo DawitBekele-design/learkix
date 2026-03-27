@@ -1,2256 +1,2083 @@
-<.>
 
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Lernix</title>
+<title>Lernix — Choose Smarter Classes. Build Your Future.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#fdfcfa;--bg2:#f7f5f0;--bg3:#edeae2;
-  --border:rgba(201,125,16,0.13);--border2:rgba(201,125,16,0.26);
-  --saffron:#C97D10;--saffron-dark:#a86508;--saffron-light:#E8A030;
-  --saffron-pale:#fdf3e0;--saffron-pale2:#f7e0b0;
-  --text:#2e2a22;--text2:#4a4438;--muted:#8a8070;
-  --green:#2d7a4f;--red:#b83232;--amber:#d97706;
-  --shadow-sm:0 1px 4px rgba(201,125,16,0.08);
-  --shadow:0 2px 14px rgba(201,125,16,0.10);
-  --shadow-lg:0 8px 40px rgba(0,0,0,0.11);
-  --radius:12px;
-  --font-head:'Cormorant Garamond',serif;
-  --font:'Jost',sans-serif;
-  /* Desktop-first sizes */
-  --fs-base: 15px;
-  --fs-sm: 13px;
-  --fs-xs: 12px;
-  --fs-lg: 17px;
-  --fs-xl: 19px;
-  --fs-h1: 2.6rem;
-  --fs-h2: 1.7rem;
-  --fs-h3: 1.3rem;
-  --nav-h: 66px;
-  --section-pad: 28px 36px 48px;
-  --card-pad: 22px;
-  --max-w: 1200px;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;font-size:var(--fs-base);}
-
-input,select,textarea{color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:var(--fs-base);}
-input::placeholder,textarea::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-select option{color:var(--text2);background:#fff;}
-
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 22px;border-radius:99px;font-size:var(--fs-sm);font-weight:600;letter-spacing:0.2px;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all 0.18s;background:#fff;color:var(--saffron-dark);border:1.5px solid var(--saffron-light);box-shadow:var(--shadow-sm);}
-.btn:hover{background:var(--saffron-pale);border-color:var(--saffron);box-shadow:var(--shadow);}
-.btn-filled{background:var(--saffron);color:#fff;border:1.5px solid var(--saffron);box-shadow:0 3px 12px rgba(201,125,16,0.26);}
-.btn-filled:hover{background:var(--saffron-dark);border-color:var(--saffron-dark);color:#fff;}
-.btn-green{background:var(--green);color:#fff;border:1.5px solid var(--green);}
-.btn-green:hover{background:#245f3e;color:#fff;}
-.btn-red{background:var(--red);color:#fff;border:1.5px solid var(--red);}
-.btn-red:hover{background:#8b1f1f;color:#fff;}
-.btn-sm{padding:6px 15px;font-size:var(--fs-xs);}
-.btn:active{transform:translateY(1px);}
-
-/* ── HEADER ── */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:300;
-  height:var(--nav-h);
-  background:rgba(253,252,250,0.97);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border2);
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;padding:0 36px;gap:16px;
-}
-.hdr-left{display:flex;align-items:center;}
-.hdr-search{
-  display:flex;align-items:center;gap:9px;
-  background:#fff;border:1.5px solid var(--saffron-light);
-  border-radius:99px;padding:8px 18px;
-  width:280px;transition:all 0.2s;box-shadow:var(--shadow-sm);
-}
-.hdr-search:focus-within{border-color:var(--saffron);width:340px;box-shadow:0 0 0 3px rgba(201,125,16,0.1);}
-.hdr-search input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:var(--fs-sm);color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
-.hdr-search input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-.srch-ico{font-size:1rem;color:var(--saffron-light);flex-shrink:0;}
-
-.hdr-center{display:flex;align-items:center;justify-content:center;}
-.logo-wrap{display:flex;align-items:center;gap:9px;cursor:pointer;}
-.logo-mark{width:36px;height:36px;border-radius:9px;background:var(--saffron);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(201,125,16,0.32);flex-shrink:0;}
-.logo-mark svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
-.logo-text{font-family:var(--font-head);font-size:1.85rem;font-weight:600;color:var(--saffron-light);line-height:1;}
-
-.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:10px;}
-
-/* Location */
-.loc-trigger{display:flex;align-items:center;gap:6px;font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:600;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:7px 15px 7px 12px;cursor:pointer;transition:all 0.15s;white-space:nowrap;box-shadow:var(--shadow-sm);}
-.loc-trigger:hover,.loc-trigger.open{border-color:var(--saffron);background:var(--saffron-pale);}
-.loc-caret{font-size:0.6rem;color:var(--saffron-light);transition:transform 0.2s;}
-.loc-trigger.open .loc-caret{transform:rotate(180deg);}
-.loc-dropdown{position:absolute;top:calc(100% + 10px);right:0;width:340px;background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:16px;box-shadow:var(--shadow-lg);padding:14px;z-index:400;opacity:0;transform:translateY(-6px) scale(0.98);pointer-events:none;transition:all 0.18s;}
-.loc-dropdown.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
-.loc-search-wrap{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);border-radius:9px;padding:8px 13px;margin-bottom:10px;}
-.loc-search-wrap:focus-within{border-color:var(--saffron-light);background:#fff;}
-.loc-search-wrap input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:var(--fs-sm);color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
-.loc-search-wrap input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-.loc-list{max-height:240px;overflow-y:auto;}
-.loc-item{display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:9px;cursor:pointer;font-size:var(--fs-sm);color:var(--text2);transition:background 0.12s;}
-.loc-item:hover{background:var(--saffron-pale);}
-.loc-item.active{background:var(--saffron-pale);color:var(--saffron-dark);font-weight:600;}
-.loc-item-detail{display:flex;flex-direction:column;flex:1;}
-.loc-item-name{font-size:var(--fs-sm);font-weight:500;color:var(--text2);}
-.loc-item-sub{font-size:var(--fs-xs);color:var(--muted);}
-.loc-region-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:8px 11px 3px;}
-
-.profile-btn{width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid var(--saffron-light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all 0.15s;color:var(--saffron-dark);box-shadow:var(--shadow-sm);position:relative;}
-.profile-btn:hover{background:var(--saffron-pale);border-color:var(--saffron);}
-.admin-badge{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:0.6rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff;}
-
-/* ── PAGES ── */
-.page{display:none;padding-top:var(--nav-h);min-height:100vh;}
-.page.active{display:block;}
-
-/* ── DESKTOP LAYOUT WRAPPER ── */
-.desktop-layout{
-  display:grid;
-  grid-template-columns:240px 1fr;
-  min-height:calc(100vh - var(--nav-h));
-  max-width:var(--max-w);
-  margin:0 auto;
-}
-
-/* ── SIDEBAR NAV ── */
-.sidebar{
-  border-right:1px solid var(--border2);
-  padding:24px 16px;
-  position:sticky;top:var(--nav-h);
-  height:calc(100vh - var(--nav-h));
-  overflow-y:auto;
-  background:var(--bg2);
-}
-.sidebar-nav{display:flex;flex-direction:column;gap:3px;}
-.snav-item{
-  display:flex;align-items:center;gap:11px;
-  padding:11px 14px;border-radius:10px;
-  font-size:var(--fs-sm);font-weight:500;color:var(--muted);
-  cursor:pointer;transition:all 0.15s;border:none;background:none;font-family:var(--font);text-align:left;width:100%;
-}
-.snav-item:hover{color:var(--text);background:var(--bg3);}
-.snav-item.active{color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600;}
-.snav-item.active .snav-icon{color:var(--saffron);}
-.snav-icon{font-size:1.1rem;width:22px;flex-shrink:0;}
-.snav-label{flex:1;}
-.snav-badge{font-size:0.65rem;font-weight:700;background:var(--red);color:#fff;padding:2px 7px;border-radius:99px;}
-.sidebar-divider{height:1px;background:var(--border2);margin:14px 0;}
-.sidebar-section-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:0 14px;margin-bottom:6px;}
-
-/* ── MAIN CONTENT ── */
-.main-content{
-  padding:28px 36px 48px;
-  min-width:0;
-}
-
-/* ── PAGE HEADER ── */
-.page-header{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-.page-header-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.page-title{font-family:var(--font-head);font-size:var(--fs-h2);color:var(--text);line-height:1.1;}
-.page-sub{font-size:var(--fs-sm);color:var(--muted);margin-top:5px;}
-
-/* ── FIELDS ── */
-.field-input,.field-sel,.field-ta{width:100%;background:var(--bg2)!important;border:1.5px solid var(--border2)!important;border-radius:9px;padding:10px 14px;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:var(--fs-sm);outline:none;}
-.field-input:focus,.field-sel:focus,.field-ta:focus{border-color:var(--saffron)!important;background:#fff!important;}
-.field-ta{resize:vertical;min-height:90px;}
-.field-label{font-size:var(--fs-xs);font-weight:600;color:var(--text2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:0.5px;}
-
-/* ── HOME HERO (desktop: tighter, content-first) ── */
-.home-hero{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-  min-height:calc(100vh - var(--nav-h));
-}
-.hero-left{
-  padding:48px 48px 48px 0;
-  display:flex;flex-direction:column;justify-content:center;
-  border-right:1px solid var(--border);
-}
-.hero-right{
-  padding:48px 0 48px 48px;
-  display:flex;flex-direction:column;justify-content:center;
-  gap:18px;
-}
-.home-eyebrow{font-size:var(--fs-xs);font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--saffron);margin-bottom:14px;display:inline-flex;align-items:center;gap:6px;}
-.home-eyebrow::before,.home-eyebrow::after{content:'';width:20px;height:1px;background:var(--saffron-light);}
-.home-title{font-family:var(--font-head);font-size:var(--fs-h1);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:14px;}
-.home-title em{color:var(--saffron);font-style:italic;}
-.home-sub{font-size:var(--fs-base);color:var(--muted);line-height:1.72;margin-bottom:26px;max-width:420px;}
-.home-actions{display:flex;gap:10px;flex-wrap:wrap;}
-
-/* Info cards on the right */
-.info-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);}
-.info-card-title{font-family:var(--font-head);font-size:1.1rem;color:var(--text);margin-bottom:5px;}
-.info-card-text{font-size:var(--fs-sm);color:var(--muted);line-height:1.65;}
-.info-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-.info-pill{font-size:var(--fs-xs);font-weight:500;padding:5px 12px;border-radius:99px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);color:var(--text2);}
-.info-pill span{color:var(--saffron);margin-right:3px;}
-
-/* ── TEACHER GRID ── */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:15px;}
-.t-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:var(--card-pad);cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
-.t-card:hover{box-shadow:var(--shadow);border-color:var(--saffron);transform:translateY(-2px);}
-.tc-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;}
-.tc-ava{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0;}
-.tc-score{text-align:right;}
-.tc-num{font-family:var(--font-head);font-size:1.9rem;color:var(--text);line-height:1;}
-.tc-denom{font-size:var(--fs-xs);color:var(--muted);}
-.tc-name{font-size:var(--fs-base);font-weight:600;color:var(--text);margin-bottom:3px;}
-.tc-sub{font-size:var(--fs-sm);color:var(--muted);margin-bottom:12px;}
-.tc-meters{display:flex;flex-direction:column;gap:6px;margin-bottom:13px;}
-.meter-row{display:flex;align-items:center;gap:8px;}
-.meter-lbl{font-size:var(--fs-xs);color:var(--muted);width:65px;flex-shrink:0;}
-.meter-track{flex:1;height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
-.meter-fill{height:100%;border-radius:99px;}
-.meter-val{font-size:var(--fs-xs);color:var(--muted);width:24px;text-align:right;}
-.tc-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.chip{font-size:var(--fs-xs);padding:3px 9px;border-radius:99px;border:1px solid var(--border2);color:var(--text2);background:var(--bg2);white-space:nowrap;}
-.chip.g{border-color:rgba(45,122,79,0.3);color:var(--green);background:rgba(45,122,79,0.06);}
-.chip.b{border-color:rgba(184,50,50,0.28);color:var(--red);background:rgba(184,50,50,0.06);}
-.dp{font-size:var(--fs-xs);font-weight:600;padding:3px 9px;border-radius:99px;}
-.dp-e{background:rgba(45,122,79,0.1);color:var(--green);}
-.dp-m{background:rgba(201,125,16,0.12);color:var(--saffron-dark);}
-.dp-h{background:rgba(184,50,50,0.1);color:var(--red);}
-
-/* ── EMPTY STATE ── */
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;text-align:center;}
-.empty-icon{font-size:2.6rem;margin-bottom:14px;opacity:0.5;}
-.empty-title{font-family:var(--font-head);font-size:var(--fs-h3);color:var(--text);margin-bottom:8px;}
-.empty-sub{font-size:var(--fs-sm);color:var(--muted);max-width:340px;line-height:1.7;margin-bottom:20px;}
-
-/* ── DETAIL (two-column) ── */
-.detail-layout{display:grid;grid-template-columns:300px 1fr;gap:0;min-height:calc(100vh - var(--nav-h));max-width:var(--max-w);margin:0 auto;}
-.detail-sidebar{border-right:1px solid var(--border2);padding:28px 24px;background:var(--bg2);position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;}
-.detail-main{padding:28px 36px 48px;min-width:0;}
-.det-ava{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.6rem;color:#fff;font-weight:600;margin-bottom:14px;}
-.det-name{font-family:var(--font-head);font-size:1.8rem;color:var(--text);margin-bottom:3px;line-height:1.1;}
-.det-dept{font-size:var(--fs-sm);color:var(--muted);margin-bottom:10px;}
-.det-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
-.det-big{font-family:var(--font-head);font-size:3.2rem;color:var(--saffron);line-height:1;}
-.det-lbl{font-size:var(--fs-xs);color:var(--muted);margin-top:3px;}
-.det-score-wrap{text-align:center;padding:16px;background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);margin-bottom:14px;}
-.rating-grid{display:grid;grid-template-columns:1fr;gap:9px;margin-bottom:18px;}
-.r-pill{background:#fff;border:1px solid var(--border2);border-radius:10px;padding:13px 15px;}
-.r-lbl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:4px;}
-.r-val{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:5px;}
-.r-bar{height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;}
-.r-fill{height:100%;border-radius:99px;}
-.back-btn{display:flex;align-items:center;gap:5px;font-size:var(--fs-sm);color:var(--saffron-dark);cursor:pointer;background:none;border:none;font-family:var(--font);padding:0;margin-bottom:18px;font-weight:600;}
-.back-btn:hover{color:var(--saffron);}
-.rv-card{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:18px;margin-bottom:10px;box-shadow:var(--shadow-sm);}
-.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;}
-.rv-cls{font-size:var(--fs-xs);font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:4px 10px;border-radius:99px;}
-.rv-txt{font-size:var(--fs-sm);color:var(--text2);line-height:1.68;margin-bottom:11px;}
-.rv-acts{display:flex;gap:7px;align-items:center;}
-.vote-btn{display:flex;align-items:center;gap:4px;font-size:var(--fs-xs);cursor:pointer;padding:5px 11px;border-radius:8px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);font-family:var(--font);transition:all 0.15s;}
-.vote-btn:hover{background:var(--saffron-pale);border-color:var(--saffron-light);color:var(--saffron-dark);}
-
-/* ── WRITE REVIEW — two col form ── */
-.form-layout{display:grid;grid-template-columns:1fr 400px;gap:28px;align-items:start;}
-.form-card{background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);}
-.form-title{font-family:var(--font-head);font-size:var(--fs-h3);color:var(--text);margin-bottom:5px;}
-.form-subtitle{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;line-height:1.6;}
-.form-aside{display:flex;flex-direction:column;gap:14px;}
-.aside-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);}
-.aside-title{font-size:var(--fs-sm);font-weight:600;color:var(--text);margin-bottom:8px;}
-.aside-text{font-size:var(--fs-sm);color:var(--muted);line-height:1.65;}
-.aside-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
-.aside-list li{font-size:var(--fs-sm);color:var(--text2);display:flex;align-items:flex-start;gap:7px;line-height:1.45;}
-.aside-list li span{color:var(--green);flex-shrink:0;}
-.aside-list li span.x{color:var(--red);}
-.rf-stars{display:flex;gap:8px;font-size:1.7rem;cursor:pointer;margin-bottom:14px;}
-.rf-star{color:var(--bg3);transition:color 0.1s;}
-.rf-star.lit{color:var(--saffron);}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
-.mb14{margin-bottom:14px;}
-.ai-scanning{display:flex;align-items:center;gap:10px;background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:14px 17px;margin-top:14px;}
-.ai-scanning.hide{display:none;}
-.scan-dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);animation:pulse 1.2s ease-in-out infinite;}
-.scan-dot:nth-child(2){animation-delay:0.2s;}
-.scan-dot:nth-child(3){animation-delay:0.4s;}
-@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1.1);}}
-.scan-text{font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:500;}
-.pending-banner{background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:13px 16px;margin-top:13px;font-size:var(--fs-sm);color:var(--saffron-dark);display:flex;align-items:flex-start;gap:8px;line-height:1.55;}
-.pending-banner.hide{display:none;}
-
-/* ── PATHWAY ── */
-.pw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:22px;}
-.pw-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
-.pw-card:hover,.pw-card.sel{border-color:var(--saffron);box-shadow:var(--shadow);transform:translateY(-1px);}
-.pw-card.sel{background:var(--saffron-pale);}
-.pw-ico{font-size:1.7rem;margin-bottom:9px;}
-.pw-name{font-family:var(--font-head);font-size:1.15rem;color:var(--text);margin-bottom:4px;}
-.pw-desc{font-size:var(--fs-sm);color:var(--muted);line-height:1.55;}
-.roadmap-wrap{display:flex;overflow-x:auto;padding-bottom:8px;gap:0;}
-.grade-col{min-width:200px;flex-shrink:0;}
-.grade-hdr{font-size:var(--fs-xs);font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--saffron-dark);margin-bottom:10px;padding:0 3px;}
-.gc{background:#fff;border:1.5px solid var(--border2);border-radius:9px;padding:11px 13px;margin-bottom:7px;margin-right:10px;font-size:var(--fs-sm);font-weight:500;color:var(--text);box-shadow:var(--shadow-sm);}
-.gc-lv{font-size:var(--fs-xs);color:var(--muted);margin-top:3px;}
-
-/* ══ ADMIN PANEL ══ */
-.admin-layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - var(--nav-h));max-width:var(--max-w);margin:0 auto;}
-.admin-sidebar{border-right:1px solid var(--border2);padding:24px 16px;background:var(--bg2);position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));}
-.admin-main{padding:28px 36px 48px;min-width:0;}
-.admin-title{font-family:var(--font-head);font-size:var(--fs-h2);color:var(--text);margin-bottom:4px;}
-.admin-subtitle{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;}
-.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
-.stat-pill{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow-sm);}
-.stat-num{font-family:var(--font-head);font-size:2.2rem;line-height:1;}
-.stat-num.amber{color:var(--amber);}
-.stat-num.green{color:var(--green);}
-.stat-num.red{color:var(--red);}
-.stat-lbl{font-size:var(--fs-xs);color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
-.flag-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:all 0.2s;}
-.flag-card:hover{box-shadow:var(--shadow);}
-.flag-card.flagged{border-color:rgba(217,119,6,0.4);background:rgba(253,243,224,0.4);}
-.flag-card.approved{border-color:rgba(45,122,79,0.3);background:rgba(45,122,79,0.03);}
-.flag-card.rejected{border-color:rgba(184,50,50,0.25);background:rgba(184,50,50,0.03);opacity:0.7;}
-.flag-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;flex-wrap:wrap;gap:8px;}
-.flag-info{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.flag-school{font-size:var(--fs-xs);font-weight:600;color:var(--text2);background:var(--bg2);padding:4px 10px;border-radius:99px;border:1px solid var(--border2);}
-.flag-teacher{font-size:var(--fs-xs);color:var(--muted);}
-.flag-course{font-size:var(--fs-xs);font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:4px 10px;border-radius:99px;}
-.status-badge{font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:0.5px;}
-.status-pending{background:rgba(217,119,6,0.12);color:var(--amber);}
-.status-approved{background:rgba(45,122,79,0.12);color:var(--green);}
-.status-rejected{background:rgba(184,50,50,0.1);color:var(--red);}
-.status-clean{background:rgba(45,122,79,0.1);color:var(--green);}
-.ai-flag-box{background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;padding:11px 14px;margin-bottom:12px;}
-.ai-flag-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:4px;}
-.ai-flag-reason{font-size:var(--fs-sm);color:var(--text2);line-height:1.55;}
-.flag-text-box{font-size:var(--fs-sm);color:var(--text2);line-height:1.65;margin-bottom:14px;padding:13px 15px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
-.flag-actions{display:flex;gap:9px;flex-wrap:wrap;}
-.flag-rating-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
-.flag-rating-item{font-size:var(--fs-sm);color:var(--muted);}
-.flag-rating-item strong{color:var(--text2);}
-
-/* Admin sidebar nav items */
-.admin-snav{display:flex;flex-direction:column;gap:3px;}
-.admin-snav-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:9px;font-size:var(--fs-sm);font-weight:500;color:var(--muted);cursor:pointer;transition:all 0.15s;border:none;background:none;font-family:var(--font);text-align:left;width:100%;}
-.admin-snav-item:hover{color:var(--text);background:var(--bg3);}
-.admin-snav-item.on{color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600;}
-.admin-snav-badge{font-size:0.65rem;font-weight:700;background:var(--amber);color:#fff;padding:2px 7px;border-radius:99px;margin-left:auto;}
-.admin-snav-badge.red{background:var(--red);}
-
-/* LOGIN */
-.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(46,42,34,0.3);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;}
-.modal-bg.hide{display:none;}
-.modal{background:#fff;border-radius:16px;padding:32px;width:360px;box-shadow:var(--shadow-lg);position:relative;border:1.5px solid var(--saffron-pale2);}
-.modal-title{font-family:var(--font-head);font-size:1.6rem;color:var(--text);margin-bottom:3px;}
-.modal-sub{font-size:var(--fs-sm);color:var(--muted);margin-bottom:22px;}
-.modal-close{position:absolute;top:14px;right:16px;cursor:pointer;font-size:1.1rem;color:var(--muted);background:none;border:none;font-family:var(--font);}
-.mode-toggle{display:flex;border:1.5px solid var(--saffron-pale2);border-radius:10px;overflow:hidden;margin-bottom:20px;}
-.mode-btn{flex:1;padding:9px;font-size:var(--fs-sm);font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s;background:none;color:var(--muted);}
-.mode-btn.on{background:var(--saffron);color:#fff;}
-
-.div{height:1px;background:var(--border2);margin:22px 0;}
-.toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(--saffron-pale);border:1.5px solid var(--saffron-light);border-radius:10px;padding:13px 19px;font-size:var(--fs-sm);color:var(--saffron-dark);font-weight:600;transform:translateY(50px);opacity:0;transition:all 0.28s;box-shadow:var(--shadow);}
-.toast.show{transform:translateY(0);opacity:1;}
-
-::-webkit-scrollbar{width:5px;height:5px;}
-::-webkit-scrollbar-track{background:var(--bg2);}
-::-webkit-scrollbar-thumb{background:var(--saffron-pale2);border-radius:99px;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .desktop-layout,.detail-layout,.admin-layout{grid-template-columns:1fr;}
-  .sidebar,.detail-sidebar,.admin-sidebar{display:none;}
-  .home-hero{grid-template-columns:1fr;}
-  .hero-right{display:none;}
-  .pw-grid{grid-template-columns:repeat(2,1fr);}
-  .form-layout{grid-template-columns:1fr;}
-  .form-aside{display:none;}
-  .admin-stats{grid-template-columns:repeat(2,1fr);}
-  .main-content,.detail-main,.admin-main{padding:20px 18px 36px;}
-  header{padding:0 18px;gap:10px;}
-  .hdr-search{width:180px;}
-  .hdr-search:focus-within{width:220px;}
-  #bottom-nav-mobile{display:flex!important;}
-}
-@media(max-width:600px){
-  .pw-grid{grid-template-columns:1fr 1fr;}
-  .two-col{grid-template-columns:1fr;}
-  .home-title{font-size:2.1rem;}
-  .admin-stats{grid-template-columns:1fr 1fr;}
-}
-
-/* Hide mobile bottom nav on desktop */
-#bottom-nav-mobile{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:100;
-  background:rgba(253,252,250,0.97);backdrop-filter:blur(10px);
-  border-top:1px solid var(--border2);
-  justify-content:center;gap:3px;padding:8px 16px 10px;
-}
-.tab-btn{padding:7px 16px;border-radius:9px;font-size:var(--fs-xs);font-weight:500;cursor:pointer;color:var(--muted);transition:all 0.15s;border:none;background:none;font-family:var(--font);}
-.tab-btn.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
-.tab-btn:hover:not(.on){color:var(--saffron-dark);}
-</style>
-</head>
-<body>
-
-<!-- HEADER -->
-<header>
-  <div class="hdr-left">
-    <div class="hdr-search">
-      <span class="srch-ico">⌕</span>
-      <input type="text" id="main-search" placeholder="Search teachers or classes…"
-        oninput="liveSearch(this.value)"
-        onfocus="navTo('teachers');setSideNav('teachers')">
-    </div>
-  </div>
-  <div class="hdr-center">
-    <div class="logo-wrap" onclick="navTo('home');setSideNav('home')">
-      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/><path d="M2 18l10 5 10-5"/></svg></div>
-      <span class="logo-text">Lernix</span>
-    </div>
-  </div>
-  <div class="hdr-right">
-    <div style="position:relative;" id="loc-wrap">
-      <div class="loc-trigger" id="loc-trigger" onclick="toggleLoc()">
-        <span>📍</span><span id="loc-label">Select School</span><span class="loc-caret">▾</span>
-      </div>
-      <div class="loc-dropdown" id="loc-dropdown">
-        <div class="loc-search-wrap">
-          <span style="font-size:1rem;color:var(--saffron-light)">⌕</span>
-          <input type="text" id="loc-search-input" placeholder="Search Washington schools…" oninput="filterSchools(this.value)" autocomplete="off">
-        </div>
-        <div class="loc-list" id="loc-list"></div>
-      </div>
-    </div>
-    <button class="btn btn-filled btn-sm" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
-    <div class="profile-btn" id="profile-btn" onclick="openLogin()">
-      👤
-      <span class="admin-badge hide" id="admin-notif">0</span>
-    </div>
-  </div>
-</header>
-
-<!-- LOGIN -->
-<div class="modal-bg hide" id="login-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeLogin()">✕</button>
-    <div class="modal-title">Sign in to Lernix</div>
-    <div class="modal-sub">Students leave reviews. Teachers manage class info. Admins moderate content.</div>
-    <div class="mode-toggle">
-      <button class="mode-btn on" id="mode-student" onclick="setMode('student')">Student</button>
-      <button class="mode-btn" id="mode-teacher" onclick="setMode('teacher')">Teacher</button>
-      <button class="mode-btn" id="mode-admin" onclick="setMode('admin')">Admin</button>
-    </div>
-    <label class="field-label" style="margin-bottom:5px">Email</label>
-    <input class="field-input" type="email" placeholder="you@school.edu" style="margin-bottom:12px;display:block">
-    <label class="field-label" style="margin-bottom:5px">Password</label>
-    <input class="field-input" id="admin-pw-field" type="password" placeholder="••••••••" style="margin-bottom:18px;display:block">
-    <button class="btn btn-filled" style="width:100%" onclick="doLogin()">Sign In →</button>
-    <div id="login-hint" style="font-size:0.74rem;color:var(--muted);text-align:center;margin-top:10px;display:none">Demo admin password: <strong style="color:var(--saffron-dark)">admin123</strong></div>
-  </div>
-</div>
-
-<!-- ══ HOME ══ -->
-<div id="page-home" class="page active">
-  <div style="max-width:var(--max-w);margin:0 auto;padding:0 36px;">
-    <div class="home-hero">
-      <div class="hero-left">
-        <div class="home-eyebrow">Student-Powered Ratings</div>
-        <h1 class="home-title">Find the right teacher,<br><em>before</em> you enroll.</h1>
-        <p class="home-sub">Real reviews from real students at your school. Compare teachers, check workload, and plan your schedule with confidence.</p>
-        <div class="home-actions">
-          <button class="btn btn-filled" style="padding:11px 26px;font-size:var(--fs-base)" onclick="navTo('teachers');setSideNav('teachers')">
-            Find Classes
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-          <button class="btn" style="padding:11px 22px;font-size:var(--fs-base)" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="info-card">
-          <div class="info-card-title">What is Lernix?</div>
-          <div class="info-card-text">A student-driven platform for honest teacher and class ratings at your Washington high school. See difficulty, workload, test formats, and anonymous reviews from students who've been in the seat.</div>
-          <div class="info-pills">
-            <div class="info-pill"><span>📊</span>Honest Ratings</div>
-            <div class="info-pill"><span>🗂</span>Comparisons</div>
-            <div class="info-pill"><span>🗺</span>Pathways</div>
-            <div class="info-pill"><span>🔒</span>Anonymous</div>
-            <div class="info-pill"><span>🛡</span>AI Moderated</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">How reviews work</div>
-          <div class="info-card-text">Every review is scanned by AI for appropriateness before going to admin review. Clean reviews publish quickly. Flagged reviews get manual attention. No fake data, no mock ratings — everything you see is real.</div>
-        </div>
-        <div class="info-card" style="background:var(--saffron-pale);border-color:var(--saffron-pale2)">
-          <div class="info-card-title" style="color:var(--saffron-dark)">Select your school to get started</div>
-          <div class="info-card-text" style="margin-bottom:12px">Use the 📍 button in the top right to pick your Washington high school.</div>
-          <button class="btn btn-filled btn-sm" onclick="toggleLoc()">Choose School →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ TEACHERS ══ -->
-<div id="page-teachers" class="page">
-  <div class="desktop-layout">
-    <div class="sidebar">
-      <div class="sidebar-section-label">Navigation</div>
-      <div class="sidebar-nav" id="sidebar-nav"></div>
-      <div class="sidebar-divider"></div>
-      <div class="sidebar-section-label">Filter</div>
-      <div style="display:flex;flex-direction:column;gap:4px;">
-        <button class="snav-item" onclick="filterDept('')" id="dept-all" style="color:var(--saffron-dark);background:var(--saffron-pale);font-weight:600">All Departments</button>
-        <button class="snav-item" onclick="filterDept('Math')"><span class="snav-icon">📐</span>Math</button>
-        <button class="snav-item" onclick="filterDept('Science')"><span class="snav-icon">🔬</span>Science</button>
-        <button class="snav-item" onclick="filterDept('English')"><span class="snav-icon">📖</span>English</button>
-        <button class="snav-item" onclick="filterDept('History / Social Studies')"><span class="snav-icon">🌍</span>History</button>
-        <button class="snav-item" onclick="filterDept('PE / Health')"><span class="snav-icon">⚽</span>PE / Health</button>
-        <button class="snav-item" onclick="filterDept('Arts')"><span class="snav-icon">🎨</span>Arts</button>
-        <button class="snav-item" onclick="filterDept('World Languages')"><span class="snav-icon">🌐</span>Languages</button>
-        <button class="snav-item" onclick="filterDept('CTE')"><span class="snav-icon">🛠</span>CTE</button>
-      </div>
-    </div>
-    <div class="main-content">
-      <div class="page-header">
-        <div class="page-header-row">
-          <div>
-            <div class="page-title">Teachers</div>
-            <div class="page-sub" id="school-sub">Select a school to see teachers</div>
-          </div>
-          <button class="btn btn-filled btn-sm" onclick="navTo('write');setSideNav('write')">+ Rate a Teacher</button>
-        </div>
-      </div>
-      <div id="teachers-content">
-        <div class="empty-state">
-          <div class="empty-icon">📍</div>
-          <div class="empty-title">Choose your school</div>
-          <div class="empty-sub">Use the location button in the top right to select your Washington high school.</div>
-          <button class="btn btn-filled" onclick="toggleLoc()">Select School →</button>
-        </div>
-      </div>
-      <div id="find-more-wrap" style="display:none;text-align:center;margin-top:24px">
-        <button class="btn" onclick="toast('All teachers shown.')">Load More</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ DETAIL ══ -->
-<div id="page-detail" class="page">
-  <div class="detail-layout">
-    <div class="detail-sidebar" id="detail-sidebar-content"></div>
-    <div class="detail-main" id="detail-main-content"></div>
-  </div>
-</div>
-
-<!-- ══ PATHWAYS ══ -->
-<div id="page-pathways" class="page">
-  <div class="desktop-layout">
-    <div class="sidebar">
-      <div class="sidebar-section-label">Navigation</div>
-      <div class="sidebar-nav" id="sidebar-nav-pw"></div>
-    </div>
-    <div class="main-content">
-      <div class="page-header">
-        <div class="page-title">Career Pathway Explorer</div>
-        <div class="page-sub">Recommended 4-year course sequences for Washington high schools</div>
-      </div>
-      <div class="pw-grid" id="pw-grid"></div>
-      <div id="pw-detail" style="display:none"><div class="div"></div><div id="pw-roadmap"></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ WRITE REVIEW ══ -->
-<div id="page-write" class="page">
-  <div style="max-width:var(--max-w);margin:0 auto;padding:28px 36px 48px;">
-    <button class="back-btn" onclick="navTo('teachers');setSideNav('teachers')">← Back to Teachers</button>
-    <div class="form-layout">
-      <div class="form-card">
-        <div class="form-title">Leave an Anonymous Review</div>
-        <div class="form-subtitle">Your review will be scanned by AI for appropriateness before going to admin review. Honest feedback — positive or negative — is always welcome.</div>
-
-        <label class="field-label">School</label>
-        <select class="field-sel" id="rv-school-sel" style="margin-bottom:14px"></select>
-
-        <label class="field-label">Teacher Name</label>
-        <input class="field-input mb14" id="rv-teacher-input" type="text" placeholder="Teacher's last name (e.g. Smith)">
-
-        <label class="field-label">Class / Course</label>
-        <input class="field-input mb14" id="rv-class-input" type="text" placeholder="e.g. AP Calculus BC">
-
-        <label class="field-label">Overall Rating</label>
-        <div class="rf-stars" id="rf-stars" onmouseleave="resetStars()">
-          <span class="rf-star" onmouseenter="hoverS(0)" onclick="pickS(0)">★</span>
-          <span class="rf-star" onmouseenter="hoverS(1)" onclick="pickS(1)">★</span>
-          <span class="rf-star" onmouseenter="hoverS(2)" onclick="pickS(2)">★</span>
-          <span class="rf-star" onmouseenter="hoverS(3)" onclick="pickS(3)">★</span>
-          <span class="rf-star" onmouseenter="hoverS(4)" onclick="pickS(4)">★</span>
-        </div>
-
-        <div class="two-col">
-          <div>
-            <label class="field-label">Difficulty</label>
-            <select class="field-sel" id="rv-diff">
-              <option value="">Select…</option>
-              <option value="1">1 – Very Easy</option><option value="2">2 – Easy</option>
-              <option value="3">3 – Medium</option><option value="4">4 – Hard</option>
-              <option value="5">5 – Very Hard</option>
-            </select>
-          </div>
-          <div>
-            <label class="field-label">Workload</label>
-            <select class="field-sel" id="rv-workload">
-              <option value="">Select…</option>
-              <option value="light">Light</option><option value="moderate">Moderate</option><option value="heavy">Heavy</option>
-            </select>
-          </div>
-        </div>
-
-        <label class="field-label">Your Review</label>
-        <textarea class="field-ta mb14" id="rv-text" placeholder="Share your honest experience. What should the next student know?"></textarea>
-
-        <div class="ai-scanning hide" id="ai-scanning">
-          <div class="scan-dot"></div><div class="scan-dot"></div><div class="scan-dot"></div>
-          <span class="scan-text">AI is reviewing your submission for appropriateness…</span>
-        </div>
-        <div class="pending-banner hide" id="pending-banner"></div>
-        <div style="display:flex;justify-content:flex-end;margin-top:16px" id="submit-btn-wrap">
-          <button class="btn btn-filled" onclick="submitReview()">Submit Anonymously →</button>
-        </div>
-      </div>
-
-      <div class="form-aside">
-        <div class="aside-card">
-          <div class="aside-title">✅ What's encouraged</div>
-          <ul class="aside-list">
-            <li><span>✓</span>Honest feedback about teaching quality</li>
-            <li><span>✓</span>Comments on workload, difficulty, grading</li>
-            <li><span>✓</span>Low ratings with honest reasoning</li>
-            <li><span>✓</span>Tips that help future students</li>
-          </ul>
-        </div>
-        <div class="aside-card">
-          <div class="aside-title">🚫 What gets flagged</div>
-          <ul class="aside-list">
-            <li><span class="x">✗</span>Personal attacks or harassment</li>
-            <li><span class="x">✗</span>Profanity or offensive language</li>
-            <li><span class="x">✗</span>False accusations of crimes</li>
-            <li><span class="x">✗</span>Content unrelated to academics</li>
-            <li><span class="x">✗</span>Personal identifying information</li>
-          </ul>
-        </div>
-        <div class="aside-card" style="background:var(--saffron-pale);border-color:var(--saffron-pale2)">
-          <div class="aside-title" style="color:var(--saffron-dark)">🛡 How moderation works</div>
-          <div class="aside-text">Every submission is scanned by Claude AI and then reviewed by a Lernix admin before appearing publicly. Clean reviews are published quickly. Flagged reviews get manual attention.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ ADMIN ══ -->
-<div id="page-admin" class="page">
-  <div class="admin-layout">
-    <div class="admin-sidebar">
-      <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);padding:0 13px;margin-bottom:8px;">Moderation</div>
-      <div class="admin-snav">
-        <button class="admin-snav-item on" id="atab-pending" onclick="setAdminTab('pending',this)">⏳ Pending <span class="admin-snav-badge" id="badge-pending">0</span></button>
-        <button class="admin-snav-item" id="atab-flagged" onclick="setAdminTab('flagged',this)">🚩 AI Flagged <span class="admin-snav-badge red" id="badge-flagged">0</span></button>
-        <button class="admin-snav-item" id="atab-approved" onclick="setAdminTab('approved',this)">✅ Approved</button>
-        <button class="admin-snav-item" id="atab-rejected" onclick="setAdminTab('rejected',this)">🗑 Rejected</button>
-      </div>
-      <div class="div" style="margin:16px 0"></div>
-      <button class="admin-snav-item" onclick="doLogout()">← Sign Out</button>
-    </div>
-    <div class="admin-main">
-      <div class="admin-title">Admin Panel</div>
-      <div class="admin-subtitle">Review AI-flagged submissions before they go live on Lernix.</div>
-      <div class="admin-stats" id="admin-stats"></div>
-      <div id="admin-queue"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Mobile bottom nav -->
-<div id="bottom-nav-mobile">
-  <button class="tab-btn on" id="bn-home" onclick="navTo('home');setSideNav('home')">Home</button>
-  <button class="tab-btn" id="bn-teachers" onclick="navTo('teachers');setSideNav('teachers')">Teachers</button>
-  <button class="tab-btn" id="bn-pathways" onclick="navTo('pathways');renderPathways();setSideNav('pathways')">Pathways</button>
-  <button class="tab-btn" id="bn-write" onclick="navTo('write');setSideNav('write')">+ Rate</button>
-</div>
-
-<div class="toast" id="toast-el"></div>
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Sora:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-const ADMIN_PASSWORD = 'admin123';
-let currentMode='student', currentUser=null, currentSchool=null;
-let locOpen=false, selPw=null, star=-1, votes={}, adminTab='pending';
-
-// ── DB ────────────────────────────────────────────────────────────────────────
-function readDB(){try{return JSON.parse(localStorage.getItem('lernix_db')||'{}')}catch{return{}}}
-function writeDB(db){try{localStorage.setItem('lernix_db',JSON.stringify(db))}catch{}}
-function getApprovedReviews(school,key){const db=readDB();return((db.reviews||{})[school]||{})[key]||[];}
-function getAllTeachers(school){const db=readDB();return Object.values((db.teachers||{})[school]||{});}
-
-// ── SCHOOLS ───────────────────────────────────────────────────────────────────
-const SCHOOLS=[
-  {name:"Kamiak High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
-  {name:"Mariner High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
-  {name:"Edmonds-Woodway HS",district:"Edmonds SD",city:"Edmonds",region:"Snohomish County"},
-  {name:"Meadowdale High School",district:"Edmonds SD",city:"Lynnwood",region:"Snohomish County"},
-  {name:"Mountlake Terrace HS",district:"Edmonds SD",city:"Mountlake Terrace",region:"Snohomish County"},
-  {name:"Glacier Peak HS",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
-  {name:"Snohomish High School",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
-  {name:"Henry M. Jackson HS",district:"Everett SD",city:"Mill Creek",region:"Snohomish County"},
-  {name:"Everett High School",district:"Everett SD",city:"Everett",region:"Snohomish County"},
-  {name:"Marysville-Pilchuck HS",district:"Marysville SD",city:"Marysville",region:"Snohomish County"},
-  {name:"Arlington High School",district:"Arlington SD",city:"Arlington",region:"Snohomish County"},
-  {name:"Ballard High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Garfield High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Roosevelt High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Franklin High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"West Seattle High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Rainier Beach High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Skyline High School",district:"Issaquah SD",city:"Sammamish",region:"King County – Eastside"},
-  {name:"Issaquah High School",district:"Issaquah SD",city:"Issaquah",region:"King County – Eastside"},
-  {name:"Eastlake High School",district:"Lake Washington SD",city:"Sammamish",region:"King County – Eastside"},
-  {name:"Lake Washington HS",district:"Lake Washington SD",city:"Kirkland",region:"King County – Eastside"},
-  {name:"Inglemoor High School",district:"Northshore SD",city:"Kenmore",region:"King County – Eastside"},
-  {name:"Bothell High School",district:"Northshore SD",city:"Bothell",region:"King County – Eastside"},
-  {name:"Shorecrest High School",district:"Shoreline SD",city:"Shoreline",region:"King County – Eastside"},
-  {name:"Newport High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
-  {name:"Bellevue High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
-  {name:"Mercer Island HS",district:"Mercer Island SD",city:"Mercer Island",region:"King County – Eastside"},
-  {name:"Stadium High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
-  {name:"Lincoln High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
-  {name:"Emerald Ridge HS",district:"Puyallup SD",city:"Puyallup",region:"Pierce County"},
-  {name:"Lewis & Clark HS",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
-  {name:"Ferris High School",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
-  {name:"Richland High School",district:"Richland SD",city:"Richland",region:"Eastern WA"},
-  {name:"Kennewick High School",district:"Kennewick SD",city:"Kennewick",region:"Eastern WA"},
-  {name:"Pasco High School",district:"Pasco SD",city:"Pasco",region:"Eastern WA"},
-  {name:"Olympia High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
-  {name:"Capital High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
-  {name:"Eisenhower High School",district:"Yakima SD",city:"Yakima",region:"South / Central WA"},
-];
-
-const PW=[
-  {ico:"🔬",nm:"Engineering",ds:"Math & physics heavy sequence for future engineers.",rm:[{g:"9th",cs:[["Algebra 2","R"],["Biology","H"],["English 9","R"]]},{g:"10th",cs:[["Pre-Calculus","H"],["Chemistry","AP"],["CS Principles","R"]]},{g:"11th",cs:[["AP Calculus BC","AP"],["AP Physics 1","AP"],["AP CS A","AP"]]},{g:"12th",cs:[["AP Physics C","AP"],["Engineering Design","H"],["AP Statistics","AP"]]}]},
-  {ico:"🩺",nm:"Pre-Med",ds:"Biology & chemistry track for healthcare careers.",rm:[{g:"9th",cs:[["Honors Biology","H"],["Algebra 2","R"],["English 9","R"]]},{g:"10th",cs:[["AP Biology","AP"],["AP Chemistry","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Physics 1","AP"],["AP Psychology","AP"],["AP Statistics","AP"]]},{g:"12th",cs:[["AP Environmental Science","AP"],["Anatomy & Physiology","H"],["Research Methods","H"]]}]},
-  {ico:"📊",nm:"Business",ds:"Economics, stats, and communication for future leaders.",rm:[{g:"9th",cs:[["Algebra 2","R"],["English 9","H"],["World History","R"]]},{g:"10th",cs:[["AP US History","AP"],["AP Lang & Comp","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Macroeconomics","AP"],["AP Statistics","AP"],["AP Gov & Politics","AP"]]},{g:"12th",cs:[["AP Microeconomics","AP"],["AP Literature","AP"],["Business Management","H"]]}]},
-  {ico:"🎨",nm:"Arts & Design",ds:"Creative portfolio-building for designers and writers.",rm:[{g:"9th",cs:[["English 9","H"],["Art Studio","R"],["World History","R"]]},{g:"10th",cs:[["AP Lang & Comp","AP"],["Digital Media","H"],["Photography","R"]]},{g:"11th",cs:[["AP Literature","AP"],["AP Art History","AP"],["Graphic Design","H"]]},{g:"12th",cs:[["AP Studio Art","AP"],["Film Studies","H"],["Portfolio Prep","R"]]}]},
-];
-
-// ── SIDEBAR NAV ITEMS ─────────────────────────────────────────────────────────
-const NAV_ITEMS = [
-  {id:'home',icon:'🏠',label:'Home'},
-  {id:'teachers',icon:'👩‍🏫',label:'Teachers'},
-  {id:'pathways',icon:'🗺',label:'Career Pathways'},
-  {id:'write',icon:'✍️',label:'Rate a Teacher'},
-];
-
-function buildSideNav(containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.innerHTML = NAV_ITEMS.map(n => `
-    <button class="snav-item ${currentPage===n.id?'active':''}" id="snav-${n.id}-${containerId}" onclick="navTo('${n.id}');setSideNav('${n.id}')">
-      <span class="snav-icon">${n.icon}</span>
-      <span class="snav-label">${n.label}</span>
-    </button>`).join('');
-}
-
-let currentPage = 'home';
-function setSideNav(page) {
-  currentPage = page;
-  buildSideNav('sidebar-nav');
-  buildSideNav('sidebar-nav-pw');
-  // Mobile bottom nav
-  ['home','teachers','pathways','write'].forEach(id => {
-    const el = document.getElementById('bn-'+id);
-    if (el) el.classList.toggle('on', id===page);
-  });
-}
-
-// ── NAV ───────────────────────────────────────────────────────────────────────
-function navTo(id) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  window.scrollTo(0,0);
-  if (id==='pathways') renderPathways();
-  // Hide mobile nav on admin
-  document.getElementById('bottom-nav-mobile').style.display = id==='admin' ? 'none' : '';
-}
-
-// ── LOCATION ──────────────────────────────────────────────────────────────────
-function toggleLoc(){locOpen=!locOpen;document.getElementById('loc-trigger').classList.toggle('open',locOpen);document.getElementById('loc-dropdown').classList.toggle('open',locOpen);if(locOpen){setTimeout(()=>document.getElementById('loc-search-input').focus(),80);renderSchoolList('');}}
-function closeLoc(){locOpen=false;document.getElementById('loc-trigger').classList.remove('open');document.getElementById('loc-dropdown').classList.remove('open');}
-document.addEventListener('click',e=>{if(!document.getElementById('loc-wrap').contains(e.target))closeLoc();});
-function filterSchools(q){renderSchoolList(q);}
-function renderSchoolList(q){
-  const list=document.getElementById('loc-list');
-  const filtered=SCHOOLS.filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase())||s.city.toLowerCase().includes(q.toLowerCase())||s.district.toLowerCase().includes(q.toLowerCase()));
-  if(!filtered.length){list.innerHTML=`<div style="padding:14px;font-size:13px;color:var(--muted);text-align:center">No schools found</div>`;return;}
-  const regions=[...new Set(filtered.map(s=>s.region))];
-  let html='';
-  regions.forEach(r=>{
-    html+=`<div class="loc-region-label">${r}</div>`;
-    filtered.filter(s=>s.region===r).forEach(s=>{
-      const active=currentSchool&&s.name===currentSchool.name;
-      html+=`<div class="loc-item ${active?'active':''}" onclick="selectSchool('${s.name.replace(/'/g,"\\'")}')">
-        <span style="font-size:1rem;flex-shrink:0">🏫</span>
-        <div class="loc-item-detail"><span class="loc-item-name">${s.name}</span><span class="loc-item-sub">${s.district} · ${s.city}</span></div>
-        ${active?'<span style="color:var(--saffron-dark);font-weight:700;margin-left:auto">✓</span>':''}
-      </div>`;
-    });
-  });
-  list.innerHTML=html;
-}
-function selectSchool(name){
-  const s=SCHOOLS.find(x=>x.name===name);if(!s)return;
-  currentSchool=s;
-  document.getElementById('loc-label').textContent=name.replace(' High School','').replace(' HS','')+' HS';
-  const sub=document.getElementById('school-sub');if(sub)sub.textContent=`${s.name} · ${s.district}`;
-  closeLoc();renderTeachersPage();
-  const sel=document.getElementById('rv-school-sel');if(sel)sel.value=name;
-}
-
-// ── TEACHER CARDS ─────────────────────────────────────────────────────────────
-const COLORS=['#3a5a8c','#2d6e5e','#7a4a1e','#6b4c8a','#4a6e3a','#6e4a5e'];
-function tColor(name){return COLORS[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0))%COLORS.length];}
-function tInit(name){return name.split(' ').filter(Boolean).slice(-2).map(w=>w[0]).join('').toUpperCase().slice(0,2);}
-function computeRatings(reviews){if(!reviews.length)return null;const avg=arr=>arr.length?(arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1):null;return{overall:avg(reviews.map(r=>r.rating)),diff:avg(reviews.filter(r=>r.diff).map(r=>r.diff)),count:reviews.length};}
-
-let currentTeachers = [];
-
-function renderTeachersPage(list) {
-  if (!currentSchool) return;
-  const all = list || getAllTeachers(currentSchool.name);
-  currentTeachers = all;
-  const content = document.getElementById('teachers-content');
-  const fmw = document.getElementById('find-more-wrap');
-  if (!all.length) {
-    content.innerHTML = `<div class="empty-state"><div class="empty-icon">✍️</div><div class="empty-title">No reviews yet for ${currentSchool.name}</div><div class="empty-sub">Be the first to rate a teacher at your school. Your anonymous review helps every student who comes after you.</div><button class="btn btn-filled" onclick="navTo('write');setSideNav('write')">Write the First Review →</button></div>`;
-    fmw.style.display='none'; return;
-  }
-  content.innerHTML = `<div class="cards-grid">${all.map(t => {
-    const reviews = getApprovedReviews(currentSchool.name, t.key);
-    const stats = computeRatings(reviews);
-    const col = tColor(t.name), init = tInit(t.name);
-    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
-      <div class="tc-row1">
-        <div class="tc-ava" style="background:${col}">${init}</div>
-        <div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:`<div style="font-size:13px;color:var(--muted);text-align:right">No<br>ratings</div>`}</div>
-      </div>
-      <div class="tc-name">${t.name}</div>
-      <div class="tc-sub">${t.courses.join(', ')||'No classes listed'}</div>
-      <div class="tc-tags">
-        <span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span>
-        ${stats&&stats.diff?`<span class="dp ${parseFloat(stats.diff)<3?'dp-e':parseFloat(stats.diff)<4?'dp-m':'dp-h'}">${parseFloat(stats.diff)<3?'Easy':parseFloat(stats.diff)<4?'Med':'Hard'}</span>`:''}
-      </div>
-    </div>`;
-  }).join('')}</div>`;
-  fmw.style.display = all.length >= 4 ? 'block' : 'none';
-}
-
-function liveSearch(q) {
-  if (!currentSchool) return;
-  const all = getAllTeachers(currentSchool.name);
-  const f = q ? all.filter(t=>t.name.toLowerCase().includes(q.toLowerCase())||t.courses.some(c=>c.toLowerCase().includes(q.toLowerCase()))) : all;
-  renderTeachersPage(f);
-}
-function filterDept(dept) {
-  if (!currentSchool) return;
-  const all = getAllTeachers(currentSchool.name);
-  renderTeachersPage(dept ? all.filter(t=>t.dept===dept||!t.dept) : all);
-}
-
-// ── TEACHER DETAIL ────────────────────────────────────────────────────────────
-function openTeacher(key) {
-  if (!currentSchool) return;
-  const db = readDB();
-  const t = ((db.teachers||{})[currentSchool.name]||{})[key];
-  if (!t) return;
-  const reviews = getApprovedReviews(currentSchool.name, key);
-  const stats = computeRatings(reviews);
-  const col = tColor(t.name), init = tInit(t.name);
-  const stH = r=>Array.from({length:5},(_,i)=>`<span style="color:${i<r?'#C97D10':'#d8d0c4'}">★</span>`).join('');
-
-  // Sidebar
-  document.getElementById('detail-sidebar-content').innerHTML = `
-    <button class="back-btn" onclick="navTo('teachers');setSideNav('teachers')">← All Teachers</button>
-    <div class="det-ava" style="background:${col}">${init}</div>
-    <div class="det-name">${t.name}</div>
-    <div class="det-dept">${currentSchool.name}</div>
-    <div class="det-chips">${t.courses.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
-    <div class="det-score-wrap">
-      ${stats?`<div class="det-big">${stats.overall}</div><div style="display:flex;gap:2px;justify-content:center;margin:4px 0">${stH(Math.round(parseFloat(stats.overall)))}</div><div class="det-lbl">Overall Rating</div><div style="font-size:13px;color:var(--muted);margin-top:4px">${stats.count} review${stats.count!==1?'s':''}</div>`:`<div style="font-family:var(--font-head);font-size:1.1rem;color:var(--muted)">No ratings yet</div>`}
-    </div>
-    ${stats?`<div class="rating-grid">
-      <div class="r-pill"><div class="r-lbl">Overall</div><div class="r-val">${stats.overall}<span style="font-size:13px;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.overall)/5*100}%;background:#C97D10"></div></div></div>
-      ${stats.diff?`<div class="r-pill"><div class="r-lbl">Difficulty</div><div class="r-val">${stats.diff}<span style="font-size:13px;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.diff)/5*100}%;background:var(--red)"></div></div></div>`:''}
-    </div>`:''}
-    <button class="btn btn-filled" style="width:100%;margin-top:6px" onclick="navTo('write');setSideNav('write')">+ Write a Review</button>`;
-
-  // Main content
-  document.getElementById('detail-main-content').innerHTML = `
-    <div style="font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:16px">Student Reviews <span style="font-size:1rem;color:var(--muted);font-family:var(--font);font-weight:400">(${reviews.length})</span></div>
-    ${reviews.length ? [...reviews].reverse().map(r=>`
-      <div class="rv-card">
-        <div class="rv-top">
-          <span class="rv-cls">${r.course}</span>
-          <span style="font-size:13px">${stH(r.rating)}</span>
-        </div>
-        <div class="rv-txt">${r.text}</div>
-        <div class="rv-acts">
-          <button class="vote-btn" onclick="handleUpvote('${currentSchool.name}','${key}',${r.id},this)">👍 ${r.upvotes}</button>
-          <span style="font-size:12px;color:var(--muted)">${r.upvotes} found helpful</span>
-        </div>
-      </div>`).join('') :
-    `<div class="empty-state" style="padding:32px 0"><div class="empty-icon">💬</div><div class="empty-title">No reviews yet</div><div class="empty-sub">Be the first to share your experience.</div></div>`}`;
-
-  navTo('detail');
-}
-
-function handleUpvote(school,key,id,btn){
-  const vk=`${school}-${key}-${id}`;
-  if(!votes[vk]){votes[vk]=1;const db=readDB();const rv=((db.reviews||{})[school]||{})[key]||[];const r=rv.find(r=>r.id===id);if(r){r.upvotes++;writeDB(db);}const cur=parseInt(btn.textContent.replace(/\D/g,''));btn.textContent=`👍 ${cur+1}`;btn.style.color='var(--green)';toast('Upvoted!');}
-}
-
-// ── PATHWAYS ──────────────────────────────────────────────────────────────────
-function renderPathways(){
-  document.getElementById('pw-grid').innerHTML=PW.map((p,i)=>`<div class="pw-card ${selPw===i?'sel':''}" onclick="pickPw(${i})"><div class="pw-ico">${p.ico}</div><div class="pw-name">${p.nm}</div><div class="pw-desc">${p.ds}</div></div>`).join('');
-  if(selPw!==null)renderRoadmap(selPw);
-}
-function pickPw(i){selPw=i;renderPathways();document.getElementById('pw-detail').style.display='block';renderRoadmap(i);}
-function renderRoadmap(i){
-  const p=PW[i];const badge=l=>l==='AP'?'<span class="dp dp-h">AP</span>':l==='H'?'<span class="dp dp-m">Honors</span>':'<span class="dp dp-e">Regular</span>';
-  document.getElementById('pw-roadmap').innerHTML=`<div style="font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:14px">${p.ico} ${p.nm} — 4-Year Roadmap</div><div class="roadmap-wrap">${p.rm.map(g=>`<div class="grade-col"><div class="grade-hdr">${g.g} Grade</div>${g.cs.map(([n,l])=>`<div class="gc">${n}<div class="gc-lv">${badge(l)}</div></div>`).join('')}</div>`).join('')}</div>`;
-}
-
-// ── AI MODERATION ─────────────────────────────────────────────────────────────
-async function moderateWithAI(text, teacher, course) {
-  const prompt=`You are a content moderator for Lernix, a high school teacher rating platform used by students aged 14-18.
-
-Analyze this student review and determine if it should be flagged.
-
-Teacher: ${teacher}
-Course: ${course}
-Review: "${text}"
-
-Flag if it contains: personal attacks, profanity, slurs, threats, false accusations of crimes, sexual content, personally identifying info, or content completely unrelated to the academic experience.
-
-Do NOT flag for: honest negative feedback about teaching, low ratings with reasoning, complaints about workload or grading.
-
-Respond with ONLY valid JSON:
-{"flagged":true or false,"reason":"brief reason or null","severity":"low","medium","high" or null}`;
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages:[{role:'user',content:prompt}]})});
-    const d=await r.json();
-    return JSON.parse((d.content?.[0]?.text||'{}').replace(/```json|```/g,'').trim());
-  }catch{return{flagged:true,reason:'AI unavailable — flagged for manual review',severity:'low'};}
-}
-
-// ── SUBMIT REVIEW ─────────────────────────────────────────────────────────────
-async function submitReview(){
-  const school=document.getElementById('rv-school-sel').value;
-  const teacher=document.getElementById('rv-teacher-input').value.trim();
-  const course=document.getElementById('rv-class-input').value.trim();
-  const text=document.getElementById('rv-text').value.trim();
-  const diff=document.getElementById('rv-diff').value;
-  const workload=document.getElementById('rv-workload').value;
-  if(!school){toast('Please select your school.');return;}
-  if(!teacher){toast('Please enter the teacher\'s name.');return;}
-  if(!course){toast('Please enter the class name.');return;}
-  if(star<0){toast('Please pick a star rating.');return;}
-  if(!text){toast('Please write your review.');return;}
-  const scanEl=document.getElementById('ai-scanning'),pendEl=document.getElementById('pending-banner'),btnW=document.getElementById('submit-btn-wrap');
-  scanEl.classList.remove('hide');btnW.style.opacity='0.4';btnW.style.pointerEvents='none';
-  const result=await moderateWithAI(text,teacher,course);
-  scanEl.classList.add('hide');btnW.style.opacity='1';btnW.style.pointerEvents='auto';
-  const teacherKey=teacher.toLowerCase().replace(/[^a-z0-9]/g,'_');
-  const review={id:Date.now(),school,teacherName:teacher,teacherKey,course,text,rating:star+1,diff:parseInt(diff)||0,workload,upvotes:0,ts:Date.now(),aiFlag:result.flagged,aiReason:result.reason||null,aiSeverity:result.severity||null,status:result.flagged?'pending_flagged':'pending_clean'};
-  const db=readDB();
-  if(!db.pendingReviews)db.pendingReviews=[];
-  db.pendingReviews.push(review);
-  if(!db.teachers)db.teachers={};
-  if(!db.teachers[school])db.teachers[school]={};
-  if(!db.teachers[school][teacherKey])db.teachers[school][teacherKey]={name:teacher,key:teacherKey,courses:[],portalData:{}};
-  const t=db.teachers[school][teacherKey];
-  if(!t.courses.includes(course))t.courses.push(course);
-  writeDB(db);updateAdminBadge();
-  pendEl.classList.remove('hide');
-  pendEl.textContent=result.flagged?'🚩 Your review was flagged by AI for admin review. It will appear once approved — usually within 24 hours.':'✅ Your review looks great and is queued for admin approval. It will appear shortly.';
-  document.getElementById('rv-teacher-input').value='';
-  document.getElementById('rv-class-input').value='';
-  document.getElementById('rv-text').value='';
-  document.getElementById('rv-diff').value='';
-  document.getElementById('rv-workload').value='';
-  star=-1;resetStars();
-}
-
-// ── ADMIN ─────────────────────────────────────────────────────────────────────
-function approveReview(id){
-  const db=readDB();const idx=(db.pendingReviews||[]).findIndex(r=>r.id===id);if(idx===-1)return;
-  const rv=db.pendingReviews[idx];rv.status='approved';rv.reviewedAt=Date.now();
-  if(!db.reviews)db.reviews={};if(!db.reviews[rv.school])db.reviews[rv.school]={};if(!db.reviews[rv.school][rv.teacherKey])db.reviews[rv.school][rv.teacherKey]=[];
-  db.reviews[rv.school][rv.teacherKey].push(rv);writeDB(db);renderTeachersPage();updateAdminBadge();renderAdminQueue();toast('✅ Review approved and published.');
-}
-function rejectReview(id){const db=readDB();const rv=(db.pendingReviews||[]).find(r=>r.id===id);if(!rv)return;rv.status='rejected';rv.reviewedAt=Date.now();writeDB(db);updateAdminBadge();renderAdminQueue();toast('🗑 Review rejected.');}
-function approveAll(){
-  const db=readDB();const pending=(db.pendingReviews||[]).filter(r=>r.status==='pending_clean');
-  pending.forEach(rv=>{rv.status='approved';rv.reviewedAt=Date.now();if(!db.reviews)db.reviews={};if(!db.reviews[rv.school])db.reviews[rv.school]={};if(!db.reviews[rv.school][rv.teacherKey])db.reviews[rv.school][rv.teacherKey]=[];db.reviews[rv.school][rv.teacherKey].push(rv);});
-  writeDB(db);renderTeachersPage();updateAdminBadge();renderAdminQueue();toast(`✅ ${pending.length} review${pending.length!==1?'s':''} approved.`);
-}
-
-function updateAdminBadge(){
-  const db=readDB();
-  const pending=(db.pendingReviews||[]).filter(r=>r.status==='pending_clean').length;
-  const flagged=(db.pendingReviews||[]).filter(r=>r.status==='pending_flagged').length;
-  const badge=document.getElementById('admin-notif');
-  const total=pending+flagged;
-  if(currentUser==='admin'){badge.classList.toggle('hide',total===0);badge.textContent=total>9?'9+':total;}
-  else badge.classList.add('hide');
-  const bp=document.getElementById('badge-pending');if(bp)bp.textContent=pending;
-  const bf=document.getElementById('badge-flagged');if(bf)bf.textContent=flagged;
-}
-
-function setAdminTab(tab,btn){
-  adminTab=tab;
-  document.querySelectorAll('.admin-snav-item').forEach(b=>b.classList.remove('on'));
-  if(btn)btn.classList.add('on');
-  renderAdminQueue();
-}
-
-function renderAdminStats(){
-  const db=readDB();const all=db.pendingReviews||[];
-  const pending=all.filter(r=>r.status==='pending_clean').length;
-  const flagged=all.filter(r=>r.status==='pending_flagged').length;
-  const approved=all.filter(r=>r.status==='approved').length;
-  const rejected=all.filter(r=>r.status==='rejected').length;
-  document.getElementById('admin-stats').innerHTML=`
-    <div class="stat-pill"><div class="stat-num amber">${pending}</div><div class="stat-lbl">Pending (Clean)</div></div>
-    <div class="stat-pill"><div class="stat-num amber">${flagged}</div><div class="stat-lbl">AI Flagged</div></div>
-    <div class="stat-pill"><div class="stat-num green">${approved}</div><div class="stat-lbl">Approved</div></div>
-    <div class="stat-pill"><div class="stat-num red">${rejected}</div><div class="stat-lbl">Rejected</div></div>`;
-}
-
-function renderAdminQueue(){
-  renderAdminStats();
-  const db=readDB();const all=db.pendingReviews||[];
-  let filtered;
-  if(adminTab==='pending')filtered=all.filter(r=>r.status==='pending_clean');
-  else if(adminTab==='flagged')filtered=all.filter(r=>r.status==='pending_flagged');
-  else if(adminTab==='approved')filtered=all.filter(r=>r.status==='approved');
-  else filtered=all.filter(r=>r.status==='rejected');
-  const wrap=document.getElementById('admin-queue');
-  if(!filtered.length){const labels={pending:'No clean reviews waiting',flagged:'No AI-flagged reviews',approved:'No approved reviews yet',rejected:'No rejected reviews'};wrap.innerHTML=`<div class="empty-state"><div class="empty-icon">${adminTab==='pending'?'⏳':adminTab==='flagged'?'🚩':adminTab==='approved'?'✅':'🗑'}</div><div class="empty-title">${labels[adminTab]}</div></div>`;return;}
-  let bulkBtn='';
-  if(adminTab==='pending'&&filtered.length>0){bulkBtn=`<div style="margin-bottom:16px;display:flex;align-items:center;gap:12px"><button class="btn btn-green btn-sm" onclick="approveAll()">✅ Approve All ${filtered.length} Clean Review${filtered.length!==1?'s':''}</button><span style="font-size:13px;color:var(--muted)">These passed AI screening and are ready to publish.</span></div>`;}
-  const cards=[...filtered].reverse().map(rv=>{
-    const date=new Date(rv.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-    const stars=Array.from({length:5},(_,i)=>`<span style="color:${i<rv.rating?'#C97D10':'#d8d0c4'}">★</span>`).join('');
-    const statusLabel={pending_clean:'<span class="status-badge status-clean">✅ AI Clean</span>',pending_flagged:'<span class="status-badge status-pending">🚩 AI Flagged</span>',approved:'<span class="status-badge status-approved">✅ Approved</span>',rejected:'<span class="status-badge status-rejected">🗑 Rejected</span>'}[rv.status]||'';
-    const flagBox=rv.aiFlag?`<div class="ai-flag-box"><div class="ai-flag-label">🤖 AI Flag · Severity: ${rv.aiSeverity||'unknown'}</div><div class="ai-flag-reason">${rv.aiReason}</div></div>`:'';
-    const actions=(rv.status==='pending_clean'||rv.status==='pending_flagged')?`<div class="flag-actions"><button class="btn btn-green btn-sm" onclick="approveReview(${rv.id})">✅ Approve</button><button class="btn btn-red btn-sm" onclick="rejectReview(${rv.id})">🗑 Reject</button></div>`:`<div style="font-size:13px;color:var(--muted)">Reviewed ${new Date(rv.reviewedAt||rv.ts).toLocaleDateString()}</div>`;
-    return `<div class="flag-card ${rv.aiFlag&&rv.status.startsWith('pending')?'flagged':rv.status==='approved'?'approved':rv.status==='rejected'?'rejected':''}">
-      <div class="flag-meta"><div class="flag-info"><span class="flag-school">${rv.school}</span><span class="flag-teacher">→ ${rv.teacherName}</span><span class="flag-course">${rv.course}</span></div><div>${statusLabel}</div></div>
-      <div class="flag-rating-row"><span>${stars}</span>${rv.diff?`<span class="flag-rating-item">Difficulty: <strong>${rv.diff}/5</strong></span>`:''}${rv.workload?`<span class="flag-rating-item">Workload: <strong>${rv.workload}</strong></span>`:''}<span class="flag-rating-item" style="margin-left:auto">${date}</span></div>
-      ${flagBox}
-      <div class="flag-text-box">"${rv.text}"</div>
-      ${actions}
-    </div>`;
-  }).join('');
-  wrap.innerHTML=bulkBtn+cards;
-}
-
-// ── STARS ─────────────────────────────────────────────────────────────────────
-function hoverS(i){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=i));}
-function resetStars(){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=star));}
-function pickS(i){star=i;resetStars();}
-
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-function openLogin(){document.getElementById('login-modal').classList.remove('hide');document.getElementById('login-hint').style.display='none';}
-function closeLogin(){document.getElementById('login-modal').classList.add('hide');}
-function setMode(m){currentMode=m;['student','teacher','admin'].forEach(x=>document.getElementById('mode-'+x).classList.toggle('on',x===m));document.getElementById('login-hint').style.display=m==='admin'?'block':'none';}
-function doLogin(){
-  if(currentMode==='admin'){const pw=document.getElementById('admin-pw-field').value;if(pw!==ADMIN_PASSWORD){toast('Incorrect admin password.');return;}currentUser='admin';closeLogin();document.getElementById('admin-pw-field').value='';updateAdminBadge();navTo('admin');document.getElementById('bottom-nav-mobile').style.display='none';renderAdminStats();renderAdminQueue();toast('Welcome, Admin!');}
-  else if(currentMode==='teacher'){closeLogin();toast('Teacher dashboard coming soon.');}
-  else{closeLogin();toast('Signed in as student.');}
-}
-function doLogout(){currentUser=null;document.getElementById('admin-notif').classList.add('hide');navTo('home');setSideNav('home');document.getElementById('bottom-nav-mobile').style.display='';toast('Signed out.');}
-
-// ── SCHOOL SELECT ─────────────────────────────────────────────────────────────
-function populateSchoolSelect(){
-  const sel=document.getElementById('rv-school-sel');if(!sel)return;
-  const regions=[...new Set(SCHOOLS.map(s=>s.region))];
-  let html='<option value="">— Select your school —</option>';
-  regions.forEach(r=>{html+=`<optgroup label="${r}">`;SCHOOLS.filter(s=>s.region===r).forEach(s=>{html+=`<option value="${s.name}" ${currentSchool&&s.name===currentSchool.name?'selected':''}>${s.name}</option>`;});html+=`</optgroup>`;});
-  sel.innerHTML=html;
-}
-
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-function toast(msg){const el=document.getElementById('toast-el');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-populateSchoolSelect();
-renderPathways();
-renderSchoolList('');
-buildSideNav('sidebar-nav');
-buildSideNav('sidebar-nav-pw');
-updateAdminBadge();
+  // EmailJS — optional welcome email on sign-up.
+  // 1. Create a free account at https://www.emailjs.com
+  // 2. Create a service (Gmail works) and a template named 'template_welcome'
+  //    with variables: {{to_name}}, {{to_email}}, {{school}}
+  // 3. Replace 'YOUR_EMAILJS_PUBLIC_KEY' with your actual public key.
+  // Leave as-is to disable welcome emails (sign-up still works normally).
+  (function(){ if(window.emailjs) emailjs.init({ publicKey: 'YOUR_EMAILJS_PUBLIC_KEY' }); })();
 </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Lernix</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#fdfcfa;--bg2:#f7f5f0;--bg3:#edeae2;
-  --border:rgba(201,125,16,0.13);--border2:rgba(201,125,16,0.26);
-  --saffron:#C97D10;--saffron-dark:#a86508;--saffron-light:#E8A030;
-  --saffron-pale:#fdf3e0;--saffron-pale2:#f7e0b0;
-  --text:#2e2a22;--text2:#4a4438;--muted:#8a8070;
-  --green:#2d7a4f;--red:#b83232;--amber:#d97706;
-  --shadow-sm:0 1px 4px rgba(201,125,16,0.08);
-  --shadow:0 2px 14px rgba(201,125,16,0.10);
-  --shadow-lg:0 8px 40px rgba(0,0,0,0.11);
-  --radius:12px;
-  --font-head:'Cormorant Garamond',serif;
-  --font:'Jost',sans-serif;
+:root{--gold:#C97D10;--gold-s:#F2B44A;--gold-p:#FEF5E7;--bg:#FDFCF8;--card:#FFFFFF;--text:#2A2A2A;--text2:#6B6B6B;--navy:#1B3A6B;--green:#2A7A4F;--red:#B83232;--border:#EBEBEB;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--disp:'Sora',system-ui,sans-serif;--ease:cubic-bezier(0.22,1,0.36,1);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold-s);border-radius:99px;}
+.view{display:none;}.view.active{display:block;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;background:rgba(253,252,248,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 48px;}
+.nav-inner{display:flex;align-items:center;gap:18px;width:100%;max-width:1280px;margin:0 auto;}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0;}
+.nav-mark{width:32px;height:32px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.nav-mark svg{width:20px;height:16px;}
+.nav-word{font-family:var(--disp);font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-0.04em;}
+.nav-links{display:flex;gap:26px;margin-left:28px;}
+.nav-link{font-size:13px;color:var(--text2);text-decoration:none;transition:color .15s;cursor:pointer;}
+.nav-link:hover{color:var(--gold);}
+.nav-sp{flex:1;}
+.nav-crumb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);}
+.nav-crumb-cur{color:var(--gold);font-weight:500;}
+.nav-signin{background:transparent;color:var(--text);border:1.5px solid var(--border);border-radius:99px;padding:7px 16px;font-family:var(--disp);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.nav-signin:hover{border-color:var(--gold);color:var(--gold);}
+.nav-signup{background:var(--gold-p);color:var(--gold);border:1.5px solid rgba(201,125,16,.3);border-radius:99px;padding:7px 16px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.nav-signup:hover{background:var(--gold);color:#fff;border-color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,125,16,.28);}
+.nav-btn{background:var(--gold);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s var(--ease);}
+.nav-btn:hover{background:#a86508;transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,125,16,.3);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 28px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;border:none;border-radius:99px;transition:all .2s var(--ease);}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 2px 14px rgba(201,125,16,.25);}
+.btn-gold:hover{background:#a86508;transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-save{background:transparent;color:var(--text2);border:1.5px solid var(--border);border-radius:99px;padding:8px 16px;font-family:var(--disp);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.btn-save:hover{border-color:var(--gold);color:var(--gold);}
+.btn-save.saved{background:var(--gold-p);border-color:var(--gold);color:var(--gold);}
+.section{padding:96px 48px;}
+.section-inner{max-width:1280px;margin:0 auto;}
+.s-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:14px;}
+.s-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--text);letter-spacing:-.02em;line-height:1.1;margin-bottom:14px;}
+.s-title em{font-style:italic;color:var(--gold);}
+.s-sub{font-size:15px;color:var(--text2);line-height:1.75;font-weight:300;max-width:540px;}
+.divider{width:48px;height:2px;background:var(--gold-s);border-radius:99px;margin:14px 0 38px;}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 48px 68px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(242,180,74,.1) 0%,transparent 70%);border-radius:50%;pointer-events:none;}
+.hero-inner{max-width:1280px;margin:0 auto;width:100%;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-p);border:1px solid rgba(201,125,16,.22);border-radius:99px;padding:5px 16px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
+.hero-h1{font-family:var(--serif);font-size:clamp(3.5rem,7.5vw,7rem);font-weight:300;line-height:1.04;color:var(--text);letter-spacing:-.02em;margin-bottom:18px;}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.hero-desc{font-size:15px;color:var(--text2);line-height:1.8;font-weight:300;max-width:400px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;}
+.hero-trust{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:12px;color:var(--text2);}
+.hero-stars{color:var(--gold-s);font-size:14px;letter-spacing:2px;}
+.hero-rule{width:100%;height:1px;background:var(--border);margin-top:50px;}
+.stats-bar{background:var(--text);padding:0 48px;}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-cell{padding:30px 24px;border-right:1px solid rgba(255,255,255,.07);cursor:pointer;transition:background .18s;}
+.stat-cell:last-child{border-right:none;}
+.stat-cell:hover{background:rgba(255,255,255,.04);}
+.stat-n{font-family:var(--serif);font-size:2.6rem;font-weight:300;color:var(--gold-s);line-height:1;margin-bottom:4px;}
+.stat-n em{font-style:normal;color:#fff;}
+.stat-l{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-features{display:flex;flex-direction:column;gap:22px;margin-top:38px;}
+.af{display:flex;gap:16px;align-items:flex-start;}
+.af-ico{width:44px;height:44px;background:var(--gold-p);border:1px solid rgba(201,125,16,.18);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.af-title{font-family:var(--disp);font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.af-desc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+.am-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:34px;box-shadow:0 4px 24px rgba(42,42,42,.06);}
+.am-quote{font-family:var(--serif);font-size:1.3rem;font-weight:300;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:26px;}
+.am-pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.am-pill{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px;}
+.am-pill-ico{font-size:1.1rem;margin-bottom:5px;}
+.am-pill-title{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.am-pill-desc{font-size:11px;color:var(--text2);line-height:1.4;}
+.pw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.pw-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;cursor:pointer;transition:all .22s var(--ease);position:relative;overflow:hidden;}
+.pw-card::before{content:'';position:absolute;inset:0;background:var(--gold-p);opacity:0;transition:opacity .2s;}
+.pw-card:hover{border-color:var(--gold-s);transform:translateY(-4px);box-shadow:0 12px 40px rgba(42,42,42,.1);}
+.pw-card:hover::before{opacity:1;}
+.pw-card *{position:relative;}
+.pic-ico{font-size:2rem;margin-bottom:12px;display:block;}
+.pic-name{font-family:var(--disp);font-size:14px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.pic-desc{font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:12px;}
+.pic-careers{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.pic-career{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;}
+.pic-career::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold-s);flex-shrink:0;}
+.pic-salary{font-size:11px;font-weight:600;color:var(--green);background:rgba(42,122,79,.08);border:1px solid rgba(42,122,79,.15);border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:8px;}
+.pic-arrow{font-size:12px;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:4px;margin-top:4px;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .2s var(--ease);}
+.why-card:hover{border-color:var(--gold-s);box-shadow:0 6px 28px rgba(42,42,42,.08);transform:translateY(-2px);}
+.why-num{width:44px;height:44px;border-radius:50%;background:var(--gold-p);border:1px solid rgba(201,125,16,.18);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:13px;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.why-title{font-family:var(--disp);font-size:15px;font-weight:600;color:var(--text);margin-bottom:7px;}
+.why-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;}
+.test-sec{background:var(--gold-p);border-top:1px solid rgba(201,125,16,.12);border-bottom:1px solid rgba(201,125,16,.12);}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.test-card{background:var(--card);border-radius:14px;padding:24px;border:1px solid rgba(201,125,16,.1);}
+.test-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:10px;}
+.test-quote{font-family:var(--serif);font-size:1rem;font-weight:300;color:var(--text);line-height:1.72;font-style:italic;margin-bottom:14px;}
+.test-author{display:flex;align-items:center;gap:10px;}
+.test-ava{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff;flex-shrink:0;}
+.test-name{font-size:13px;font-weight:500;color:var(--text);}
+.test-school{font-size:11px;color:var(--text2);}
+.au-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px;max-width:840px;margin:44px auto 0;position:relative;overflow:hidden;}
+.au-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(242,180,74,.15),transparent 70%);border-radius:50%;}
+.au-inner{position:relative;}
+.au-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+.au-title{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:var(--text);margin-bottom:10px;}
+.au-mission{font-size:14px;color:var(--text2);line-height:1.8;font-weight:300;margin-bottom:32px;max-width:560px;}
+.ceos{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+.ceo-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 20px;flex:1;min-width:150px;}
+.ceo-role{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:4px;}
+.ceo-name{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--text);}
+.au-divider{height:1px;background:var(--border);margin-bottom:18px;}
+.au-values{display:flex;gap:26px;flex-wrap:wrap;}
+.auv{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2);}
+.auv::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold-s);flex-shrink:0;}
+.contact{background:var(--text);padding:96px 48px;}
+.contact-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-title{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:#fff;margin-bottom:10px;letter-spacing:-.02em;line-height:1.1;}
+.contact-title em{font-style:italic;color:var(--gold-s);}
+.contact-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;font-weight:300;margin-bottom:32px;}
+.ci{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.ci-ico{width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ci-ico svg{width:15px;height:15px;color:var(--gold-s);}
+.ci-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.3);margin-bottom:1px;}
+.ci-val{font-size:14px;color:#fff;}
+.cf{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:30px;}
+.cf-title{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:#fff;margin-bottom:18px;}
+.cf-group{margin-bottom:14px;}
+.cf-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:5px;display:block;}
+.cf-input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 13px;color:#fff;font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s;}
+.cf-input::placeholder{color:rgba(255,255,255,.25);}
+.cf-input:focus{border-color:rgba(242,180,74,.5);}
+.cf-ta{min-height:80px;resize:none;}
+.cf-btn{width:100%;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:11px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:4px;}
+.cf-btn:hover{background:#a86508;}
+footer{background:#1a1208;border-top:1px solid rgba(255,255,255,.05);padding:26px 48px;}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.28);}
+.footer-links{display:flex;gap:18px;}
+.footer-link{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;cursor:pointer;transition:color .15s;}
+.footer-link:hover{color:var(--gold-s);}
+/* PATHWAY DETAIL */
+.pw-back-bar{background:var(--text);padding:20px 48px 0;margin-top:64px;}
+.pw-back-inner{max-width:1280px;margin:0 auto;}
+.pw-back-btn{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,.4);cursor:pointer;background:none;border:none;font-family:var(--sans);padding:0 0 16px;transition:color .15s;}
+.pw-back-btn:hover{color:var(--gold-s);}
+.pw-hero-band{background:var(--text);padding:0 48px 48px;}
+.pw-hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;}
+.pw-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(242,180,74,.12);border:1px solid rgba(242,180,74,.25);border-radius:99px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--gold-s);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.pw-name{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05;letter-spacing:-.02em;margin-bottom:9px;}
+.pw-desc{font-size:15px;color:rgba(255,255,255,.48);line-height:1.75;font-weight:300;max-width:540px;margin-bottom:22px;}
+.pw-kpis{display:flex;gap:0;}
+.pw-kpi{padding:0 26px 0 0;border-right:1px solid rgba(255,255,255,.08);}
+.pw-kpi:first-child{padding-left:0;}
+.pw-kpi:last-child{border-right:none;}
+.pw-kpi-n{font-family:var(--serif);font-size:1.7rem;font-weight:300;color:var(--gold-s);line-height:1;}
+.pw-kpi-l{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.3);margin-top:3px;}
+.pw-hero-right{display:flex;flex-direction:column;gap:10px;padding-top:4px;}
+.pw-demand{background:rgba(42,122,79,.18);border:1px solid rgba(42,122,79,.35);border-radius:12px;padding:12px 16px;text-align:center;}
+.pw-demand-n{font-family:var(--serif);font-size:1.35rem;font-weight:300;color:#4ade80;line-height:1;}
+.pw-demand-l{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);margin-top:3px;}
+.sal-band{background:var(--navy);padding:28px 48px;}
+.sal-inner{max-width:1280px;margin:0 auto;}
+.sal-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.38);margin-bottom:16px;}
+.sal-levels{display:flex;gap:0;}
+.sal-lv{flex:1;padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,.08);}
+.sal-lv:last-child{border-right:none;}
+.sal-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.32);margin-bottom:5px;}
+.sal-n{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:#fff;line-height:1;margin-bottom:3px;}
+.sal-sub{font-size:11px;color:rgba(255,255,255,.28);}
+.sal-bar{height:3px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;max-width:160px;margin-top:12px;}
+.sal-bar-fill{height:100%;border-radius:99px;background:var(--gold-s);}
+.sal-note{font-size:11px;color:rgba(255,255,255,.28);margin-top:16px;font-style:italic;}
+.pw-body{max-width:1280px;margin:0 auto;padding:48px 48px 72px;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
+.pw-main{display:flex;flex-direction:column;gap:22px;}
+.pw-aside{display:flex;flex-direction:column;gap:16px;position:sticky;top:80px;z-index:10;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px 28px;}
+.sc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold);margin-bottom:8px;}
+.sc-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:var(--text);margin-bottom:14px;letter-spacing:-.01em;}
+.task-list{display:flex;flex-direction:column;gap:8px;}
+.task-item{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:9px;}
+.task-dot{width:7px;height:7px;border-radius:50%;background:var(--gold-s);flex-shrink:0;margin-top:5px;}
+.task-text{font-size:13px;color:var(--text);line-height:1.5;}
+.cls-list{display:flex;flex-direction:column;gap:9px;}
+.cls-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:15px 17px;cursor:pointer;transition:all .18s var(--ease);}
+.cls-card:hover{border-color:var(--gold-s);background:var(--gold-p);transform:translateX(3px);}
+.cls-card.open{border-color:var(--gold);background:var(--gold-p);}
+.cls-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.cls-name{font-family:var(--disp);font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.cls-desc{font-size:11px;color:var(--text2);line-height:1.4;}
+.cls-score{font-family:var(--serif);font-size:1.7rem;font-weight:300;color:var(--text);line-height:1;}
+.cls-denom{font-size:10px;color:var(--text2);text-align:right;}
+.cls-badges{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.cbadge{font-size:10px;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid;}
+.cb-e{color:var(--green);background:rgba(42,122,79,.07);border-color:rgba(42,122,79,.2);}
+.cb-m{color:var(--gold);background:var(--gold-p);border-color:rgba(201,125,16,.2);}
+.cb-h{color:var(--red);background:rgba(184,50,50,.06);border-color:rgba(184,50,50,.18);}
+.cb-ap{color:var(--navy);background:rgba(27,58,107,.07);border-color:rgba(27,58,107,.15);}
+.cb-hon{color:var(--gold);background:var(--gold-p);border-color:rgba(201,125,16,.2);}
+.cls-expand{margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,125,16,.18);display:none;}
+.cls-card.open .cls-expand{display:block;}
+.cls-exp-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:7px;}
+.ctr-row{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--card);border:1px solid var(--border);border-radius:7px;margin-bottom:5px;cursor:pointer;transition:all .15s;}
+.ctr-row:hover{border-color:var(--gold-s);}
+.ctr-ava{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.75rem;color:#fff;flex-shrink:0;}
+.ctr-name{font-size:12px;font-weight:500;color:var(--text);flex:1;}
+.ctr-score{font-family:var(--serif);font-size:1rem;color:var(--gold);font-weight:300;}
+.ctr-stars{font-size:10px;color:var(--gold-s);letter-spacing:1px;}
+.cls-rv{background:var(--card);border:1px solid var(--border);border-radius:7px;padding:10px 13px;font-size:12px;color:var(--text2);line-height:1.6;font-style:italic;margin-bottom:5px;}
+.cls-rv::before{content:'"';color:var(--gold);font-family:var(--serif);font-size:1.1rem;margin-right:2px;}
+.teacher-list{display:flex;flex-direction:column;gap:9px;}
+.t-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:15px 17px;cursor:pointer;transition:all .18s var(--ease);}
+.t-card:hover{border-color:var(--gold-s);box-shadow:0 4px 16px rgba(42,42,42,.07);transform:translateY(-1px);}
+.t-head{display:flex;align-items:center;gap:11px;margin-bottom:7px;}
+.t-ava{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.95rem;color:#fff;flex-shrink:0;}
+.t-info{flex:1;}
+.t-name{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--text);margin-bottom:2px;}
+.t-class{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text2);}
+.t-score{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--text);line-height:1;}
+.t-denom{font-size:10px;color:var(--text2);}
+.t-stars{color:var(--gold-s);font-size:11px;letter-spacing:2px;margin-bottom:5px;}
+.t-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.t-tag{font-size:10px;padding:2px 7px;border-radius:99px;background:var(--bg);border:1px solid var(--border);color:var(--text2);}
+.rv-list{display:flex;flex-direction:column;gap:9px;}
+.rv-item{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:14px 16px;}
+.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
+.rv-course{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);}
+.rv-stars{color:var(--gold-s);font-size:11px;letter-spacing:2px;}
+.rv-text{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:9px;}
+.rv-meta{display:flex;justify-content:space-between;align-items:center;}
+.rv-school{font-size:11px;color:var(--text2);}
+.rv-help{font-size:11px;color:var(--text2);cursor:pointer;background:none;border:1px solid var(--border);border-radius:99px;padding:3px 10px;font-family:var(--sans);transition:all .15s;}
+.rv-help:hover{border-color:var(--gold);color:var(--gold);}
+.rv-help.voted{border-color:var(--green);color:var(--green);}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;}
+.skill-item{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 14px;display:flex;align-items:flex-start;gap:9px;}
+.skill-ico{font-size:1rem;flex-shrink:0;}
+.skill-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.skill-desc{font-size:11px;color:var(--text2);}
+.steps-list{display:flex;flex-direction:column;gap:8px;}
+.step-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:9px;}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:#fff;font-family:var(--disp);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-text{font-size:13px;color:var(--text);line-height:1.5;}
+.step-text strong{color:var(--gold);font-weight:600;}
+.aside-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.aside-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:10px;}
+.aside-ttl{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:var(--text);margin-bottom:13px;}
+.rel-list{display:flex;flex-direction:column;gap:6px;}
+.rel-item{display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--bg);border:1px solid var(--border);border-radius:7px;cursor:pointer;transition:all .15s;}
+.rel-item:hover{border-color:var(--gold-s);background:var(--gold-p);}
+.rel-ico{font-size:.95rem;}
+.rel-name{font-size:13px;font-weight:500;color:var(--text);flex:1;}
+.rel-arr{font-size:11px;color:var(--text2);}
+.save-box{background:var(--gold-p);border:1px solid rgba(201,125,16,.2);border-radius:14px;padding:20px;text-align:center;}
+.save-box-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.save-box-sub{font-size:11px;color:var(--text2);margin-bottom:12px;line-height:1.45;}
+.save-box-btn{width:100%;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:10px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.save-box-btn:hover{background:#a86508;transform:translateY(-1px);}
+.save-box-btn.saved{background:var(--green);}
+.stats-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.sbr{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.sbr:last-child{border-bottom:none;}
+.sbr-lbl{font-size:12px;color:var(--text2);}
+.sbr-val{font-family:var(--serif);font-size:1.05rem;font-weight:300;}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal.visible{opacity:1;transform:none;}
+.rv1{transition-delay:.07s;}.rv2{transition-delay:.14s;}.rv3{transition-delay:.21s;}.rv4{transition-delay:.28s;}
+.modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(42,42,42,.35);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:38px;width:min(400px,90vw);box-shadow:0 32px 80px rgba(42,42,42,.18);position:relative;transform:translateY(10px) scale(.98);transition:transform .28s var(--ease);}
+.modal-overlay.open .modal-box{transform:none;}
+.modal-close{position:absolute;top:13px;right:15px;width:27px;height:27px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;}
+.modal-close:hover{border-color:var(--text);color:var(--text);}
+.modal-logo{display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+.modal-title{font-family:var(--serif);font-size:1.6rem;font-weight:300;color:var(--text);margin-bottom:3px;}
+.modal-sub{font-size:12px;color:var(--text2);margin-bottom:20px;}
+.modal-tabs{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:99px;padding:3px;gap:3px;margin-bottom:18px;}
+.modal-tab{flex:1;padding:7px;border-radius:99px;font-family:var(--disp);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;border:none;background:none;color:var(--text2);transition:all .15s;}
+.modal-tab.on{background:var(--gold);color:#fff;}
+.mf-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:5px;display:block;}
+.mf-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 13px;color:var(--text);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s;margin-bottom:13px;}
+.mf-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,125,16,.08);}
+.mf-input::placeholder{color:var(--text2);}
+.modal-btn{width:100%;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:11px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.modal-btn:hover{background:#a86508;}
+.modal-role-note{font-size:11px;color:var(--text2);text-align:center;margin-top:10px;line-height:1.5;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);z-index:9999;background:var(--text);color:#fff;padding:11px 20px;border-radius:99px;font-size:13px;font-family:var(--sans);box-shadow:0 4px 20px rgba(0,0,0,.2);opacity:0;transition:all .25s var(--ease);pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(max-width:1024px){.about-grid,.contact-inner{grid-template-columns:1fr;gap:44px;}.pw-grid{grid-template-columns:repeat(2,1fr);}.why-grid,.test-grid{grid-template-columns:repeat(2,1fr);}.pw-body{grid-template-columns:1fr;}.pw-aside{position:static;}.pw-hero-inner{grid-template-columns:1fr;}.pw-hero-right{flex-direction:row;}.sal-levels{flex-wrap:wrap;gap:20px;}.sal-lv{border-right:none;padding:0;}.stats-inner{grid-template-columns:repeat(2,1fr);}}
+/* ── NAVBAR SEARCH ── */
+.nav-search-wrap{position:relative;flex-shrink:0;}
+.nav-search-box{display:flex;align-items:center;gap:7px;background:var(--bg);border:1.5px solid var(--border);border-radius:99px;padding:6px 14px;transition:all .2s;cursor:text;width:200px;}
+.nav-search-box:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,125,16,.08);width:240px;}
+.nav-search-box svg{color:var(--text2);flex-shrink:0;transition:color .2s;}
+.nav-search-box:focus-within svg{color:var(--gold);}
+.nav-search-input{border:none;outline:none;background:transparent;font-family:var(--sans);font-size:12px;color:var(--text);width:100%;min-width:0;}
+.nav-search-input::placeholder{color:var(--text2);}
+.nav-search-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(42,42,42,.12);z-index:999;overflow:hidden;max-height:280px;overflow-y:auto;display:none;}
+.nav-search-dropdown.open{display:block;}
+.nsd-item{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .13s;font-size:13px;color:var(--text);}
+.nsd-item:hover,.nsd-item.active{background:var(--gold-p);}
+.nsd-item mark{background:none;color:var(--gold);font-weight:600;}
+.nsd-icon{font-size:.95rem;flex-shrink:0;}
+.nsd-label{flex:1;}
+.nsd-district{font-size:11px;color:var(--text2);margin-left:4px;}
+.nsd-empty{padding:14px 16px;font-size:13px;color:var(--text2);text-align:center;}
+/* School modal */
+.school-modal-bg{position:fixed;inset:0;z-index:800;background:rgba(42,42,42,.38);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s;}
+.school-modal-bg.open{opacity:1;pointer-events:all;}
+.school-modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0;width:min(560px,93vw);max-height:80vh;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(42,42,42,.18);overflow:hidden;transform:translateY(12px) scale(.97);transition:transform .26s var(--ease);}
+.school-modal-bg.open .school-modal{transform:none;}
+.sm-head{padding:24px 28px 18px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.sm-school-name{font-family:var(--serif);font-size:1.7rem;font-weight:300;color:var(--text);margin-bottom:4px;}
+.sm-district{font-size:12px;color:var(--text2);}
+.sm-body{flex:1;overflow-y:auto;padding:20px 28px 28px;}
+.sm-close{position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;background:var(--bg);border:1px solid var(--border);font-size:14px;cursor:pointer;color:var(--text2);display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.sm-close:hover{border-color:var(--text);color:var(--text);}
+.sm-info-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);margin-bottom:10px;}
+.sm-info-row svg{flex-shrink:0;color:var(--gold);}
+.sm-tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:99px;background:var(--gold-p);border:1px solid rgba(201,125,16,.2);color:var(--gold);font-weight:600;margin:0 4px 6px 0;}
+.sm-section-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin:18px 0 10px;}
+.sm-cta{width:100%;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:11px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;transition:all .2s;}
+.sm-cta:hover{background:#a86508;}
+@media(max-width:768px){
+  .nav-search-box{width:36px;padding:6px 10px;overflow:hidden;}
+  .nav-search-box:focus-within{width:180px;padding:6px 14px;}
+  .nav-search-input{width:0;transition:width .2s;}
+  .nav-search-box:focus-within .nav-search-input{width:100%;}
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-input,select,textarea{color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);}
-input::placeholder,textarea::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-select option{color:var(--text2);background:#fff;}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:7px 18px;border-radius:99px;font-size:0.8rem;font-weight:600;letter-spacing:0.2px;cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all 0.18s;background:#fff;color:var(--saffron-dark);border:1.5px solid var(--saffron-light);box-shadow:var(--shadow-sm);}
-.btn:hover{background:var(--saffron-pale);border-color:var(--saffron);box-shadow:var(--shadow);}
-.btn-filled{background:var(--saffron);color:#fff;border:1.5px solid var(--saffron);box-shadow:0 3px 12px rgba(201,125,16,0.26);}
-.btn-filled:hover{background:var(--saffron-dark);border-color:var(--saffron-dark);color:#fff;}
-.btn-green{background:var(--green);color:#fff;border:1.5px solid var(--green);}
-.btn-green:hover{background:#245f3e;border-color:#245f3e;color:#fff;}
-.btn-red{background:var(--red);color:#fff;border:1.5px solid var(--red);}
-.btn-red:hover{background:#8b1f1f;border-color:#8b1f1f;color:#fff;}
-.btn-sm{padding:5px 13px;font-size:0.74rem;}
-.btn:active{transform:translateY(1px);}
-
-/* HEADER */
-header{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;background:rgba(253,252,250,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border2);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 24px;gap:12px;}
-.hdr-left{display:flex;align-items:center;}
-.hdr-search{display:flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:6px 14px;width:215px;transition:all 0.2s;box-shadow:var(--shadow-sm);}
-.hdr-search:focus-within{border-color:var(--saffron);width:255px;box-shadow:0 0 0 3px rgba(201,125,16,0.1);}
-.hdr-search input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:0.81rem;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
-.hdr-search input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-.srch-ico{font-size:0.8rem;color:var(--saffron-light);flex-shrink:0;}
-.hdr-center{display:flex;align-items:center;justify-content:center;}
-.logo-wrap{display:flex;align-items:center;gap:7px;cursor:pointer;}
-.logo-mark{width:30px;height:30px;border-radius:7px;background:var(--saffron);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(201,125,16,0.32);flex-shrink:0;}
-.logo-mark svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
-.logo-text{font-family:var(--font-head);font-size:1.5rem;font-weight:600;color:var(--saffron-light);line-height:1;}
-.hdr-right{display:flex;align-items:center;justify-content:flex-end;gap:7px;}
-.loc-trigger{display:flex;align-items:center;gap:5px;font-size:0.76rem;color:var(--saffron-dark);font-weight:600;background:#fff;border:1.5px solid var(--saffron-light);border-radius:99px;padding:5px 12px 5px 10px;cursor:pointer;transition:all 0.15s;white-space:nowrap;box-shadow:var(--shadow-sm);}
-.loc-trigger:hover,.loc-trigger.open{border-color:var(--saffron);background:var(--saffron-pale);}
-.loc-caret{font-size:0.58rem;color:var(--saffron-light);transition:transform 0.2s;}
-.loc-trigger.open .loc-caret{transform:rotate(180deg);}
-.loc-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:300px;background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:14px;box-shadow:var(--shadow-lg);padding:12px;z-index:400;opacity:0;transform:translateY(-6px) scale(0.98);pointer-events:none;transition:all 0.18s;}
-.loc-dropdown.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
-.loc-search-wrap{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1.5px solid var(--saffron-pale2);border-radius:8px;padding:7px 11px;margin-bottom:10px;}
-.loc-search-wrap:focus-within{border-color:var(--saffron-light);background:#fff;}
-.loc-search-wrap input{background:transparent!important;border:none!important;outline:none!important;font-family:var(--font);font-size:0.82rem;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;width:100%;}
-.loc-search-wrap input::placeholder{color:var(--muted)!important;-webkit-text-fill-color:var(--muted)!important;}
-.loc-list{max-height:210px;overflow-y:auto;}
-.loc-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:0.82rem;color:var(--text2);transition:background 0.12s;}
-.loc-item:hover{background:var(--saffron-pale);}
-.loc-item.active{background:var(--saffron-pale);color:var(--saffron-dark);font-weight:600;}
-.loc-item-detail{display:flex;flex-direction:column;flex:1;}
-.loc-item-name{font-size:0.82rem;font-weight:500;color:var(--text2);}
-.loc-item-sub{font-size:0.68rem;color:var(--muted);}
-.loc-region-label{font-size:0.61rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);padding:7px 10px 3px;}
-.profile-btn{width:33px;height:33px;border-radius:50%;background:#fff;border:1.5px solid var(--saffron-light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;transition:all 0.15s;color:var(--saffron-dark);box-shadow:var(--shadow-sm);position:relative;}
-.profile-btn:hover{background:var(--saffron-pale);border-color:var(--saffron);}
-.admin-badge{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:var(--red);border-radius:50%;font-size:0.55rem;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:2px solid #fff;}
-
-.page{display:none;padding-top:62px;min-height:100vh;}
-.page.active{display:block;}
-.section{padding:32px 28px 52px;max-width:1060px;margin:0 auto;}
-.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
-.sec-title{font-family:var(--font-head);font-size:1.45rem;color:var(--text);}
-.sec-sub{font-size:0.78rem;color:var(--muted);margin-top:2px;}
-
-/* Fields */
-.field-input,.field-sel,.field-ta{width:100%;background:var(--bg2)!important;border:1.5px solid var(--border2)!important;border-radius:8px;padding:9px 12px;color:var(--text2)!important;-webkit-text-fill-color:var(--text2)!important;font-family:var(--font);font-size:0.82rem;outline:none;}
-.field-input:focus,.field-sel:focus,.field-ta:focus{border-color:var(--saffron)!important;background:#fff!important;}
-.field-ta{resize:vertical;min-height:80px;}
-.field-label{font-size:0.72rem;font-weight:600;color:var(--text2);margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:0.4px;}
-
-/* HOME */
-.home-wrap{display:flex;flex-direction:column;min-height:calc(100vh - 62px);}
-.home-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 24px 48px;text-align:center;}
-.home-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--saffron);margin-bottom:16px;display:inline-flex;align-items:center;gap:6px;}
-.home-eyebrow::before,.home-eyebrow::after{content:'';width:24px;height:1px;background:var(--saffron-light);}
-.home-title{font-family:var(--font-head);font-size:3.5rem;font-weight:400;color:var(--text);line-height:1.15;margin-bottom:14px;max-width:580px;}
-.home-title em{color:var(--saffron);font-style:italic;}
-.home-sub{font-size:0.92rem;color:var(--muted);max-width:400px;margin:0 auto 36px;line-height:1.75;}
-.home-caption{padding:36px 24px 52px;text-align:center;border-top:1px solid var(--border2);background:var(--bg2);}
-.caption-inner{max-width:660px;margin:0 auto;}
-.caption-title{font-family:var(--font-head);font-size:1.6rem;color:var(--text);margin-bottom:10px;}
-.caption-text{font-size:0.86rem;color:var(--muted);line-height:1.78;max-width:500px;margin:0 auto;}
-.caption-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
-.cap-pill{font-size:0.74rem;font-weight:500;padding:5px 13px;border-radius:99px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);}
-.cap-pill span{color:var(--saffron);margin-right:3px;}
-
-/* Cards */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:13px;}
-.t-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
-.t-card:hover{box-shadow:var(--shadow);border-color:var(--saffron);transform:translateY(-2px);}
-.tc-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.tc-ava{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1rem;color:#fff;font-weight:600;flex-shrink:0;}
-.tc-score{text-align:right;}
-.tc-num{font-family:var(--font-head);font-size:1.7rem;color:var(--text);line-height:1;}
-.tc-denom{font-size:0.68rem;color:var(--muted);}
-.tc-name{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:2px;}
-.tc-sub{font-size:0.73rem;color:var(--muted);margin-bottom:11px;}
-.tc-tags{display:flex;flex-wrap:wrap;gap:4px;}
-.chip{font-size:0.64rem;padding:2px 8px;border-radius:99px;border:1px solid var(--border2);color:var(--text2);background:var(--bg2);white-space:nowrap;}
-.dp{font-size:0.63rem;font-weight:600;padding:2px 8px;border-radius:99px;}
-.dp-e{background:rgba(45,122,79,0.1);color:var(--green);}
-.dp-m{background:rgba(201,125,16,0.12);color:var(--saffron-dark);}
-.dp-h{background:rgba(184,50,50,0.1);color:var(--red);}
-
-/* Detail */
-.detail-band{background:var(--bg2);border-bottom:1px solid var(--border2);padding:28px 28px 22px;}
-.detail-inner{max-width:1060px;margin:0 auto;display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;}
-.det-ava{width:62px;height:62px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:1.5rem;color:#fff;font-weight:600;flex-shrink:0;}
-.det-info{flex:1;min-width:160px;}
-.det-name{font-family:var(--font-head);font-size:1.9rem;color:var(--text);margin-bottom:3px;}
-.det-dept{font-size:0.8rem;color:var(--muted);margin-bottom:9px;}
-.det-chips{display:flex;flex-wrap:wrap;gap:6px;}
-.det-score{text-align:center;}
-.det-big{font-family:var(--font-head);font-size:3.6rem;color:var(--saffron);line-height:1;}
-.det-lbl{font-size:0.7rem;color:var(--muted);margin-top:3px;}
-.back-btn{display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--saffron-dark);cursor:pointer;background:none;border:none;font-family:var(--font);padding:0;margin-bottom:16px;font-weight:600;}
-.back-btn:hover{color:var(--saffron);}
-.rating-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px;}
-.r-pill{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:14px;}
-.r-lbl{font-size:0.67rem;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:5px;}
-.r-val{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:5px;}
-.r-bar{height:4px;background:var(--bg3);border-radius:99px;overflow:hidden;}
-.r-fill{height:100%;border-radius:99px;}
-.rv-card{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:17px;margin-bottom:9px;box-shadow:var(--shadow-sm);}
-.rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.rv-cls{font-size:0.7rem;font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:3px 9px;border-radius:99px;}
-.rv-txt{font-size:0.83rem;color:var(--text2);line-height:1.67;margin-bottom:10px;}
-.rv-acts{display:flex;gap:7px;align-items:center;}
-.vote-btn{display:flex;align-items:center;gap:4px;font-size:0.73rem;cursor:pointer;padding:4px 10px;border-radius:8px;background:#fff;border:1.5px solid var(--saffron-pale2);color:var(--text2);font-family:var(--font);transition:all 0.15s;}
-.vote-btn:hover{background:var(--saffron-pale);border-color:var(--saffron-light);color:var(--saffron-dark);}
-
-/* EMPTY STATE */
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;text-align:center;}
-.empty-icon{font-size:2.8rem;margin-bottom:16px;opacity:0.5;}
-.empty-title{font-family:var(--font-head);font-size:1.4rem;color:var(--text);margin-bottom:8px;}
-.empty-sub{font-size:0.85rem;color:var(--muted);max-width:340px;line-height:1.7;margin-bottom:22px;}
-
-/* WRITE REVIEW */
-.form-card{background:#fff;border:1.5px solid var(--saffron-pale2);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);}
-.form-title{font-family:var(--font-head);font-size:1.3rem;color:var(--text);margin-bottom:6px;}
-.form-subtitle{font-size:0.81rem;color:var(--muted);margin-bottom:20px;}
-.rf-stars{display:flex;gap:6px;font-size:1.5rem;cursor:pointer;margin-bottom:13px;}
-.rf-star{color:var(--bg3);transition:color 0.1s;}
-.rf-star.lit{color:var(--saffron);}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px;}
-
-/* AI SCANNING ANIMATION */
-.ai-scanning{display:flex;align-items:center;gap:10px;background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:14px 16px;margin-top:14px;}
-.ai-scanning.hide{display:none;}
-.scan-dot{width:8px;height:8px;border-radius:50%;background:var(--saffron);animation:pulse 1.2s ease-in-out infinite;}
-.scan-dot:nth-child(2){animation-delay:0.2s;}
-.scan-dot:nth-child(3){animation-delay:0.4s;}
-@keyframes pulse{0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1.1);}}
-.scan-text{font-size:0.8rem;color:var(--saffron-dark);font-weight:500;}
-
-/* PENDING REVIEW BANNER */
-.pending-banner{background:var(--saffron-pale);border:1.5px solid var(--saffron-pale2);border-radius:10px;padding:13px 16px;margin-top:13px;font-size:0.81rem;color:var(--saffron-dark);display:flex;align-items:center;gap:8px;}
-.pending-banner.hide{display:none;}
-
-/* PATHWAY */
-.pw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:11px;margin-bottom:26px;}
-.pw-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:19px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
-.pw-card:hover,.pw-card.sel{border-color:var(--saffron);box-shadow:var(--shadow);transform:translateY(-1px);}
-.pw-card.sel{background:var(--saffron-pale);}
-.pw-ico{font-size:1.5rem;margin-bottom:8px;}
-.pw-name{font-family:var(--font-head);font-size:1.05rem;color:var(--text);margin-bottom:4px;}
-.pw-desc{font-size:0.73rem;color:var(--muted);line-height:1.55;}
-.roadmap-wrap{display:flex;overflow-x:auto;padding-bottom:8px;}
-.grade-col{min-width:182px;flex-shrink:0;}
-.grade-hdr{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--saffron-dark);margin-bottom:9px;}
-.gc{background:#fff;border:1.5px solid var(--border2);border-radius:9px;padding:10px 12px;margin-bottom:6px;margin-right:9px;font-size:0.78rem;font-weight:500;color:var(--text);box-shadow:var(--shadow-sm);}
-.gc-lv{font-size:0.63rem;color:var(--muted);margin-top:3px;}
-
-/* ══════════════════════════════════════════
-   ADMIN PANEL
-══════════════════════════════════════════ */
-.admin-wrap{max-width:960px;margin:0 auto;padding:30px 28px 64px;}
-.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
-.admin-title{font-family:var(--font-head);font-size:2rem;color:var(--text);}
-.admin-subtitle{font-size:0.83rem;color:var(--muted);}
-.admin-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
-.stat-pill{background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:14px 18px;flex:1;min-width:120px;box-shadow:var(--shadow-sm);}
-.stat-num{font-family:var(--font-head);font-size:2rem;line-height:1;}
-.stat-num.amber{color:var(--amber);}
-.stat-num.green{color:var(--green);}
-.stat-num.red{color:var(--red);}
-.stat-lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px;}
-.admin-tabs{display:flex;gap:3px;background:var(--bg2);padding:3px;border-radius:10px;width:fit-content;margin-bottom:22px;border:1px solid var(--border2);}
-.atab{padding:7px 18px;border-radius:8px;font-size:0.8rem;font-weight:500;cursor:pointer;color:var(--muted);border:none;background:none;font-family:var(--font);transition:all 0.15s;}
-.atab.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
-.atab:hover:not(.on){color:var(--text);}
-
-/* FLAGGED REVIEW CARD */
-.flag-card{background:#fff;border:1.5px solid var(--border2);border-radius:var(--radius);padding:20px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:all 0.2s;}
-.flag-card:hover{box-shadow:var(--shadow);}
-.flag-card.flagged{border-color:rgba(217,119,6,0.4);background:rgba(253,243,224,0.4);}
-.flag-card.approved{border-color:rgba(45,122,79,0.3);background:rgba(45,122,79,0.03);}
-.flag-card.rejected{border-color:rgba(184,50,50,0.25);background:rgba(184,50,50,0.03);opacity:0.7;}
-.flag-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
-.flag-info{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.flag-school{font-size:0.72rem;font-weight:600;color:var(--text2);background:var(--bg2);padding:3px 9px;border-radius:99px;border:1px solid var(--border2);}
-.flag-teacher{font-size:0.72rem;color:var(--muted);}
-.flag-course{font-size:0.72rem;font-weight:600;color:var(--saffron-dark);background:var(--saffron-pale);padding:3px 9px;border-radius:99px;}
-.flag-status{display:flex;align-items:center;gap:5px;}
-.status-badge{font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:99px;text-transform:uppercase;letter-spacing:0.5px;}
-.status-pending{background:rgba(217,119,6,0.12);color:var(--amber);}
-.status-approved{background:rgba(45,122,79,0.12);color:var(--green);}
-.status-rejected{background:rgba(184,50,50,0.1);color:var(--red);}
-.status-clean{background:rgba(45,122,79,0.1);color:var(--green);}
-.ai-flag-box{background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;padding:10px 13px;margin-bottom:12px;}
-.ai-flag-label{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--amber);margin-bottom:4px;}
-.ai-flag-reason{font-size:0.8rem;color:var(--text2);line-height:1.55;}
-.flag-text-box{font-size:0.84rem;color:var(--text2);line-height:1.65;margin-bottom:14px;padding:12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);}
-.flag-actions{display:flex;gap:8px;flex-wrap:wrap;}
-.flag-rating-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-.flag-rating-item{font-size:0.75rem;color:var(--muted);}
-.flag-rating-item strong{color:var(--text2);}
-
-/* LOGIN */
-.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(46,42,34,0.3);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;}
-.modal-bg.hide{display:none;}
-.modal{background:#fff;border-radius:16px;padding:30px;width:340px;box-shadow:var(--shadow-lg);position:relative;border:1.5px solid var(--saffron-pale2);}
-.modal-title{font-family:var(--font-head);font-size:1.5rem;color:var(--text);margin-bottom:3px;}
-.modal-sub{font-size:0.8rem;color:var(--muted);margin-bottom:20px;}
-.modal-close{position:absolute;top:13px;right:15px;cursor:pointer;font-size:1rem;color:var(--muted);background:none;border:none;font-family:var(--font);}
-.mode-toggle{display:flex;border:1.5px solid var(--saffron-pale2);border-radius:9px;overflow:hidden;margin-bottom:18px;}
-.mode-btn{flex:1;padding:8px;font-size:0.79rem;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.15s;background:none;color:var(--muted);}
-.mode-btn.on{background:var(--saffron);color:#fff;}
-
-.div{height:1px;background:var(--border2);margin:20px 0;}
-.toast{position:fixed;bottom:70px;right:20px;z-index:999;background:var(--saffron-pale);border:1.5px solid var(--saffron-light);border-radius:9px;padding:11px 17px;font-size:0.81rem;color:var(--saffron-dark);font-weight:600;transform:translateY(50px);opacity:0;transition:all 0.28s;box-shadow:var(--shadow);}
-.toast.show{transform:translateY(0);opacity:1;}
-#bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(253,252,250,0.97);backdrop-filter:blur(10px);border-top:1px solid var(--border2);display:flex;justify-content:center;gap:3px;padding:8px 16px 10px;}
-.tab-btn{padding:6px 15px;border-radius:8px;font-size:0.79rem;font-weight:500;cursor:pointer;color:var(--muted);transition:all 0.15s;border:none;background:none;font-family:var(--font);}
-.tab-btn.on{background:#fff;color:var(--saffron-dark);font-weight:600;box-shadow:var(--shadow-sm);border:1.5px solid var(--saffron-pale2);}
-.tab-btn:hover:not(.on){color:var(--saffron-dark);}
-
-::-webkit-scrollbar{width:5px;height:5px;}
-::-webkit-scrollbar-track{background:var(--bg2);}
-::-webkit-scrollbar-thumb{background:var(--saffron-pale2);border-radius:99px;}
-@media(max-width:600px){header{padding:0 12px;gap:7px;}.hdr-search{width:140px;}.logo-text{font-size:1.3rem;}.section{padding:22px 14px 36px;}.two-col{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="hdr-left">
-    <div class="hdr-search">
-      <span class="srch-ico">⌕</span>
-      <input type="text" id="main-search" placeholder="Search teachers or classes…" oninput="liveSearch(this.value)" onfocus="showPage('teachers');setbn('bn-teachers')">
-    </div>
-  </div>
-  <div class="hdr-center">
-    <div class="logo-wrap" onclick="goHome()">
-      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/><path d="M2 18l10 5 10-5"/></svg></div>
-      <span class="logo-text">Lernix</span>
-    </div>
-  </div>
-  <div class="hdr-right">
-    <div style="position:relative;" id="loc-wrap">
-      <div class="loc-trigger" id="loc-trigger" onclick="toggleLoc()">
-        <span>📍</span><span id="loc-label">Select School</span><span class="loc-caret">▾</span>
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showHome()">
+      <div class="nav-mark">
+        <svg viewBox="0 0 22 18" fill="none">
+          <circle cx="11" cy="14" r="2.2" fill="white"/>
+          <path d="M6 14 A5 5 0 0 1 16 14" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2.2 14 A8.8 8.8 0 0 1 19.8 14" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.65"/>
+          <path d="M0 14 A11 11 0 0 1 22 14" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.35"/>
+        </svg>
       </div>
-      <div class="loc-dropdown" id="loc-dropdown">
-        <div class="loc-search-wrap">
-          <span style="font-size:0.8rem;color:var(--saffron-light)">⌕</span>
-          <input type="text" id="loc-search-input" placeholder="Search Washington schools…" oninput="filterSchools(this.value)" autocomplete="off">
-        </div>
-        <div class="loc-list" id="loc-list"></div>
-      </div>
+      <span class="nav-word">Lernix</span>
     </div>
-    <button class="btn btn-sm" onclick="showPage('write')">+ Rate</button>
-    <div class="profile-btn" id="profile-btn" onclick="openLogin()">
-      👤
-      <span class="admin-badge hide" id="admin-notif">0</span>
-    </div>
-  </div>
-</header>
 
-<!-- LOGIN -->
-<div class="modal-bg hide" id="login-modal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeLogin()">✕</button>
-    <div class="modal-title">Sign in to Lernix</div>
-    <div class="modal-sub">Students leave reviews. Teachers manage class info. Admins moderate content.</div>
-    <div class="mode-toggle">
-      <button class="mode-btn on" id="mode-student" onclick="setMode('student')">Student</button>
-      <button class="mode-btn" id="mode-teacher" onclick="setMode('teacher')">Teacher</button>
-      <button class="mode-btn" id="mode-admin" onclick="setMode('admin')">Admin</button>
+    <!-- School Search -->
+    <div class="nav-search-wrap" id="nav-search-wrap">
+      <div class="nav-search-box" onclick="document.getElementById('nav-search-input').focus()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="text"
+          id="nav-search-input"
+          class="nav-search-input"
+          placeholder="Search schools…"
+          autocomplete="off"
+          spellcheck="false"
+          oninput="SEARCH.onInput(this.value)"
+          onkeydown="SEARCH.onKeyDown(event)"
+          onfocus="SEARCH.onFocus()"
+        >
+      </div>
+      <div class="nav-search-dropdown" id="nav-search-dropdown" role="listbox"></div>
     </div>
-    <label class="field-label" style="margin-bottom:5px">Email</label>
-    <input class="field-input" type="email" placeholder="you@school.edu" style="margin-bottom:11px;display:block">
-    <label class="field-label" style="margin-bottom:5px">Password</label>
-    <input class="field-input" id="admin-pw-field" type="password" placeholder="••••••••" style="margin-bottom:17px;display:block">
-    <button class="btn btn-filled" style="width:100%" onclick="doLogin()">Sign In →</button>
-    <div id="login-hint" style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;display:none">Admin demo password: <strong style="color:var(--saffron-dark)">admin123</strong></div>
+    <nav class="nav-links" id="nav-home-links">
+      <span class="nav-link" onclick="goScroll('#about')">About</span>
+      <span class="nav-link" onclick="goScroll('#pathways')">Pathways</span>
+      <span class="nav-link" onclick="goScroll('#why')">Why Lernix</span>
+      <span class="nav-link" onclick="goScroll('#contact')">Contact</span>
+    </nav>
+    <div class="nav-crumb" id="nav-pw-crumb" style="display:none">
+      <span style="cursor:pointer;color:var(--text2)" onclick="showHome()">Home</span>
+      <span style="color:var(--border)">›</span>
+      <span style="cursor:pointer;color:var(--text2)" onclick="showHome()">Pathways</span>
+      <span style="color:var(--border)">›</span>
+      <span class="nav-crumb-cur" id="crumb-name"></span>
+    </div>
+    <div class="nav-sp"></div>
+    <button class="nav-signup" id="signup-btn" onclick="openSignUp()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg>
+      Sign Up
+    </button>
+    <button class="nav-signin" id="signin-btn" onclick="openModal()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Sign In
+    </button>
+    <button class="nav-btn" onclick="goScroll('#pathways')">Explore Pathways</button>
   </div>
-</div>
+</nav>
 
 <!-- HOME -->
-<div id="page-home" class="page active">
-  <div class="home-wrap">
-    <div class="home-main">
-      <div class="home-eyebrow">Student-Powered Ratings</div>
-      <h1 class="home-title">Find the right teacher,<br><em>before</em> you enroll.</h1>
-      <p class="home-sub">Real reviews from real students at your school. Compare teachers, check workload, and plan smarter.</p>
-      <button class="btn btn-filled" style="padding:12px 30px;font-size:0.88rem" onclick="showPage('teachers');setbn('bn-teachers')">
-        Find Classes
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+<div class="view active" id="view-home">
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-badge">For High School Students · Washington State</div>
+      <h1 class="hero-h1">Choose smarter<br>classes. Build<br><em>your future.</em></h1>
+      <div class="hero-row">
+        <div>
+          <p class="hero-desc">Lernix helps you pick the right classes, see real teacher ratings, and connect every class to the career you actually want.</p>
+          <div class="hero-actions">
+            <button class="btn btn-gold" onclick="goScroll('#pathways')">Explore Pathways <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            <button class="btn btn-outline" onclick="goScroll('#about')">How it works</button>
+          </div>
+          <div class="hero-trust"><span class="hero-stars">★★★★★</span><span>Trusted by students across 38 Washington high schools</span></div>
+        </div>
+      </div>
+      <div class="hero-rule"></div>
+    </div>
+  </section>
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-cell reveal"><div class="stat-n"><em>8</em></div><div class="stat-l">Career Pathways</div></div>
+      <div class="stat-cell reveal rv1"><div class="stat-n"><em>30</em>+</div><div class="stat-l">Classes Mapped</div></div>
+      <div class="stat-cell reveal rv2"><div class="stat-n"><em>2</em></div><div class="stat-l">Schools Live</div></div>
+      <div class="stat-cell reveal rv3"><div class="stat-n"><em>Free</em></div><div class="stat-l">Always</div></div>
+    </div>
+  </div>
+  <section class="section" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="s-label reveal">What is Lernix?</p>
+          <h2 class="s-title reveal">The smarter way to<br>plan your <em>education</em></h2>
+          <div class="divider reveal"></div>
+          <p class="s-sub reveal">Lernix bridges the gap between the classes you take today and the career you want tomorrow. Real reviews. Real teachers. Real direction.</p>
+          <div class="about-features">
+            <div class="af reveal"><div class="af-ico">📊</div><div><div class="af-title">Real Teacher Ratings</div><div class="af-desc">Anonymous reviews from students who've taken the class. See teaching quality, workload, and difficulty before you sign up.</div></div></div>
+            <div class="af reveal rv1"><div class="af-ico">🗺️</div><div><div class="af-title">Career-Connected Classes</div><div class="af-desc">Every class is mapped to real career pathways. Know exactly how AP Biology connects to becoming a doctor.</div></div></div>
+            <div class="af reveal rv2"><div class="af-ico">🧭</div><div><div class="af-title">Smart Planning Tools</div><div class="af-desc">Compare teachers, filter by department, and build a 4-year course sequence aligned to your future career.</div></div></div>
+          </div>
+        </div>
+        <div class="reveal rv1">
+          <div class="am-card">
+            <div class="am-quote">"To help every high school student make smarter academic decisions and plan their future career with confidence."</div>
+            <div class="am-pillars">
+              <div class="am-pill"><div class="am-pill-ico">🎯</div><div class="am-pill-title">Honest Reviews</div><div class="am-pill-desc">From real students, anonymously submitted</div></div>
+              <div class="am-pill"><div class="am-pill-ico">🔒</div><div class="am-pill-title">AI Moderated</div><div class="am-pill-desc">Every review screened for safety</div></div>
+              <div class="am-pill"><div class="am-pill-ico">📈</div><div class="am-pill-title">Career Focused</div><div class="am-pill-desc">Classes mapped to real job paths</div></div>
+              <div class="am-pill"><div class="am-pill-ico">🏫</div><div class="am-pill-title">School Specific</div><div class="am-pill-desc">Data for YOUR school &amp; teachers</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="pathways" style="background:var(--card);border-top:1px solid var(--border);padding-top:76px;">
+    <div class="section-inner">
+      <p class="s-label reveal" style="text-align:center">Explore Your Future</p>
+      <h2 class="s-title reveal" style="text-align:center;margin:0 auto;max-width:540px">Click a career path to see<br><em>everything you need.</em></h2>
+      <div class="divider reveal" style="margin:14px auto 44px"></div>
+      <div class="pw-grid" id="pw-home-grid"></div>
+    </div>
+  </section>
+  <section class="section" id="why" style="border-top:1px solid var(--border);">
+    <div class="section-inner">
+      <p class="s-label reveal">Why Lernix?</p>
+      <h2 class="s-title reveal">Built for students,<br><em>by students.</em></h2>
+      <div class="divider reveal"></div>
+      <div class="why-grid">
+        <div class="why-card reveal"><div class="why-num">01</div><div class="why-title">Real Student Reviews</div><div class="why-desc">Every review comes from an actual student who took the class. Honest, anonymous, and always school-specific.</div></div>
+        <div class="why-card reveal rv1"><div class="why-num">02</div><div class="why-title">Better Class Planning</div><div class="why-desc">Stop guessing which teacher is better. Compare ratings, difficulty, and workload side-by-side before registration.</div></div>
+        <div class="why-card reveal rv2"><div class="why-num">03</div><div class="why-title">Career-Focused Decisions</div><div class="why-desc">Every class you take should move you closer to your goal. Lernix shows exactly how each class connects to real careers.</div></div>
+        <div class="why-card reveal"><div class="why-num">04</div><div class="why-title">AI-Powered Safety</div><div class="why-desc">Every review is scanned by Claude AI before going live. Honest feedback gets through. Unfair attacks don't.</div></div>
+        <div class="why-card reveal rv1"><div class="why-num">05</div><div class="why-title">Your School, Your Data</div><div class="why-desc">Ratings are tied to real schools across Washington. The data is always relevant to where you actually go to school.</div></div>
+        <div class="why-card reveal rv2"><div class="why-num">06</div><div class="why-title">Completely Anonymous</div><div class="why-desc">You never put your name on a review. Students deserve to speak honestly without fear. Your privacy is protected.</div></div>
+      </div>
+    </div>
+  </section>
+  <section class="section test-sec">
+    <div class="section-inner">
+      <p class="s-label reveal" style="text-align:center">Student Voices</p>
+      <h2 class="s-title reveal" style="text-align:center;margin:0 auto">Be among the first to<br><em>share your experience.</em></h2>
+      <div class="divider reveal" style="margin:14px auto 0"></div>
+      <div class="test-grid">
+        <div class="test-card reveal" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--gold-p);border:1.5px dashed rgba(201,125,16,.3);">
+          <div style="font-size:2rem;margin-bottom:12px">✍️</div>
+          <div class="test-quote" style="font-style:normal;color:var(--text2)">Sign up and be the first student at your school to leave a real review. Help your classmates make better decisions.</div>
+          <button onclick="openSignUp()" style="margin-top:14px;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:8px 20px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;">Write a Review →</button>
+        </div>
+        <div class="test-card reveal rv1" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--gold-p);border:1.5px dashed rgba(201,125,16,.3);">
+          <div style="font-size:2rem;margin-bottom:12px">🏫</div>
+          <div class="test-quote" style="font-style:normal;color:var(--text2)">Is your school on Lernix? Contact us to add your school's full class catalog and connect with your teachers.</div>
+          <a href="mailto:lernixhs@gmail.com" style="margin-top:14px;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:8px 20px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;">Add My School →</a>
+        </div>
+        <div class="test-card reveal rv2" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--gold-p);border:1.5px dashed rgba(201,125,16,.3);">
+          <div style="font-size:2rem;margin-bottom:12px">👩‍🏫</div>
+          <div class="test-quote" style="font-style:normal;color:var(--text2)">Are you a teacher? Sign up with a Teacher account to add class descriptions, tips, and difficulty notes for your students.</div>
+          <button onclick="AUTH.openModal('signup')" style="margin-top:14px;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:8px 20px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;">Join as Teacher →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="about-us">
+    <div class="section-inner" style="text-align:center">
+      <p class="s-label reveal">The Team</p>
+      <h2 class="s-title reveal">Meet the founders</h2>
+      <div class="divider reveal" style="margin:14px auto 0"></div>
+    </div>
+    <div class="au-card reveal">
+      <div class="au-inner">
+        <div class="au-label">Created by</div>
+        <div class="au-title">The Lernix CEOs</div>
+        <div class="au-mission">Lernix was founded by three high school students who experienced the problem firsthand — choosing classes blindly, without knowing where they'd lead. We built the platform we wished we had: honest, career-connected, and built for students like us.</div>
+        <div class="ceos">
+          <div class="ceo-card"><div class="ceo-role">Co-Founder &amp; CEO</div><div class="ceo-name">Yeael Kidane</div></div>
+          <div class="ceo-card"><div class="ceo-role">Co-Founder &amp; CEO</div><div class="ceo-name">Dawit Bekele</div></div>
+          <div class="ceo-card"><div class="ceo-role">Project Manager &amp; Operations Lead</div><div class="ceo-name">Nebiat Bisrat</div></div>
+        </div>
+        <div class="au-divider"></div>
+        <div class="au-values">
+          <div class="auv">Student success first</div>
+          <div class="auv">Radical transparency</div>
+          <div class="auv">Built by students, for students</div>
+          <div class="auv">Innovation in education</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <p class="s-label reveal" style="color:var(--gold-s)">Reach Us</p>
+        <h2 class="contact-title reveal">Let's talk about<br><em>your future.</em></h2>
+        <p class="contact-sub reveal">Have a question or want to partner with us? We'd love to hear from you.</p>
+        <div class="ci reveal"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:lernixhs@gmail.com" style="color:#fff;text-decoration:none;transition:opacity .15s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">lernixhs@gmail.com</a></div></div></div>
+        <div class="ci reveal rv1"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="ci-label">Phone</div><div class="ci-val">206-825-5752</div></div></div>
+        <div class="ci reveal rv2"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="ci-label">Location</div><div class="ci-val">Washington State, USA</div></div></div>
+      </div>
+      <div class="cf reveal rv1">
+        <div class="cf-title">Send a Message</div>
+        <div class="cf-group"><label class="cf-label">Your Name</label><input class="cf-input" type="text" placeholder="First and last name"></div>
+        <div class="cf-group"><label class="cf-label">Email</label><input class="cf-input" type="email" placeholder="you@email.com"></div>
+        <div class="cf-group"><label class="cf-label">School (optional)</label><input class="cf-input" type="text" placeholder="e.g. Kamiak High School"></div>
+        <div class="cf-group"><label class="cf-label">Message</label><textarea class="cf-input cf-ta" placeholder="What's on your mind?"></textarea></div>
+        <button class="cf-btn" onclick="showToast('Message sent! We\'ll get back to you soon.')">Send Message →</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-inner">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="nav-mark" style="width:24px;height:24px;border-radius:6px"><svg viewBox="0 0 22 18" fill="none" style="width:14px;height:11px"><circle cx="11" cy="14" r="2.2" fill="white"/><path d="M6 14 A5 5 0 0 1 16 14" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg></div>
+        <span style="font-family:var(--disp);font-size:.9rem;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:-.03em">Lernix</span>
+      </div>
+      <span class="footer-copy">© 2025 Lernix · <a href="mailto:lernixhs@gmail.com" style="color:rgba(255,255,255,.28);text-decoration:none;">lernixhs@gmail.com</a> · 206-825-5752</span>
+      <div class="footer-links">
+        <span class="footer-link" onclick="goScroll('#about')">About</span>
+        <span class="footer-link" onclick="goScroll('#pathways')">Pathways</span>
+        <span class="footer-link" onclick="goScroll('#contact')">Contact</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- PATHWAY DETAIL VIEW -->
+<div class="view" id="view-pathway">
+  <div class="pw-back-bar">
+    <div class="pw-back-inner">
+      <button class="pw-back-btn" onclick="showHome()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Home
       </button>
     </div>
-    <div class="home-caption">
-      <div class="caption-inner">
-        <div class="caption-title">What is Lernix?</div>
-        <p class="caption-text">Lernix is a student-driven platform where you can read honest ratings of teachers and classes at your high school. Difficulty levels, workload estimates, test formats, and real anonymous reviews — from students who've actually been in the seat.</p>
-        <div class="caption-pills">
-          <div class="cap-pill"><span>📊</span>Honest Ratings</div>
-          <div class="cap-pill"><span>🗂</span>Comparisons</div>
-          <div class="cap-pill"><span>🗺</span>Career Pathways</div>
-          <div class="cap-pill"><span>🔒</span>Anonymous</div>
-          <div class="cap-pill"><span>🛡</span>AI Moderated</div>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="pw-hero-band" id="pw-hero-band"></div>
+  <div class="sal-band" id="pw-sal-band"></div>
+  <div class="pw-body">
+    <div class="pw-main" id="pw-main"></div>
+    <div class="pw-aside" id="pw-aside"></div>
   </div>
 </div>
 
-<!-- TEACHERS -->
-<div id="page-teachers" class="page">
-  <div class="section">
-    <div class="sec-hdr">
-      <div>
-        <div class="sec-title">Teachers</div>
-        <div class="sec-sub" id="school-sub">Select a school to see teachers</div>
+<!-- ═══ AUTH MODAL ═══ -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)AUTH.closeModal()">
+  <div class="modal-box" id="modal-box">
+
+    <button class="modal-close" onclick="AUTH.closeModal()">✕</button>
+
+    <div class="modal-logo">
+      <div class="nav-mark" style="width:28px;height:28px;border-radius:7px">
+        <svg viewBox="0 0 22 18" fill="none" style="width:17px;height:14px">
+          <circle cx="11" cy="14" r="2.2" fill="white"/>
+          <path d="M6 14 A5 5 0 0 1 16 14" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M2.2 14 A8.8 8.8 0 0 1 19.8 14" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.65"/>
+        </svg>
       </div>
-      <select class="field-sel" style="width:auto;margin:0" onchange="filterDept(this.value)">
-        <option value="">All Departments</option>
-        <option>Math</option><option>Science</option><option>English</option>
-        <option>History / Social Studies</option><option>PE / Health</option><option>Arts</option><option>World Languages</option><option>CTE</option>
+      <span style="font-family:var(--disp);font-size:1.05rem;font-weight:700;color:var(--text);letter-spacing:-.04em">Lernix</span>
+    </div>
+
+    <!-- Mode toggle -->
+    <div style="display:flex;background:var(--bg);border:1px solid var(--border);border-radius:99px;padding:3px;gap:3px;margin-bottom:20px;">
+      <button id="mode-signin" onclick="AUTH.setMode('signin')" style="flex:1;padding:8px;border-radius:99px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--gold);color:#fff;transition:all .15s;">Sign In</button>
+      <button id="mode-signup" onclick="AUTH.setMode('signup')" style="flex:1;padding:8px;border-radius:99px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--text2);transition:all .15s;">Sign Up</button>
+    </div>
+
+    <!-- Error banner -->
+    <div id="auth-error" style="display:none;background:#fff0f0;border:1px solid rgba(184,50,50,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--red);margin-bottom:14px;line-height:1.5;"></div>
+    <!-- Success banner -->
+    <div id="auth-success" style="display:none;background:#f0fff6;border:1px solid rgba(42,122,79,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--green);margin-bottom:14px;line-height:1.5;"></div>
+
+    <!-- ── SIGN IN FORM ── -->
+    <div id="modal-signin-content">
+      <div class="modal-title">Welcome back</div>
+      <div class="modal-sub">Sign in to leave reviews and track your pathway.</div>
+
+      <div class="modal-tabs" style="margin-bottom:18px;">
+        <button class="modal-tab on" id="mt-s" onclick="AUTH.setRole('student')">Student</button>
+        <button class="modal-tab" id="mt-t" onclick="AUTH.setRole('teacher')">Teacher</button>
+        <button class="modal-tab" id="mt-a" onclick="AUTH.setRole('admin')">Admin</button>
+      </div>
+
+      <label class="mf-label">Email Address</label>
+      <input class="mf-input" type="email" id="si-email" placeholder="you@school.edu" autocomplete="email">
+
+      <label class="mf-label">Password</label>
+      <input class="mf-input" type="password" id="si-password" placeholder="••••••••" autocomplete="current-password">
+
+      <button class="modal-btn" id="si-btn" onclick="AUTH.signIn()">
+        <span id="si-btn-text">Sign In →</span>
+        <span id="si-btn-loading" style="display:none">Signing in…</span>
+      </button>
+
+      <div id="mrole" style="font-size:11px;color:var(--text2);text-align:center;margin-top:10px;line-height:1.5">
+        Signing in as a <strong>student</strong> — leave anonymous reviews and explore career pathways.
+      </div>
+    </div>
+
+    <!-- ── SIGN UP FORM ── -->
+    <div id="modal-signup-content" style="display:none">
+      <div class="modal-title">Create your account</div>
+      <div class="modal-sub">Join Lernix for free and start planning your future.</div>
+
+      <label class="mf-label">Full Name <span style="color:var(--red)">*</span></label>
+      <input class="mf-input" type="text" id="su-name" placeholder="Your full name" autocomplete="name">
+
+      <label class="mf-label">Email Address <span style="color:var(--red)">*</span></label>
+      <input class="mf-input" type="email" id="su-email" placeholder="you@school.edu" autocomplete="email">
+
+      <label class="mf-label">School</label>
+      <input class="mf-input" type="text" id="su-school" placeholder="e.g. Kamiak High School">
+
+      <label class="mf-label">Password <span style="color:var(--red)">*</span> <span style="font-weight:300;color:var(--text2)">(min 8 characters)</span></label>
+      <input class="mf-input" type="password" id="su-password" placeholder="Create a strong password" autocomplete="new-password">
+
+      <div id="pw-strength" style="margin-top:-10px;margin-bottom:13px;display:none">
+        <div style="height:3px;border-radius:99px;background:var(--border);overflow:hidden;margin-bottom:4px">
+          <div id="pw-bar" style="height:100%;border-radius:99px;transition:all .3s;width:0%"></div>
+        </div>
+        <span id="pw-label" style="font-size:11px;color:var(--text2)"></span>
+      </div>
+
+      <label class="mf-label">I am a… <span style="color:var(--red)">*</span></label>
+      <select class="mf-input" id="su-role" style="cursor:pointer">
+        <option value="">Select your role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
       </select>
-    </div>
-    <div id="teachers-content">
-      <div class="empty-state">
-        <div class="empty-icon">📍</div>
-        <div class="empty-title">Choose your school</div>
-        <div class="empty-sub">Use the location button to select your Washington high school. Teacher profiles appear as students submit reviews.</div>
-        <button class="btn btn-filled" onclick="toggleLoc()">Select School →</button>
+
+      <button class="modal-btn" id="su-btn" onclick="AUTH.signUp()" style="margin-top:4px">
+        <span id="su-btn-text">Create Account →</span>
+        <span id="su-btn-loading" style="display:none">Creating account…</span>
+      </button>
+
+      <div style="font-size:11px;color:var(--text2);text-align:center;margin-top:10px;line-height:1.5">
+        By signing up you agree to our <span style="color:var(--gold);cursor:pointer">Terms of Service</span> and <span style="color:var(--gold);cursor:pointer">Privacy Policy</span>.
       </div>
     </div>
-    <div id="find-more-wrap" style="display:none;text-align:center;margin-top:28px">
-      <button class="btn" style="padding:11px 28px;font-size:0.84rem" onclick="toast('All teachers shown.')">Load More</button>
+
+    <!-- ── VERIFY EMAIL STATE ── -->
+    <div id="modal-verify-content" style="display:none;text-align:center;padding:8px 0">
+      <div style="font-size:2.5rem;margin-bottom:14px">📬</div>
+      <div class="modal-title" style="font-size:1.5rem">Check your email</div>
+      <div class="modal-sub" style="margin:8px auto 20px;max-width:280px">We sent a verification link to <strong id="verify-email-display"></strong>. Click it to activate your account.</div>
+      <button class="modal-btn" onclick="AUTH.closeModal()">Got it, I'll check →</button>
+      <div style="font-size:11px;color:var(--text2);margin-top:12px;cursor:pointer" onclick="AUTH.resendVerification()">Didn't get it? <span style="color:var(--gold)">Resend email</span></div>
     </div>
+
   </div>
 </div>
 
-<!-- DETAIL -->
-<div id="page-detail" class="page">
-  <div id="detail-band-wrap"></div>
-  <div class="section" id="detail-body"></div>
-</div>
-
-<!-- PATHWAYS -->
-<div id="page-pathways" class="page">
-  <div class="section">
-    <div class="sec-title" style="margin-bottom:4px">Career Pathway Explorer</div>
-    <div style="font-size:0.81rem;color:var(--muted);margin-bottom:22px">Recommended 4-year course sequences for Washington high schools.</div>
-    <div class="pw-grid" id="pw-grid"></div>
-    <div id="pw-detail" style="display:none"><div class="div"></div><div id="pw-roadmap"></div></div>
-  </div>
-</div>
-
-<!-- WRITE REVIEW -->
-<div id="page-write" class="page">
-  <div class="section" style="max-width:580px">
-    <button class="back-btn" onclick="showPage('teachers');setbn('bn-teachers')">← Back to Teachers</button>
-    <div class="form-card">
-      <div class="form-title">Leave an Anonymous Review</div>
-      <div class="form-subtitle">Your review will be scanned by AI for appropriateness before it goes live. This keeps the platform honest and respectful for everyone.</div>
-
-      <label class="field-label">School</label>
-      <select class="field-sel" id="rv-school-sel" style="margin-bottom:13px"></select>
-
-      <label class="field-label">Teacher Name</label>
-      <input class="field-input" id="rv-teacher-input" type="text" placeholder="Enter teacher's last name (e.g. Smith)" style="margin-bottom:13px">
-
-      <label class="field-label">Class / Course</label>
-      <input class="field-input" id="rv-class-input" type="text" placeholder="e.g. AP Calculus BC" style="margin-bottom:13px">
-
-      <label class="field-label">Overall Rating</label>
-      <div class="rf-stars" id="rf-stars" onmouseleave="resetStars()">
-        <span class="rf-star" onmouseenter="hoverS(0)" onclick="pickS(0)">★</span>
-        <span class="rf-star" onmouseenter="hoverS(1)" onclick="pickS(1)">★</span>
-        <span class="rf-star" onmouseenter="hoverS(2)" onclick="pickS(2)">★</span>
-        <span class="rf-star" onmouseenter="hoverS(3)" onclick="pickS(3)">★</span>
-        <span class="rf-star" onmouseenter="hoverS(4)" onclick="pickS(4)">★</span>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <label class="field-label">Difficulty</label>
-          <select class="field-sel" id="rv-diff">
-            <option value="">Select…</option>
-            <option value="1">1 – Very Easy</option><option value="2">2 – Easy</option>
-            <option value="3">3 – Medium</option><option value="4">4 – Hard</option>
-            <option value="5">5 – Very Hard</option>
-          </select>
-        </div>
-        <div>
-          <label class="field-label">Workload</label>
-          <select class="field-sel" id="rv-workload">
-            <option value="">Select…</option>
-            <option value="light">Light</option><option value="moderate">Moderate</option><option value="heavy">Heavy</option>
-          </select>
-        </div>
-      </div>
-
-      <label class="field-label" style="margin-top:4px">Your Review</label>
-      <textarea class="field-ta" id="rv-text" placeholder="Share your honest experience. Help the next student make a better decision…" style="margin-bottom:14px"></textarea>
-
-      <!-- AI scanning indicator -->
-      <div class="ai-scanning hide" id="ai-scanning">
-        <div class="scan-dot"></div><div class="scan-dot"></div><div class="scan-dot"></div>
-        <span class="scan-text">AI is reviewing your submission for appropriateness…</span>
-      </div>
-
-      <!-- Pending message (shown after clean or flagged) -->
-      <div class="pending-banner hide" id="pending-banner">
-        ⏳ Your review has been submitted and is pending admin approval. It will appear once reviewed.
-      </div>
-
-      <div style="display:flex;justify-content:flex-end;margin-top:14px" id="submit-btn-wrap">
-        <button class="btn btn-filled" onclick="submitReview()">Submit Anonymously →</button>
-      </div>
+<div id="profile-dropdown" style="display:none;position:fixed;top:72px;right:48px;z-index:600;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px;box-shadow:0 8px 32px rgba(42,42,42,.14);min-width:220px;">
+  <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border);margin-bottom:4px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <div id="profile-name" style="font-family:var(--disp);font-size:13px;font-weight:600;color:var(--text)"></div>
+      <span id="profile-role-badge" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:99px;"></span>
     </div>
+    <div id="profile-email" style="font-size:11px;color:var(--text2)"></div>
+    <div id="profile-school" style="font-size:11px;color:var(--text2);margin-top:1px"></div>
   </div>
+  <button onclick="AUTH.signOut()" style="width:100%;text-align:left;padding:9px 14px;font-size:13px;color:var(--red);background:none;border:none;border-radius:8px;cursor:pointer;font-family:var(--sans);transition:background .15s;" onmouseover="this.style.background='rgba(184,50,50,.06)'" onmouseout="this.style.background='none'">
+    Sign out
+  </button>
 </div>
 
-<!-- ══════════════════════════════════════════
-     ADMIN PANEL
-══════════════════════════════════════════ -->
-<div id="page-admin" class="page">
-  <div class="admin-wrap">
-    <div class="admin-header">
-      <div>
-        <div class="admin-title">Admin Panel</div>
-        <div class="admin-subtitle">Review AI-flagged submissions before they go live.</div>
-      </div>
-      <button class="btn btn-red btn-sm" onclick="doLogout()">Sign Out</button>
-    </div>
-
-    <div class="admin-stats" id="admin-stats"></div>
-
-    <div class="admin-tabs">
-      <button class="atab on" id="atab-pending" onclick="setAdminTab('pending',this)">⏳ Pending Review</button>
-      <button class="atab" id="atab-flagged" onclick="setAdminTab('flagged',this)">🚩 AI Flagged</button>
-      <button class="atab" id="atab-approved" onclick="setAdminTab('approved',this)">✅ Approved</button>
-      <button class="atab" id="atab-rejected" onclick="setAdminTab('rejected',this)">🗑 Rejected</button>
-    </div>
-
-    <div id="admin-queue"></div>
-  </div>
-</div>
-
-<div class="toast" id="toast-el"></div>
-<div id="bottom-nav">
-  <button class="tab-btn on" id="bn-home" onclick="showPage('home');setbn('bn-home')">Home</button>
-  <button class="tab-btn" id="bn-teachers" onclick="showPage('teachers');setbn('bn-teachers')">Teachers</button>
-  <button class="tab-btn" id="bn-pathways" onclick="showPage('pathways');renderPathways();setbn('bn-pathways')">Pathways</button>
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════════════════
-   LERNIX v8 — AI MODERATION + ADMIN PANEL
-   ─────────────────────────────────────────────────────────────────────────
-   Flow:
-     1. Student submits review
-     2. Claude AI scans it via Anthropic API
-     3. If clean  → status "pending_clean"  (admin can bulk-approve)
-     4. If flagged → status "pending_flagged" (admin must manually review)
-     5. Admin approves/rejects from the Admin Panel
-     6. Approved reviews become visible to all students
-   ─────────────────────────────────────────────────────────────────────────
-   Admin credentials (demo): password = "admin123"
-   In production: replace with real auth + server-side moderation endpoint
-══════════════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   LERNIX AUTH + ROLE SYSTEM
+   localStorage-based — structured for easy Firebase migration.
+   To migrate: swap DB.* methods with Firestore calls,
+   and swap AUTH.signIn/signUp with Firebase Auth.
+═══════════════════════════════════════════════════════════════ */
 
-const ADMIN_PASSWORD = 'admin123';
-let currentMode = 'student';
-let currentUser = null; // 'admin' | null
-let currentSchool = null;
-let locOpen = false;
-let selPw = null;
-let star = -1;
-let votes = {};
-let adminTab = 'pending';
+// ── Storage keys ─────────────────────────────────────────────
+const KEYS = {
+  users:    'lernix_users',       // { uid: { name, email, school, role, passwordHash } }
+  session:  'lernix_session',     // { uid, role, name, email, school }
+  pending:  'lernix_pending',     // [ { id, uid, name, pathway, className, rating, text, ts } ]
+  approved: 'lernix_approved',    // [ { ...same } ]
+  teacher:  'lernix_teacher_info',// { classKey: { description, difficulty, tips, updatedBy, ts } }
+};
 
-// ── DB ───────────────────────────────────────────────────────────────────────
-function readDB() { try { return JSON.parse(localStorage.getItem('lernix_db')||'{}'); } catch { return {}; } }
-function writeDB(db) { try { localStorage.setItem('lernix_db', JSON.stringify(db)); } catch {} }
-
-function getPendingReviews() {
-  const db = readDB();
-  return db.pendingReviews || [];
-}
-function getApprovedReviews(school, key) {
-  const db = readDB();
-  return ((db.reviews||{})[school]||{})[key] || [];
-}
-function getAllTeachers(school) {
-  const db = readDB();
-  return Object.values((db.teachers||{})[school]||{});
+// ── Simple hash (not cryptographic — for demo; swap with bcrypt/Firebase on backend) ─
+function simpleHash(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = (h * 33 ^ str.charCodeAt(i)) >>> 0;
+  return h.toString(16);
 }
 
-// ── SCHOOLS ──────────────────────────────────────────────────────────────────
-const SCHOOLS = [
-  {name:"Kamiak High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
-  {name:"Mariner High School",district:"Mukilteo SD",city:"Mukilteo",region:"Snohomish County"},
-  {name:"Edmonds-Woodway HS",district:"Edmonds SD",city:"Edmonds",region:"Snohomish County"},
-  {name:"Meadowdale High School",district:"Edmonds SD",city:"Lynnwood",region:"Snohomish County"},
-  {name:"Mountlake Terrace HS",district:"Edmonds SD",city:"Mountlake Terrace",region:"Snohomish County"},
-  {name:"Glacier Peak HS",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
-  {name:"Snohomish High School",district:"Snohomish SD",city:"Snohomish",region:"Snohomish County"},
-  {name:"Henry M. Jackson HS",district:"Everett SD",city:"Mill Creek",region:"Snohomish County"},
-  {name:"Everett High School",district:"Everett SD",city:"Everett",region:"Snohomish County"},
-  {name:"Marysville-Pilchuck HS",district:"Marysville SD",city:"Marysville",region:"Snohomish County"},
-  {name:"Arlington High School",district:"Arlington SD",city:"Arlington",region:"Snohomish County"},
-  {name:"Ballard High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Garfield High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Roosevelt High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Franklin High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"West Seattle High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Rainier Beach High School",district:"Seattle SD",city:"Seattle",region:"King County – Seattle"},
-  {name:"Skyline High School",district:"Issaquah SD",city:"Sammamish",region:"King County – Eastside"},
-  {name:"Issaquah High School",district:"Issaquah SD",city:"Issaquah",region:"King County – Eastside"},
-  {name:"Eastlake High School",district:"Lake Washington SD",city:"Sammamish",region:"King County – Eastside"},
-  {name:"Lake Washington HS",district:"Lake Washington SD",city:"Kirkland",region:"King County – Eastside"},
-  {name:"Inglemoor High School",district:"Northshore SD",city:"Kenmore",region:"King County – Eastside"},
-  {name:"Bothell High School",district:"Northshore SD",city:"Bothell",region:"King County – Eastside"},
-  {name:"Shorecrest High School",district:"Shoreline SD",city:"Shoreline",region:"King County – Eastside"},
-  {name:"Newport High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
-  {name:"Bellevue High School",district:"Bellevue SD",city:"Bellevue",region:"King County – Eastside"},
-  {name:"Mercer Island HS",district:"Mercer Island SD",city:"Mercer Island",region:"King County – Eastside"},
-  {name:"Stadium High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
-  {name:"Lincoln High School",district:"Tacoma SD",city:"Tacoma",region:"Pierce County"},
-  {name:"Emerald Ridge HS",district:"Puyallup SD",city:"Puyallup",region:"Pierce County"},
-  {name:"Lewis & Clark HS",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
-  {name:"Ferris High School",district:"Spokane SD",city:"Spokane",region:"Eastern WA"},
-  {name:"Richland High School",district:"Richland SD",city:"Richland",region:"Eastern WA"},
-  {name:"Kennewick High School",district:"Kennewick SD",city:"Kennewick",region:"Eastern WA"},
-  {name:"Pasco High School",district:"Pasco SD",city:"Pasco",region:"Eastern WA"},
-  {name:"Olympia High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
-  {name:"Capital High School",district:"Olympia SD",city:"Olympia",region:"South / Central WA"},
-  {name:"Eisenhower High School",district:"Yakima SD",city:"Yakima",region:"South / Central WA"},
-];
+// ── DB layer (localStorage, mirrors Firestore structure) ──────
+const DB = {
+  getUsers()    { try { return JSON.parse(localStorage.getItem(KEYS.users) || '{}'); } catch { return {}; } },
+  saveUsers(u)  { localStorage.setItem(KEYS.users, JSON.stringify(u)); },
+  getSession()  { try { return JSON.parse(localStorage.getItem(KEYS.session) || 'null'); } catch { return null; } },
+  saveSession(s){ localStorage.setItem(KEYS.session, JSON.stringify(s)); },
+  clearSession(){ localStorage.removeItem(KEYS.session); },
+  getPending()  { try { return JSON.parse(localStorage.getItem(KEYS.pending) || '[]'); } catch { return []; } },
+  savePending(a){ localStorage.setItem(KEYS.pending, JSON.stringify(a)); },
+  getApproved() { try { return JSON.parse(localStorage.getItem(KEYS.approved) || '[]'); } catch { return []; } },
+  saveApproved(a){ localStorage.setItem(KEYS.approved, JSON.stringify(a)); },
+  getTeacherInfo(){ try { return JSON.parse(localStorage.getItem(KEYS.teacher) || '{}'); } catch { return {}; } },
+  saveTeacherInfo(t){ localStorage.setItem(KEYS.teacher, JSON.stringify(t)); },
+};
 
-// ── PATHWAYS ─────────────────────────────────────────────────────────────────
-const PW=[
-  {ico:"🔬",nm:"Engineering",ds:"Math & physics heavy sequence for future engineers.",
-   rm:[{g:"9th",cs:[["Algebra 2","R"],["Biology","H"],["English 9","R"]]},{g:"10th",cs:[["Pre-Calculus","H"],["Chemistry","AP"],["CS Principles","R"]]},{g:"11th",cs:[["AP Calculus BC","AP"],["AP Physics 1","AP"],["AP CS A","AP"]]},{g:"12th",cs:[["AP Physics C","AP"],["Engineering Design","H"],["AP Statistics","AP"]]}]},
-  {ico:"🩺",nm:"Pre-Med",ds:"Biology & chemistry track for healthcare careers.",
-   rm:[{g:"9th",cs:[["Honors Biology","H"],["Algebra 2","R"],["English 9","R"]]},{g:"10th",cs:[["AP Biology","AP"],["AP Chemistry","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Physics 1","AP"],["AP Psychology","AP"],["AP Statistics","AP"]]},{g:"12th",cs:[["AP Environmental Science","AP"],["Anatomy & Physiology","H"],["Research Methods","H"]]}]},
-  {ico:"📊",nm:"Business",ds:"Economics, stats, and communication for future leaders.",
-   rm:[{g:"9th",cs:[["Algebra 2","R"],["English 9","H"],["World History","R"]]},{g:"10th",cs:[["AP US History","AP"],["AP Lang & Comp","AP"],["Pre-Calculus","R"]]},{g:"11th",cs:[["AP Macroeconomics","AP"],["AP Statistics","AP"],["AP Gov & Politics","AP"]]},{g:"12th",cs:[["AP Microeconomics","AP"],["AP Literature","AP"],["Business Management","H"]]}]},
-  {ico:"🎨",nm:"Arts & Design",ds:"Creative portfolio-building for designers and writers.",
-   rm:[{g:"9th",cs:[["English 9","H"],["Art Studio","R"],["World History","R"]]},{g:"10th",cs:[["AP Lang & Comp","AP"],["Digital Media","H"],["Photography","R"]]},{g:"11th",cs:[["AP Literature","AP"],["AP Art History","AP"],["Graphic Design","H"]]},{g:"12th",cs:[["AP Studio Art","AP"],["Film Studies","H"],["Portfolio Prep","R"]]}]},
-];
+// ── Helpers ───────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const showEl = id => { const el = $(id); if (el) el.style.display = 'block'; };
+const hideEl = id => { const el = $(id); if (el) el.style.display = 'none'; };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-// ══════════════════════════════════════════════════════════════════════════════
-//  AI MODERATION  — calls Claude via Anthropic API
-// ══════════════════════════════════════════════════════════════════════════════
-async function moderateWithAI(reviewText, teacherName, course) {
-  const prompt = `You are a content moderator for Lernix, a high school teacher rating platform used by students aged 14-18.
+function showAuthError(msg) {
+  const el = $('auth-error');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  hideEl('auth-success');
+}
+function showAuthSuccess(msg) {
+  const el = $('auth-success');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  hideEl('auth-error');
+}
+function clearAuthMessages() {
+  hideEl('auth-error');
+  hideEl('auth-success');
+}
 
-Analyze this student review submission and determine if it should be flagged for admin review.
+function setLoading(formType, loading) {
+  const btn  = $(formType === 'in' ? 'si-btn'      : 'su-btn');
+  const txt  = $(formType === 'in' ? 'si-btn-text' : 'su-btn-text');
+  const spin = $(formType === 'in' ? 'si-btn-loading' : 'su-btn-loading');
+  if (!btn) return;
+  btn.disabled      = loading;
+  btn.style.opacity = loading ? '0.7' : '1';
+  if (txt)  txt.style.display  = loading ? 'none'   : 'inline';
+  if (spin) spin.style.display = loading ? 'inline' : 'none';
+}
 
-Review details:
-- Teacher: ${teacherName}
-- Course: ${course}
-- Review text: "${reviewText}"
+function updatePwStrength(val) {
+  const bar = $('pw-bar'), label = $('pw-label'), wrap = $('pw-strength');
+  if (!bar || !label || !wrap) return;
+  if (!val) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  let score = 0;
+  if (val.length >= 8)           score++;
+  if (/[A-Z]/.test(val))        score++;
+  if (/[0-9]/.test(val))        score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    { pct: '25%',  color: 'var(--red)',   text: 'Weak' },
+    { pct: '50%',  color: '#e07b00',      text: 'Fair' },
+    { pct: '75%',  color: 'var(--gold)',  text: 'Good' },
+    { pct: '100%', color: 'var(--green)', text: 'Strong' },
+  ];
+  const lvl = levels[Math.max(0, score - 1)];
+  bar.style.width      = lvl.pct;
+  bar.style.background = lvl.color;
+  label.textContent    = lvl.text;
+  label.style.color    = lvl.color;
+}
 
-Flag the review if it contains ANY of the following:
-- Personal attacks, bullying, or harassment targeting the teacher as a person (not their teaching)
-- Profanity, slurs, or offensive language
-- False accusations of illegal behavior
-- Personally identifying information (home address, phone number, etc.)
-- Sexual content or innuendo
-- Threats of any kind
-- Content unrelated to the academic experience
-- Attempts to spam or game the system
+// ── Role-based UI ─────────────────────────────────────────────
+function setNavLoggedIn(session) {
+  const suBtn = $('signup-btn');
+  const siBtn = $('signin-btn');
+  if (suBtn) suBtn.style.display = 'none';
+  if (!siBtn) return;
 
-Do NOT flag for:
-- Honest negative feedback about teaching quality, difficulty, grading, or class organization
-- Complaints about workload, fairness, or communication style
-- Low star ratings with legitimate reasoning
-- Strong opinions that are still respectful
+  const initial = (session.name || session.email || '?').charAt(0).toUpperCase();
+  const roleLabels = { a: 'Admin', t: 'Teacher', s: 'Student' };
+  const roleColors = { a: 'var(--red)', t: 'var(--navy)', s: 'var(--green)' };
+  const roleColor  = roleColors[session.role] || 'var(--green)';
+  const roleLabel  = roleLabels[session.role] || 'Student';
 
-Respond with ONLY valid JSON in this exact format:
-{
-  "flagged": true or false,
-  "reason": "Brief explanation of why it was flagged, or null if clean",
-  "severity": "low" or "medium" or "high" or null
-}`;
+  siBtn.style.borderColor = roleColor;
+  siBtn.style.color       = roleColor;
+  siBtn.style.background  = 'rgba(0,0,0,.03)';
+  siBtn.innerHTML = `
+    <span style="width:20px;height:20px;border-radius:50%;background:${roleColor};color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${initial}</span>
+    ${esc(session.name || session.email.split('@')[0])}
+    <span style="font-size:10px;font-weight:700;letter-spacing:.5px;opacity:.7">${roleLabel}</span>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+  siBtn.onclick = () => toggleProfileDropdown(session);
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 256,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await response.json();
-    const raw = data.content?.[0]?.text || '{}';
-    const clean = raw.replace(/```json|```/g,'').trim();
-    return JSON.parse(clean);
-  } catch (err) {
-    console.error('AI moderation error:', err);
-    // On API failure, flag for manual review to be safe
-    return { flagged: true, reason: 'AI moderation unavailable — flagged for manual review', severity: 'low' };
+  // Fill profile dropdown
+  const nameEl   = $('profile-name');
+  const emailEl  = $('profile-email');
+  const schoolEl = $('profile-school');
+  const roleEl   = $('profile-role-badge');
+  if (nameEl)   nameEl.textContent   = session.name  || '';
+  if (emailEl)  emailEl.textContent  = session.email || '';
+  if (schoolEl) schoolEl.textContent = session.school ? `🏫 ${session.school}` : '';
+  if (roleEl) {
+    roleEl.textContent   = roleLabel;
+    roleEl.style.color   = roleColor;
+    roleEl.style.background = `${roleColor}18`;
+    roleEl.style.border  = `1px solid ${roleColor}44`;
   }
 }
 
-// ══════════════════════════════════════════════════════════════════════════════
-//  SUBMIT REVIEW
-// ══════════════════════════════════════════════════════════════════════════════
-async function submitReview() {
-  const school    = document.getElementById('rv-school-sel').value;
-  const teacher   = document.getElementById('rv-teacher-input').value.trim();
-  const course    = document.getElementById('rv-class-input').value.trim();
-  const text      = document.getElementById('rv-text').value.trim();
-  const diff      = document.getElementById('rv-diff').value;
-  const workload  = document.getElementById('rv-workload').value;
-
-  if (!school)  { toast('Please select your school.'); return; }
-  if (!teacher) { toast('Please enter the teacher\'s name.'); return; }
-  if (!course)  { toast('Please enter the class name.'); return; }
-  if (star < 0) { toast('Please pick a star rating.'); return; }
-  if (!text)    { toast('Please write your review.'); return; }
-
-  // Show AI scanning indicator
-  const scanEl    = document.getElementById('ai-scanning');
-  const pendEl    = document.getElementById('pending-banner');
-  const btnWrap   = document.getElementById('submit-btn-wrap');
-  scanEl.classList.remove('hide');
-  btnWrap.style.opacity = '0.4';
-  btnWrap.style.pointerEvents = 'none';
-
-  // Call AI moderation
-  const result = await moderateWithAI(text, teacher, course);
-
-  scanEl.classList.add('hide');
-  btnWrap.style.opacity = '1';
-  btnWrap.style.pointerEvents = 'auto';
-
-  // Build review object
-  const teacherKey = teacher.toLowerCase().replace(/[^a-z0-9]/g,'_');
-  const review = {
-    id:         Date.now(),
-    school,
-    teacherName: teacher,
-    teacherKey,
-    course,
-    text,
-    rating:     star + 1,
-    diff:       parseInt(diff) || 0,
-    workload,
-    upvotes:    0,
-    ts:         Date.now(),
-    // Moderation fields
-    aiFlag:     result.flagged,
-    aiReason:   result.reason || null,
-    aiSeverity: result.severity || null,
-    status:     result.flagged ? 'pending_flagged' : 'pending_clean'
-  };
-
-  // Save to pending queue
-  const db = readDB();
-  if (!db.pendingReviews) db.pendingReviews = [];
-  db.pendingReviews.push(review);
-
-  // Ensure teacher record exists
-  if (!db.teachers) db.teachers = {};
-  if (!db.teachers[school]) db.teachers[school] = {};
-  if (!db.teachers[school][teacherKey]) {
-    db.teachers[school][teacherKey] = { name: teacher, key: teacherKey, courses: [], portalData: {} };
+function setNavLoggedOut() {
+  const siBtn = $('signin-btn');
+  const suBtn = $('signup-btn');
+  hideEl('profile-dropdown');
+  if (suBtn) suBtn.style.display = 'flex';
+  if (siBtn) {
+    siBtn.style.borderColor = '';
+    siBtn.style.color       = '';
+    siBtn.style.background  = '';
+    siBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sign In`;
+    siBtn.onclick = () => AUTH.openModal('signin');
   }
-  const t = db.teachers[school][teacherKey];
-  if (!t.courses.includes(course)) t.courses.push(course);
-  writeDB(db);
-
-  // Update admin badge
-  updateAdminBadge();
-
-  // Show pending message
-  pendEl.classList.remove('hide');
-  pendEl.innerHTML = result.flagged
-    ? `🚩 Your review has been flagged by our AI for admin review. It will appear once approved — this usually takes less than 24 hours.`
-    : `✅ Your review looks great! It's been queued for final admin approval and will appear shortly.`;
-
-  // Reset form fields
-  document.getElementById('rv-teacher-input').value = '';
-  document.getElementById('rv-class-input').value = '';
-  document.getElementById('rv-text').value = '';
-  document.getElementById('rv-diff').value = '';
-  document.getElementById('rv-workload').value = '';
-  star = -1; resetStars();
 }
 
-// ══════════════════════════════════════════════════════════════════════════════
-//  ADMIN ACTIONS
-// ══════════════════════════════════════════════════════════════════════════════
-function approveReview(id) {
-  const db = readDB();
-  const idx = (db.pendingReviews||[]).findIndex(r => r.id === id);
-  if (idx === -1) return;
-  const rv = db.pendingReviews[idx];
-  rv.status = 'approved';
-  rv.reviewedAt = Date.now();
-
-  // Move to live reviews
-  if (!db.reviews) db.reviews = {};
-  if (!db.reviews[rv.school]) db.reviews[rv.school] = {};
-  if (!db.reviews[rv.school][rv.teacherKey]) db.reviews[rv.school][rv.teacherKey] = [];
-  db.reviews[rv.school][rv.teacherKey].push(rv);
-
-  writeDB(db);
-  renderTeachersPage();
-  updateAdminBadge();
-  renderAdminQueue();
-  toast('✅ Review approved and published.');
+let _dropdownOpen = false;
+function toggleProfileDropdown(session) {
+  const dd = $('profile-dropdown');
+  if (!dd) return;
+  _dropdownOpen = !_dropdownOpen;
+  dd.style.display = _dropdownOpen ? 'block' : 'none';
 }
+document.addEventListener('click', e => {
+  if (_dropdownOpen && !e.target.closest('#profile-dropdown') && e.target.id !== 'signin-btn') {
+    _dropdownOpen = false;
+    hideEl('profile-dropdown');
+  }
+});
 
-function rejectReview(id) {
-  const db = readDB();
-  const rv = (db.pendingReviews||[]).find(r => r.id === id);
-  if (!rv) return;
-  rv.status = 'rejected';
-  rv.reviewedAt = Date.now();
-  writeDB(db);
-  updateAdminBadge();
-  renderAdminQueue();
-  toast('🗑 Review rejected.');
-}
-
-function approveAll() {
-  const db = readDB();
-  const pending = (db.pendingReviews||[]).filter(r => r.status === 'pending_clean');
-  pending.forEach(rv => {
-    rv.status = 'approved'; rv.reviewedAt = Date.now();
-    if (!db.reviews) db.reviews = {};
-    if (!db.reviews[rv.school]) db.reviews[rv.school] = {};
-    if (!db.reviews[rv.school][rv.teacherKey]) db.reviews[rv.school][rv.teacherKey] = [];
-    db.reviews[rv.school][rv.teacherKey].push(rv);
+// ── Role application ──────────────────────────────────────────
+function applyUserRole(session) {
+  // Clear any previous role panels
+  ['admin-bar','teacher-bar'].forEach(id => {
+    const el = $(id);
+    if (el) el.remove();
   });
-  writeDB(db);
-  renderTeachersPage();
-  updateAdminBadge();
-  renderAdminQueue();
-  toast(`✅ ${pending.length} clean review${pending.length!==1?'s':''} approved.`);
+
+  if (!session) return;
+
+  if (session.role === 'a') enableAdminMode(session);
+  else if (session.role === 't') enableTeacherMode(session);
+  else enableStudentMode(session);
 }
 
-function updateAdminBadge() {
-  const db = readDB();
-  const count = (db.pendingReviews||[]).filter(r => r.status==='pending_clean'||r.status==='pending_flagged').length;
-  const badge = document.getElementById('admin-notif');
-  if (currentUser === 'admin') {
-    badge.classList.toggle('hide', count===0);
-    badge.textContent = count > 9 ? '9+' : count;
-  } else {
-    badge.classList.add('hide');
+// ── Admin Mode ────────────────────────────────────────────────
+function enableAdminMode(session) {
+  // Insert admin bar below nav
+  if (!$('admin-bar')) {
+    const bar = document.createElement('div');
+    bar.id = 'admin-bar';
+    bar.style.cssText = `
+      position:fixed;top:64px;left:0;right:0;z-index:450;
+      background:var(--red);color:#fff;
+      display:flex;align-items:center;gap:16px;
+      padding:8px 48px;font-family:var(--disp);font-size:12px;font-weight:600;`;
+    bar.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Admin Mode Active
+      <span style="flex:1"></span>
+      <button onclick="showModerationPanel()" style="background:rgba(255,255,255,.18);border:none;color:#fff;padding:5px 14px;border-radius:99px;font-family:var(--disp);font-size:11px;font-weight:600;cursor:pointer;">
+        📋 Review Queue (<span id="pending-count">0</span>)
+      </button>`;
+    document.body.prepend(bar);
+    // Push content down
+    document.body.style.paddingTop = '104px';
   }
+  updatePendingCount();
+  renderModerationPanel();
 }
 
-function setAdminTab(tab, btn) {
-  adminTab = tab;
-  document.querySelectorAll('.atab').forEach(b => b.classList.remove('on'));
-  if (btn) btn.classList.add('on');
-  renderAdminQueue();
+function updatePendingCount() {
+  const el = $('pending-count');
+  if (el) el.textContent = DB.getPending().length;
 }
 
-function renderAdminStats() {
-  const db = readDB();
-  const all = db.pendingReviews || [];
-  const pending  = all.filter(r => r.status==='pending_clean').length;
-  const flagged  = all.filter(r => r.status==='pending_flagged').length;
-  const approved = all.filter(r => r.status==='approved').length;
-  const rejected = all.filter(r => r.status==='rejected').length;
-  document.getElementById('admin-stats').innerHTML = `
-    <div class="stat-pill"><div class="stat-num amber">${pending}</div><div class="stat-lbl">Pending (Clean)</div></div>
-    <div class="stat-pill"><div class="stat-num" style="color:var(--amber)">${flagged}</div><div class="stat-lbl">AI Flagged</div></div>
-    <div class="stat-pill"><div class="stat-num green">${approved}</div><div class="stat-lbl">Approved</div></div>
-    <div class="stat-pill"><div class="stat-num red">${rejected}</div><div class="stat-lbl">Rejected</div></div>`;
+function showModerationPanel() {
+  let panel = $('mod-panel');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'mod-panel';
+    panel.style.cssText = `
+      position:fixed;top:0;left:0;right:0;bottom:0;z-index:900;
+      background:rgba(42,42,42,.45);backdrop-filter:blur(6px);
+      display:flex;align-items:center;justify-content:center;`;
+    panel.innerHTML = `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;
+                  width:min(700px,95vw);max-height:85vh;display:flex;flex-direction:column;
+                  box-shadow:0 32px 80px rgba(42,42,42,.18);overflow:hidden;">
+        <div style="padding:24px 28px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+          <div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:4px">Moderation</div>
+            <div style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--text)">Review Queue</div>
+          </div>
+          <button onclick="closeModerationPanel()" style="width:32px;height:32px;border-radius:50%;background:var(--bg);border:1px solid var(--border);font-size:15px;cursor:pointer;color:var(--text2);">✕</button>
+        </div>
+        <div id="mod-list" style="flex:1;overflow-y:auto;padding:20px 28px 28px;"></div>
+      </div>`;
+    panel.onclick = e => { if (e.target === panel) closeModerationPanel(); };
+    document.body.appendChild(panel);
+  }
+  panel.style.display = 'flex';
+  renderModerationPanel();
 }
 
-function renderAdminQueue() {
-  renderAdminStats();
-  const db = readDB();
-  const all = db.pendingReviews || [];
-  let filtered;
-  if (adminTab === 'pending')  filtered = all.filter(r => r.status==='pending_clean');
-  if (adminTab === 'flagged')  filtered = all.filter(r => r.status==='pending_flagged');
-  if (adminTab === 'approved') filtered = all.filter(r => r.status==='approved');
-  if (adminTab === 'rejected') filtered = all.filter(r => r.status==='rejected');
+function closeModerationPanel() {
+  const p = $('mod-panel');
+  if (p) p.style.display = 'none';
+}
 
-  const wrap = document.getElementById('admin-queue');
-  if (!filtered.length) {
-    const labels = {pending:'No clean reviews waiting',flagged:'No AI-flagged reviews',approved:'No approved reviews yet',rejected:'No rejected reviews'};
-    wrap.innerHTML = `<div class="empty-state"><div class="empty-icon">${adminTab==='pending'?'⏳':adminTab==='flagged'?'🚩':adminTab==='approved'?'✅':'🗑'}</div><div class="empty-title">${labels[adminTab]}</div></div>`;
+function renderModerationPanel() {
+  const list = $('mod-list');
+  if (!list) return;
+  const pending = DB.getPending();
+  updatePendingCount();
+
+  if (pending.length === 0) {
+    list.innerHTML = `
+      <div style="text-align:center;padding:48px 0;color:var(--text2)">
+        <div style="font-size:2rem;margin-bottom:10px">✅</div>
+        <div style="font-family:var(--serif);font-size:1.2rem;font-weight:300;color:var(--text)">All clear!</div>
+        <div style="font-size:13px;margin-top:4px">No pending reviews to moderate.</div>
+      </div>`;
     return;
   }
 
-  // Show bulk-approve button for clean pending
-  let bulkBtn = '';
-  if (adminTab === 'pending' && filtered.length > 0) {
-    bulkBtn = `<div style="margin-bottom:14px;display:flex;align-items:center;gap:10px">
-      <button class="btn btn-green btn-sm" onclick="approveAll()">✅ Approve All ${filtered.length} Clean Review${filtered.length!==1?'s':''}</button>
-      <span style="font-size:0.76rem;color:var(--muted)">These passed AI screening and are ready to publish.</span>
-    </div>`;
-  }
-
-  const cards = [...filtered].reverse().map(rv => {
-    const date = new Date(rv.ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-    const stars = Array.from({length:5},(_,i)=>`<span style="color:${i<rv.rating?'#C97D10':'#d8d0c4'}">★</span>`).join('');
-    const statusLabel = {
-      pending_clean: '<span class="status-badge status-clean">✅ AI Clean</span>',
-      pending_flagged: '<span class="status-badge status-pending">🚩 AI Flagged</span>',
-      approved: '<span class="status-badge status-approved">✅ Approved</span>',
-      rejected: '<span class="status-badge status-rejected">🗑 Rejected</span>',
-    }[rv.status] || '';
-
-    const flagBox = rv.aiFlag ? `
-      <div class="ai-flag-box">
-        <div class="ai-flag-label">🤖 AI Flag · Severity: ${rv.aiSeverity||'unknown'}</div>
-        <div class="ai-flag-reason">${rv.aiReason}</div>
-      </div>` : '';
-
-    const actions = (rv.status==='pending_clean'||rv.status==='pending_flagged') ? `
-      <div class="flag-actions">
-        <button class="btn btn-green btn-sm" onclick="approveReview(${rv.id})">✅ Approve</button>
-        <button class="btn btn-red btn-sm" onclick="rejectReview(${rv.id})">🗑 Reject</button>
-      </div>` : `<div style="font-size:0.76rem;color:var(--muted)">Reviewed ${new Date(rv.reviewedAt||rv.ts).toLocaleDateString()}</div>`;
-
-    return `
-      <div class="flag-card ${rv.aiFlag&&rv.status.startsWith('pending')?'flagged':rv.status==='approved'?'approved':rv.status==='rejected'?'rejected':''}">
-        <div class="flag-meta">
-          <div class="flag-info">
-            <span class="flag-school">${rv.school}</span>
-            <span class="flag-teacher">→ ${rv.teacherName}</span>
-            <span class="flag-course">${rv.course}</span>
-          </div>
-          <div class="flag-status">${statusLabel}</div>
+  list.innerHTML = pending.map((rv, idx) => `
+    <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:4px">${esc(rv.pathway)} › ${esc(rv.className)}</div>
+          <div style="font-family:var(--serif);font-size:1rem;color:var(--text);line-height:1.55">"${esc(rv.text)}"</div>
         </div>
-        <div class="flag-rating-row">
-          <span class="flag-rating-item">${stars}</span>
-          ${rv.diff?`<span class="flag-rating-item">Difficulty: <strong>${rv.diff}/5</strong></span>`:''}
-          ${rv.workload?`<span class="flag-rating-item">Workload: <strong>${rv.workload}</strong></span>`:''}
-          <span class="flag-rating-item" style="margin-left:auto">${date}</span>
+        <div style="text-align:right;flex-shrink:0">
+          <div style="font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:300">${rv.rating}/5</div>
         </div>
-        ${flagBox}
-        <div class="flag-text-box">"${rv.text}"</div>
-        ${actions}
-      </div>`;
-  }).join('');
-
-  wrap.innerHTML = bulkBtn + cards;
-}
-
-// ── TEACHER CARDS ─────────────────────────────────────────────────────────────
-const COLORS = ['#3a5a8c','#2d6e5e','#7a4a1e','#6b4c8a','#4a6e3a','#6e4a5e'];
-function teacherColor(name) { return COLORS[Math.abs([...name].reduce((a,c)=>a+c.charCodeAt(0),0)) % COLORS.length]; }
-function teacherInitials(name) { return name.split(' ').filter(Boolean).slice(-2).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
-function computeRatings(reviews) {
-  if (!reviews.length) return null;
-  const avg = arr => arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : null;
-  return { overall: avg(reviews.map(r=>r.rating)), diff: avg(reviews.filter(r=>r.diff).map(r=>r.diff)), count: reviews.length };
-}
-
-function renderTeachersPage() {
-  if (!currentSchool) return;
-  const teachers = getAllTeachers(currentSchool.name);
-  const content  = document.getElementById('teachers-content');
-  const fmw      = document.getElementById('find-more-wrap');
-  if (!teachers.length) {
-    content.innerHTML = `<div class="empty-state"><div class="empty-icon">✍️</div><div class="empty-title">No reviews yet for ${currentSchool.name}</div><div class="empty-sub">Be the first to rate a teacher at your school. Your anonymous review helps every student who comes after you.</div><button class="btn btn-filled" onclick="showPage('write')">Write the First Review →</button></div>`;
-    fmw.style.display = 'none'; return;
-  }
-  content.innerHTML = `<div class="cards-grid">${teachers.map(t => {
-    const reviews = getApprovedReviews(currentSchool.name, t.key);
-    const stats = computeRatings(reviews);
-    const col = teacherColor(t.name);
-    const init = teacherInitials(t.name);
-    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
-      <div class="tc-row1">
-        <div class="tc-ava" style="background:${col}">${init}</div>
-        <div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:`<div style="font-size:0.72rem;color:var(--muted);text-align:right">No ratings<br>yet</div>`}</div>
       </div>
-      <div class="tc-name">${t.name}</div>
-      <div class="tc-sub">${t.courses.join(', ')||'No classes listed'}</div>
-      <div class="tc-tags">
-        <span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span>
-        ${stats&&stats.diff?`<span class="dp ${parseFloat(stats.diff)<3?'dp-e':parseFloat(stats.diff)<4?'dp-m':'dp-h'}">${parseFloat(stats.diff)<3?'Easy':parseFloat(stats.diff)<4?'Med':'Hard'}</span>`:''}
+      <div style="font-size:11px;color:var(--text2);margin-bottom:12px">
+        By <strong>${esc(rv.reviewerName || 'Anonymous')}</strong> · ${new Date(rv.ts).toLocaleDateString()}
       </div>
-    </div>`;
-  }).join('')}</div>`;
-  fmw.style.display = teachers.length >= 4 ? 'block' : 'none';
-}
-
-function liveSearch(q) {
-  if (!currentSchool) return;
-  const teachers = getAllTeachers(currentSchool.name);
-  const filtered = q ? teachers.filter(t => t.name.toLowerCase().includes(q.toLowerCase()) || t.courses.some(c=>c.toLowerCase().includes(q.toLowerCase()))) : teachers;
-  const content  = document.getElementById('teachers-content');
-  if (!filtered.length) { content.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">No results</div><div class="empty-sub">No teachers match "${q}".</div></div>`; return; }
-  content.innerHTML = `<div class="cards-grid">${filtered.map(t => {
-    const reviews = getApprovedReviews(currentSchool.name, t.key);
-    const stats = computeRatings(reviews);
-    const col = teacherColor(t.name); const init = teacherInitials(t.name);
-    return `<div class="t-card" onclick="openTeacher('${t.key.replace(/'/g,"\\'")}')">
-      <div class="tc-row1"><div class="tc-ava" style="background:${col}">${init}</div><div class="tc-score">${stats?`<div class="tc-num">${stats.overall}</div><div class="tc-denom">/ 5.0</div>`:'<div style="font-size:0.72rem;color:var(--muted)">No ratings</div>'}</div></div>
-      <div class="tc-name">${t.name}</div><div class="tc-sub">${t.courses.join(', ')||'—'}</div>
-      <div class="tc-tags"><span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span></div>
-    </div>`;
-  }).join('')}</div>`;
-}
-
-function filterDept() { renderTeachersPage(); }
-
-// ── TEACHER DETAIL ────────────────────────────────────────────────────────────
-function openTeacher(key) {
-  if (!currentSchool) return;
-  const db = readDB();
-  const t  = ((db.teachers||{})[currentSchool.name]||{})[key];
-  if (!t) return;
-  const reviews = getApprovedReviews(currentSchool.name, key);
-  const stats   = computeRatings(reviews);
-  const col     = teacherColor(t.name);
-  const init    = teacherInitials(t.name);
-  const starsH  = r => Array.from({length:5},(_,i)=>`<span style="color:${i<r?'#C97D10':'#d8d0c4'}">★</span>`).join('');
-
-  document.getElementById('detail-band-wrap').innerHTML = `
-    <div class="detail-band"><div class="detail-inner">
-      <div class="det-ava" style="background:${col}">${init}</div>
-      <div class="det-info">
-        <div class="det-name">${t.name}</div>
-        <div class="det-dept">${currentSchool.name}</div>
-        <div class="det-chips">${t.courses.map(c=>`<span class="chip">${c}</span>`).join('')}<span class="chip">${reviews.length} review${reviews.length!==1?'s':''}</span></div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="approveReview(${idx})" style="background:var(--green);color:#fff;border:none;border-radius:99px;padding:7px 18px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          ✓ Approve
+        </button>
+        <button onclick="rejectReview(${idx})" style="background:rgba(184,50,50,.08);color:var(--red);border:1.5px solid rgba(184,50,50,.2);border-radius:99px;padding:7px 18px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;transition:opacity .15s;" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+          ✕ Reject
+        </button>
       </div>
-      <div class="det-score">
-        ${stats?`<div class="det-big">${stats.overall}</div><div style="display:flex;gap:2px;justify-content:center;margin:3px 0">${starsH(Math.round(parseFloat(stats.overall)))}</div><div class="det-lbl">Overall Rating</div>`:`<div style="font-family:var(--font-head);font-size:1.1rem;color:var(--muted)">No ratings yet</div>`}
-      </div>
-    </div></div>`;
-
-  document.getElementById('detail-body').innerHTML = `
-    <button class="back-btn" onclick="showPage('teachers');setbn('bn-teachers')">← All Teachers</button>
-    ${stats?`<div class="rating-grid">
-      <div class="r-pill"><div class="r-lbl">Overall</div><div class="r-val">${stats.overall}<span style="font-size:0.82rem;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.overall)/5*100}%;background:#C97D10"></div></div></div>
-      ${stats.diff?`<div class="r-pill"><div class="r-lbl">Difficulty</div><div class="r-val">${stats.diff}<span style="font-size:0.82rem;color:var(--muted)">/5</span></div><div class="r-bar"><div class="r-fill" style="width:${parseFloat(stats.diff)/5*100}%;background:var(--red)"></div></div></div>`:''}
-      <div class="r-pill"><div class="r-lbl">Total Reviews</div><div class="r-val">${stats.count}</div></div>
-    </div>`:''}
-    <div class="div"></div>
-    <div style="font-family:var(--font-head);font-size:1.25rem;color:var(--text);margin-bottom:13px">Student Reviews</div>
-    ${reviews.length ? [...reviews].reverse().map(r=>`
-      <div class="rv-card">
-        <div class="rv-top">
-          <span class="rv-cls">${r.course}</span>
-          <span style="font-size:0.68rem">${starsH(r.rating)}</span>
-        </div>
-        <div class="rv-txt">${r.text}</div>
-        <div class="rv-acts">
-          <button class="vote-btn" onclick="handleUpvote('${currentSchool.name}','${key}',${r.id},this)">👍 ${r.upvotes}</button>
-          <span style="font-size:0.68rem;color:var(--muted)">${r.upvotes} found helpful</span>
-        </div>
-      </div>`).join('') : `<div class="empty-state" style="padding:32px 0"><div class="empty-icon">💬</div><div class="empty-title">No reviews yet</div><div class="empty-sub">Be the first to share your experience.</div></div>`}
-    <div style="margin-top:16px"><button class="btn" onclick="showPage('write')">+ Write a Review for ${t.name}</button></div>`;
-
-  showPage('detail');
-}
-
-function handleUpvote(school, key, id, btn) {
-  const vk = `${school}-${key}-${id}`;
-  if (!votes[vk]) {
-    votes[vk] = 1;
-    const db = readDB();
-    const rv = ((db.reviews||{})[school]||{})[key]||[];
-    const r  = rv.find(r=>r.id===id);
-    if (r) { r.upvotes++; writeDB(db); }
-    const cur = parseInt(btn.textContent.replace(/\D/g,''));
-    btn.textContent = `👍 ${cur+1}`;
-    btn.style.color = 'var(--green)';
-    toast('Upvoted!');
-  }
-}
-
-// ── PATHWAYS ──────────────────────────────────────────────────────────────────
-function renderPathways() {
-  document.getElementById('pw-grid').innerHTML = PW.map((p,i)=>`
-    <div class="pw-card ${selPw===i?'sel':''}" onclick="pickPw(${i})">
-      <div class="pw-ico">${p.ico}</div><div class="pw-name">${p.nm}</div><div class="pw-desc">${p.ds}</div>
     </div>`).join('');
-  if (selPw!==null) renderRoadmap(selPw);
-}
-function pickPw(i){selPw=i;renderPathways();document.getElementById('pw-detail').style.display='block';renderRoadmap(i);}
-function renderRoadmap(i){
-  const p=PW[i];
-  const badge=l=>l==='AP'?'<span class="dp dp-h">AP</span>':l==='H'?'<span class="dp dp-m">Honors</span>':'<span class="dp dp-e">Regular</span>';
-  document.getElementById('pw-roadmap').innerHTML=`
-    <div style="font-family:var(--font-head);font-size:1.25rem;color:var(--text);margin-bottom:13px">${p.ico} ${p.nm} — 4-Year Roadmap</div>
-    <div class="roadmap-wrap">${p.rm.map(g=>`<div class="grade-col"><div class="grade-hdr">${g.g} Grade</div>${g.cs.map(([n,l])=>`<div class="gc">${n}<div class="gc-lv">${badge(l)}</div></div>`).join('')}</div>`).join('')}</div>`;
 }
 
-// ── LOCATION ──────────────────────────────────────────────────────────────────
-function toggleLoc(){locOpen=!locOpen;document.getElementById('loc-trigger').classList.toggle('open',locOpen);document.getElementById('loc-dropdown').classList.toggle('open',locOpen);if(locOpen){setTimeout(()=>document.getElementById('loc-search-input').focus(),80);renderSchoolList('');}}
-function closeLoc(){locOpen=false;document.getElementById('loc-trigger').classList.remove('open');document.getElementById('loc-dropdown').classList.remove('open');}
-document.addEventListener('click',e=>{if(!document.getElementById('loc-wrap').contains(e.target))closeLoc();});
-function filterSchools(q){renderSchoolList(q);}
-function renderSchoolList(q){
-  const list=document.getElementById('loc-list');
-  const filtered=SCHOOLS.filter(s=>!q||s.name.toLowerCase().includes(q.toLowerCase())||s.city.toLowerCase().includes(q.toLowerCase())||s.district.toLowerCase().includes(q.toLowerCase()));
-  if(!filtered.length){list.innerHTML=`<div style="padding:14px;font-size:0.8rem;color:var(--muted);text-align:center">No schools found</div>`;return;}
-  const regions=[...new Set(filtered.map(s=>s.region))];
-  let html='';
-  regions.forEach(r=>{
-    html+=`<div class="loc-region-label">${r}</div>`;
-    filtered.filter(s=>s.region===r).forEach(s=>{
-      const active=currentSchool&&s.name===currentSchool.name;
-      html+=`<div class="loc-item ${active?'active':''}" onclick="selectSchool('${s.name.replace(/'/g,"\\'")}')">
-        <span style="font-size:0.85rem;flex-shrink:0">🏫</span>
-        <div class="loc-item-detail"><span class="loc-item-name">${s.name}</span><span class="loc-item-sub">${s.district} · ${s.city}</span></div>
-        ${active?'<span style="color:var(--saffron-dark);font-weight:700;margin-left:auto;font-size:0.8rem">✓</span>':''}
-      </div>`;
+window.approveReview = function(idx) {
+  const pending  = DB.getPending();
+  const approved = DB.getApproved();
+  if (!pending[idx]) return;
+  const rv = { ...pending[idx], approvedAt: Date.now(), status: 'approved' };
+  approved.push(rv);
+  pending.splice(idx, 1);
+  DB.savePending(pending);
+  DB.saveApproved(approved);
+  renderModerationPanel();
+  showToast('Review approved and published ✓');
+};
+
+window.rejectReview = function(idx) {
+  if (!confirm('Permanently delete this review?')) return;
+  const pending = DB.getPending();
+  pending.splice(idx, 1);
+  DB.savePending(pending);
+  renderModerationPanel();
+  showToast('Review rejected and removed.');
+};
+
+// ── Teacher Mode ──────────────────────────────────────────────
+function enableTeacherMode(session) {
+  if (!$('teacher-bar')) {
+    const bar = document.createElement('div');
+    bar.id = 'teacher-bar';
+    bar.style.cssText = `
+      position:fixed;top:64px;left:0;right:0;z-index:450;
+      background:var(--navy);color:#fff;
+      display:flex;align-items:center;gap:16px;
+      padding:8px 48px;font-family:var(--disp);font-size:12px;font-weight:600;`;
+    bar.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Teacher Mode Active — ${esc(session.name || 'Teacher')}
+      <span style="flex:1"></span>
+      <button onclick="showTeacherPanel()" style="background:rgba(255,255,255,.18);border:none;color:#fff;padding:5px 14px;border-radius:99px;font-family:var(--disp);font-size:11px;font-weight:600;cursor:pointer;">
+        ✏️ Edit Class Info
+      </button>`;
+    document.body.prepend(bar);
+    document.body.style.paddingTop = '104px';
+  }
+}
+
+function showTeacherPanel() {
+  let panel = $('teacher-panel');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'teacher-panel';
+    panel.style.cssText = `
+      position:fixed;top:0;left:0;right:0;bottom:0;z-index:900;
+      background:rgba(42,42,42,.45);backdrop-filter:blur(6px);
+      display:flex;align-items:center;justify-content:center;`;
+    panel.onclick = e => { if (e.target === panel) closeTeacherPanel(); };
+    document.body.appendChild(panel);
+  }
+
+  // Build class list from PW data
+  const classOptions = window.PW
+    ? window.PW.flatMap(pw => pw.cls.map(c => ({ key: `${pw.id}__${c.n}`, label: `${pw.nm} › ${c.n}` })))
+    : [];
+
+  const teacherInfo = DB.getTeacherInfo();
+  const firstKey    = classOptions[0]?.key || '';
+  const firstInfo   = teacherInfo[firstKey] || {};
+
+  panel.innerHTML = `
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;
+                width:min(640px,95vw);max-height:85vh;display:flex;flex-direction:column;
+                box-shadow:0 32px 80px rgba(42,42,42,.18);overflow:hidden;">
+      <div style="padding:24px 28px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--navy);margin-bottom:4px">Teacher Dashboard</div>
+          <div style="font-family:var(--serif);font-size:1.5rem;font-weight:300;color:var(--text)">Edit Class Info</div>
+        </div>
+        <button onclick="closeTeacherPanel()" style="width:32px;height:32px;border-radius:50%;background:var(--bg);border:1px solid var(--border);font-size:15px;cursor:pointer;color:var(--text2);">✕</button>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:24px 28px 28px;">
+        <div style="margin-bottom:16px;">
+          <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px;">Select Class to Edit</label>
+          <select id="tc-class-select" onchange="teacherLoadClass(this.value)"
+            style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;cursor:pointer;">
+            ${classOptions.map(o => `<option value="${esc(o.key)}">${esc(o.label)}</option>`).join('')}
+          </select>
+        </div>
+        <div id="tc-form">
+          <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px;">Class Description</label>
+          <textarea id="tc-desc" placeholder="Describe what students will learn in this class…"
+            style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;resize:vertical;min-height:80px;margin-bottom:14px;transition:border-color .2s;"
+            onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">${esc(firstInfo.description || '')}</textarea>
+          <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px;">Difficulty &amp; Expectations</label>
+          <textarea id="tc-difficulty" placeholder="e.g. Heavy workload, expect 2–3 hours of homework per week…"
+            style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;resize:vertical;min-height:64px;margin-bottom:14px;transition:border-color .2s;"
+            onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">${esc(firstInfo.difficulty || '')}</textarea>
+          <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px;">Tips for Students</label>
+          <textarea id="tc-tips" placeholder="e.g. Come to class prepared, participate in discussions…"
+            style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:10px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;resize:vertical;min-height:64px;margin-bottom:20px;transition:border-color .2s;"
+            onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">${esc(firstInfo.tips || '')}</textarea>
+          <div id="tc-save-msg" style="display:none;font-size:12px;color:var(--green);margin-bottom:10px;font-weight:500;">✓ Saved successfully!</div>
+          <button onclick="teacherSaveClass()" style="width:100%;background:var(--navy);color:#fff;border:none;border-radius:99px;padding:12px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            Save Class Info →
+          </button>
+        </div>
+      </div>
+    </div>`;
+  panel.style.display = 'flex';
+}
+
+function closeTeacherPanel() {
+  const p = $('teacher-panel');
+  if (p) p.style.display = 'none';
+}
+
+window.teacherLoadClass = function(key) {
+  const info = DB.getTeacherInfo()[key] || {};
+  const desc = $('tc-desc'), diff = $('tc-difficulty'), tips = $('tc-tips');
+  if (desc) desc.value = info.description || '';
+  if (diff) diff.value = info.difficulty  || '';
+  if (tips) tips.value = info.tips        || '';
+  hideEl('tc-save-msg');
+};
+
+window.teacherSaveClass = function() {
+  const sel  = $('tc-class-select');
+  const key  = sel?.value;
+  if (!key) return;
+  const info = DB.getTeacherInfo();
+  const session = DB.getSession();
+  info[key] = {
+    description: ($('tc-desc')?.value || '').trim(),
+    difficulty:  ($('tc-difficulty')?.value || '').trim(),
+    tips:        ($('tc-tips')?.value || '').trim(),
+    updatedBy:   session?.name || session?.email || 'Teacher',
+    ts:          Date.now(),
+  };
+  DB.saveTeacherInfo(info);
+  showEl('tc-save-msg');
+  showToast('Class info updated ✓');
+};
+
+// ── Student Mode ──────────────────────────────────────────────
+function enableStudentMode(session) {
+  // Students see no extra bar; approved reviews are shown in renderPWMain
+  // Just ensure no leftover role bars
+}
+
+// ── AUTH object ───────────────────────────────────────────────
+window.AUTH = {
+
+  openModal(mode = 'signin') {
+    this.setMode(mode);
+    clearAuthMessages();
+    $('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeModal() {
+    $('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    clearAuthMessages();
+    ['modal-verify-content','modal-signup-content'].forEach(hideEl);
+    showEl('modal-signin-content');
+  },
+
+  setMode(mode) {
+    const isSignin = mode === 'signin';
+    $('modal-signin-content').style.display = isSignin ? 'block' : 'none';
+    $('modal-signup-content').style.display = isSignin ? 'none'  : 'block';
+    $('modal-verify-content').style.display = 'none';
+    clearAuthMessages();
+    const si = $('mode-signin'), su = $('mode-signup');
+    if (si && su) {
+      si.style.background = isSignin ? 'var(--gold)' : 'none';
+      si.style.color      = isSignin ? '#fff' : 'var(--text2)';
+      su.style.background = isSignin ? 'none' : 'var(--gold)';
+      su.style.color      = isSignin ? 'var(--text2)' : '#fff';
+    }
+  },
+
+  setRole(role) {
+    // Normalize: accept full name ('student','teacher','admin') or short ('s','t','a')
+    const norm = { student:'s', teacher:'t', admin:'a', s:'s', t:'t', a:'a' };
+    const r = norm[role] || 's';
+    window._authRole = r;
+    ['s','t','a'].forEach(x => {
+      const el = $(`mt-${x}`);
+      if (el) el.classList.toggle('on', x === r);
     });
-  });
-  list.innerHTML=html;
-}
-function selectSchool(name){
-  const s=SCHOOLS.find(x=>x.name===name);if(!s)return;
-  currentSchool=s;
-  document.getElementById('loc-label').textContent=name.replace(' High School','').replace(' HS','')+' HS';
-  const sub=document.getElementById('school-sub');if(sub)sub.textContent=`${s.name} · ${s.district}`;
-  closeLoc();renderTeachersPage();
-  // Sync school select in review form
-  const sel=document.getElementById('rv-school-sel');if(sel)sel.value=name;
-}
+    const notes = {
+      s: 'Signing in as a <strong>student</strong> — leave reviews and explore career pathways.',
+      t: 'Signing in as a <strong>teacher</strong> — update class info and view feedback.',
+      a: 'Signing in as an <strong>admin</strong> — moderate reviews and manage content.',
+    };
+    const mrole = $('mrole');
+    if (mrole) mrole.innerHTML = notes[r] || notes.s;
+  },
 
-// ── SCHOOL SELECT POPULATE ────────────────────────────────────────────────────
-function populateSchoolSelect(){
-  const sel=document.getElementById('rv-school-sel');if(!sel)return;
-  const regions=[...new Set(SCHOOLS.map(s=>s.region))];
-  let html='<option value="">— Select your school —</option>';
-  regions.forEach(r=>{
-    html+=`<optgroup label="${r}">`;
-    SCHOOLS.filter(s=>s.region===r).forEach(s=>{html+=`<option value="${s.name}" ${currentSchool&&s.name===currentSchool.name?'selected':''}>${s.name}</option>`;});
-    html+=`</optgroup>`;
-  });
-  sel.innerHTML=html;
-}
+  signIn() {
+    clearAuthMessages();
+    const email = ($('si-email')?.value || '').trim().toLowerCase();
+    const pw    = ($('si-password')?.value || '');
+    const role  = window._authRole || 's';
 
-// ── STARS ─────────────────────────────────────────────────────────────────────
-function hoverS(i){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=i));}
-function resetStars(){document.querySelectorAll('.rf-star').forEach((s,j)=>s.classList.toggle('lit',j<=star));}
-function pickS(i){star=i;resetStars();}
+    if (!email)            { showAuthError('Please enter your email address.'); return; }
+    if (!pw)               { showAuthError('Please enter your password.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showAuthError('Please enter a valid email address.'); return; }
 
-// ── AUTH ──────────────────────────────────────────────────────────────────────
-function openLogin(){
-  document.getElementById('login-modal').classList.remove('hide');
-  document.getElementById('login-hint').style.display='none';
-}
-function closeLogin(){document.getElementById('login-modal').classList.add('hide');}
-function setMode(m){
-  currentMode=m;
-  ['student','teacher','admin'].forEach(x=>document.getElementById('mode-'+x).classList.toggle('on',x===m));
-  document.getElementById('login-hint').style.display=m==='admin'?'block':'none';
-}
-function doLogin(){
-  if(currentMode==='admin'){
-    const pw=document.getElementById('admin-pw-field').value;
-    if(pw!==ADMIN_PASSWORD){toast('Incorrect admin password.');return;}
-    currentUser='admin';
-    closeLogin();
-    document.getElementById('admin-pw-field').value='';
-    updateAdminBadge();
-    showPage('admin');
-    document.getElementById('bottom-nav').style.display='none';
-    renderAdminStats();
-    renderAdminQueue();
-    toast('Welcome, Admin!');
-  } else if(currentMode==='teacher'){
-    closeLogin();toast('Teacher dashboard coming soon.');
-  } else {
-    closeLogin();toast('Signed in as student.');
+    setLoading('in', true);
+
+    try {
+      // ── Admin login ───────────────────────────────────────────────
+      // Before publishing, set window.LERNIX_ADMIN_PW on your hosting
+      // environment (e.g. via a <script> in a server-rendered layout).
+      // When migrating to Firebase, remove this block entirely and use
+      // Firebase Custom Claims to assign the 'admin' role server-side.
+      const ADMIN_PW = (typeof window.LERNIX_ADMIN_PW === 'string' && window.LERNIX_ADMIN_PW)
+        ? window.LERNIX_ADMIN_PW
+        : 'lernix-admin-2025'; // Change this before going live
+
+      if (role === 'a') {
+        if (pw !== ADMIN_PW) { showAuthError('Incorrect admin password.'); setLoading('in', false); return; }
+        const session = { uid: 'admin', role: 'a', name: 'Admin', email, school: '' };
+        DB.saveSession(session);
+        this.closeModal();
+        setNavLoggedIn(session);
+        applyUserRole(session);
+        showToast('Welcome, Admin! 👋');
+        setLoading('in', false);
+        return;
+      }
+
+      // Look up user
+      const users = DB.getUsers();
+      const user  = Object.values(users).find(u => u.email === email);
+      if (!user) { showAuthError('No account found with this email. Please sign up first.'); setLoading('in', false); return; }
+      if (user.passwordHash !== simpleHash(pw)) { showAuthError('Incorrect password. Please try again.'); setLoading('in', false); return; }
+
+      const session = { uid: user.uid, role: user.role || 's', name: user.name, email: user.email, school: user.school || '' };
+      DB.saveSession(session);
+      this.closeModal();
+      setNavLoggedIn(session);
+      applyUserRole(session);
+      showToast(`Welcome back, ${user.name || 'there'}! 👋`);
+    } catch (err) {
+      showAuthError('Something went wrong. Please try again.');
+    } finally {
+      setLoading('in', false);
+    }
+  },
+
+  signUp() {
+    clearAuthMessages();
+    const name   = ($('su-name')?.value   || '').trim();
+    const email  = ($('su-email')?.value  || '').trim().toLowerCase();
+    const school = ($('su-school')?.value || '').trim();
+    const pw     = ($('su-password')?.value || '');
+    const role   = ($('su-role')?.value   || '');
+
+    if (!name)                                     { showAuthError('Please enter your full name.'); return; }
+    if (!email)                                    { showAuthError('Please enter your email address.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showAuthError('Please enter a valid email address.'); return; }
+    if (!pw || pw.length < 8)                      { showAuthError('Password must be at least 8 characters.'); return; }
+    if (!role)                                     { showAuthError('Please select your role (Student or Teacher).'); return; }
+
+    setLoading('up', true);
+
+    try {
+      const users = DB.getUsers();
+      // Prevent duplicate email
+      if (Object.values(users).find(u => u.email === email)) {
+        showAuthError('An account with this email already exists. Try signing in instead.');
+        setLoading('up', false);
+        return;
+      }
+
+      // Create account
+      const uid  = 'u_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+      users[uid] = { uid, name, email, school, role, passwordHash: simpleHash(pw), createdAt: Date.now() };
+      DB.saveUsers(users);
+
+      const session = { uid, role, name, email, school };
+      DB.saveSession(session);
+
+      // Show verify state (email display)
+      ['modal-signin-content','modal-signup-content'].forEach(id => {
+        const el = $(id); if (el) el.style.display = 'none';
+      });
+      showEl('modal-verify-content');
+      const vd = $('verify-email-display');
+      if (vd) vd.textContent = email;
+
+      // Welcome email (best-effort via EmailJS)
+      try {
+        if (window.emailjs) {
+          emailjs.send('service_lernix', 'template_welcome', {
+            to_name: name, to_email: email, school: school || 'your school', reply_to: 'lernixhs@gmail.com',
+          });
+        }
+      } catch (_) {}
+
+      showToast('Account created! Welcome to Lernix 🎉');
+      setTimeout(() => {
+        this.closeModal();
+        setNavLoggedIn(session);
+        applyUserRole(session);
+      }, 2200);
+
+    } catch (err) {
+      showAuthError('Something went wrong. Please try again.');
+    } finally {
+      setLoading('up', false);
+    }
+  },
+
+  signOut() {
+    hideEl('profile-dropdown');
+    _dropdownOpen = false;
+    DB.clearSession();
+    ['admin-bar','teacher-bar'].forEach(id => { const el=$(id); if(el) el.remove(); });
+    document.body.style.paddingTop = '';
+    setNavLoggedOut();
+    applyUserRole(null);
+    showToast('You have been signed out.');
+  },
+
+  resendVerification() {
+    showAuthSuccess('A welcome email will be sent once EmailJS is configured.');
+  },
+};
+
+// ── Keyboard shortcuts ────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') AUTH.closeModal();
+  if (e.key === 'Enter') {
+    const overlay = $('modal-overlay');
+    if (!overlay?.classList.contains('open')) return;
+    const signupVisible = $('modal-signup-content')?.style.display !== 'none';
+    if (signupVisible) AUTH.signUp();
+    else AUTH.signIn();
   }
-}
-function doLogout(){
-  currentUser=null;
-  document.getElementById('admin-notif').classList.add('hide');
-  document.getElementById('bottom-nav').style.display='flex';
-  showPage('home');setbn('bn-home');
-  toast('Signed out.');
+});
+
+// ── Global helpers ────────────────────────────────────────────
+window.openModal    = ()   => AUTH.openModal('signin');
+window.openSignUp   = ()   => AUTH.openModal('signup');
+window.closeModal   = ()   => AUTH.closeModal();
+window.setMTab      = role => AUTH.setRole(role);
+window.setModalMode = mode => AUTH.setMode(mode);
+
+// showToast — defined here so AUTH calls work; page script redefines it identically
+window.showToast = window.showToast || function(msg) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
+};
+
+// ── Password strength on input ────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const pwInput = $('su-password');
+  if (pwInput) pwInput.addEventListener('input', () => updatePwStrength(pwInput.value));
+});
+
+// ── Session persistence — restore on page load ────────────────
+(function restoreSession() {
+  const session = DB.getSession();
+  if (session) {
+    setNavLoggedIn(session);
+    applyUserRole(session);
+  }
+})();
+</script>
+
+<script>
+/* ── Page logic ── */
+const PAL=['#3a5a8c','#2d6e5e','#7a4a1e','#5a4a7a','#4a6e3a','#6e4a5e','#8c3a3a','#3a7a8c'];
+const tC=n=>PAL[Math.abs([...n].reduce((a,c)=>a+c.charCodeAt(0),0))%PAL.length];
+const tI=n=>n.split(' ').filter(Boolean).slice(-2).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+const strs=r=>'★'.repeat(r)+'☆'.repeat(5-r);
+let saved={},openCls=null;
+
+const PW=window.PW=[
+{id:'tech',ico:'💻',nm:'Technology & CS',sd:'Build apps, websites, and systems the world runs on.',sal:'$105K',gr:'+25%',car:'12+',dem:'🔥 High Demand',e:'$70K–$85K',m:'$95K–$120K',s:'$140K–$200K+',
+desc:'Software engineers design and build the apps, websites, and systems people use every day. From social media to self-driving cars, software is behind everything — and the people who build it are in high demand across every industry.',
+tasks:['Write, test, and debug code to build real products','Design systems that scale reliably to millions of users','Collaborate with designers, product managers, and other engineers','Use data and analytics to improve product performance','Stay current with new languages, frameworks, and tools'],
+cls:[
+{n:'AP Computer Science A',d:'Java programming, algorithms, and object-oriented design — the gold standard AP CS course.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+{n:'AP Computer Science Principles',d:'A broad introduction to computing: data, the internet, algorithms, and societal impact.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'Pre-Calculus / Calculus',d:'The mathematical foundation behind programming logic, data science, and computer graphics.',r:null,df:'Hard',lv:'Honors',rv:[],tc:[]},
+{n:'Web Development',d:'Build and deploy real websites using HTML, CSS, and JavaScript from day one.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+],
+sk:[{i:'🧩',n:'Problem Solving',d:'Breaking a complex challenge into clear, solvable steps'},{i:'💬',n:'Communication',d:'Explaining technical ideas to teammates and non-technical stakeholders'},{i:'⏱️',n:'Time Management',d:'Scoping and delivering work on schedule'},{i:'🔎',n:'Attention to Detail',d:'Catching bugs and edge cases before users ever see them'},{i:'🤝',n:'Teamwork',d:'Writing code that others can read, maintain, and build on'},{i:'📚',n:'Continuous Learning',d:'Technology evolves constantly — curiosity is a core skill'}],
+steps:['<strong>Take AP CS A or AP CS Principles</strong> as early as 9th or 10th grade — these are the clearest signals to colleges that you are serious.','<strong>Build something real</strong> — a personal project, website, or simple app demonstrates initiative that grades alone cannot.','<strong>Join coding club or robotics</strong> to develop collaboration and problem-solving skills alongside peers.','<strong>Practice on free platforms</strong> like freeCodeCamp, Khan Academy, or Codecademy during breaks and summer.','<strong>Reach out to local tech companies or nonprofits</strong> about internships or volunteer opportunities — many are actively looking for motivated high school students.'],
+rel:[{i:'📊',n:'Data Science'},{i:'🔐',n:'Cybersecurity'},{i:'🌐',n:'Web Dev'},{i:'🤖',n:'AI & ML'}],
+rv:[]
+},
+{id:'health',ico:'🩺',nm:'Healthcare',sd:'Diagnose, treat, and care for patients every day.',sal:'$85K',gr:'+15%',car:'20+',dem:'📈 Growing',e:'$45K–$60K',m:'$75K–$100K',s:'$120K–$250K+',
+desc:'Healthcare professionals diagnose illnesses, perform life-saving procedures, and help people live healthier lives. It is one of the most stable, meaningful, and respected career fields in the world — and Washington State has a strong and growing demand for healthcare workers at every level.',
+tasks:['Examine patients and identify health conditions accurately','Develop and monitor individualized treatment plans','Coordinate care with nurses, specialists, and pharmacists','Interpret test results and communicate findings clearly','Educate patients on prevention, lifestyle, and follow-up care'],
+cls:[
+{n:'AP Biology',d:'The essential science foundation for any medical or health career — covers cells, genetics, physiology, and evolution.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+{n:'AP Chemistry',d:'Understand how chemical processes work in the human body — required background for pharmacy, medicine, and research.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+{n:'Anatomy & Physiology',d:'A detailed study of the human body — structure, systems, and how they interact.',r:null,df:'Medium',lv:'Honors',rv:[],tc:[]},
+{n:'AP Psychology',d:'Understanding behavior and mental processes — relevant to nursing, counseling, therapy, and patient communication.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+],
+sk:[{i:'❤️',n:'Empathy',d:'Listening carefully and responding to what patients are experiencing'},{i:'🧩',n:'Clinical Reasoning',d:'Connecting symptoms, history, and test results to reach accurate diagnoses'},{i:'💬',n:'Communication',d:'Explaining complex medical information clearly to patients and families'},{i:'🎯',n:'Precision',d:'Careful attention to dosage, procedure, and documentation'},{i:'⚡',n:'Calm Under Pressure',d:'Maintaining clear thinking in urgent or emergency situations'},{i:'📚',n:'Lifelong Learning',d:'Medicine advances rapidly — staying current is part of the job'}],
+steps:['<strong>Take AP Biology in 10th or 11th grade</strong> — it is the single most important course for any healthcare pathway.','<strong>Volunteer at a hospital, clinic, or senior care facility</strong> to gain real exposure to the healthcare environment.','<strong>Join HOSA</strong> (Health Occupations Students of America) — the leading national club for students pursuing health careers.','<strong>Shadow a healthcare professional</strong> — contact local clinics or hospitals and ask about job shadow programs.','<strong>Look into CNA (Certified Nursing Assistant) programs</strong> — some are available during high school and provide paid entry-level experience.'],
+rel:[{i:'🧬',n:'Biomedical Research'},{i:'🦷',n:'Dentistry'},{i:'💊',n:'Pharmacy'},{i:'🏃',n:'Physical Therapy'}],
+rv:[]
+},
+{id:'biz',ico:'💼',nm:'Business & Finance',sd:'Run companies, manage money, and build brands.',sal:'$72K',gr:'+10%',car:'15+',dem:'✅ Stable',e:'$45K–$58K',m:'$65K–$90K',s:'$100K–$180K+',
+desc:'Business and finance professionals keep organizations profitable, growing, and strategically sound. These skills transfer across every industry — whether you want to start your own company, manage a team, or work in investment banking.',
+tasks:['Analyze financial statements and build data-driven forecasts','Lead cross-functional teams through complex projects','Create and execute marketing strategies for products and services','Negotiate contracts and cultivate long-term business relationships','Identify market opportunities and evaluate business risk'],
+cls:[
+{n:'AP Macroeconomics',d:'How national economies function — supply, demand, monetary policy, unemployment, and growth.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'Business & Marketing',d:'Practical entrepreneurship, branding, sales strategy, and consumer behavior.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+{n:'AP Statistics',d:'Statistical thinking and data analysis — foundational for business analytics, finance, and research roles.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+],
+sk:[{i:'📊',n:'Data Analysis',d:'Turning raw numbers into clear business decisions'},{i:'💬',n:'Communication',d:'Presenting strategies convincingly to teams, clients, and executives'},{i:'🤝',n:'Negotiation',d:'Structuring deals that work for all parties'},{i:'🎯',n:'Strategic Thinking',d:'Setting priorities and making decisions with long-term impact in mind'},{i:'💡',n:'Creativity',d:'Finding innovative solutions to competitive and operational challenges'},{i:'⏱️',n:'Time Management',d:'Delivering results across multiple simultaneous priorities'}],
+steps:['<strong>Join DECA</strong> — the national business and marketing club. Competitions prepare you for real business challenges and look excellent on college applications.','<strong>Start something small</strong> — a tutoring service, reselling, or freelance work. Real experience teaching real lessons.','<strong>Take AP Macroeconomics and AP Statistics</strong> — the two most practical quantitative skills for business careers.','<strong>Look for summer internships</strong> at local businesses, credit unions, marketing agencies, or nonprofits.','<strong>Get comfortable with Excel and Google Sheets</strong> — used in virtually every business role, every single day.'],
+rel:[{i:'📈',n:'Finance & Investing'},{i:'🎯',n:'Marketing'},{i:'🚀',n:'Entrepreneurship'},{i:'🏢',n:'Human Resources'}],
+rv:[]
+},
+{id:'eng',ico:'⚙️',nm:'Engineering',sd:'Design and build the physical world — bridges to satellites.',sal:'$92K',gr:'+14%',car:'10+',dem:'📈 Growing',e:'$60K–$78K',m:'$85K–$110K',s:'$120K–$170K+',
+desc:'Engineers apply math, science, and creative thinking to design physical systems — from bridges and aircraft to microchips and power grids. Engineering is a field where your work is literally built into the world around you.',
+tasks:['Design mechanical, civil, or electrical systems that are safe and efficient','Build and test prototypes to validate design assumptions','Use CAD software to produce precise technical drawings and 3D models','Collaborate with multidisciplinary teams of scientists, architects, and manufacturers','Analyze and resolve structural, thermal, or electrical performance problems'],
+cls:[
+{n:'AP Physics 1',d:'The mechanics, waves, and energy principles behind every engineering discipline.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+{n:'AP Calculus BC',d:'Advanced calculus is a prerequisite for every four-year engineering program in the country.',r:null,df:'Hard',lv:'AP',rv:[],tc:[]},
+{n:'Engineering Design',d:'Hands-on design, prototyping, and iterative problem-solving using the engineering design process.',r:null,df:'Medium',lv:'Regular',rv:[],tc:[]},
+],
+sk:[{i:'🔢',n:'Advanced Math',d:'Calculus and physics are the daily language of engineering'},{i:'🧩',n:'Systems Thinking',d:'Understanding how components interact as a whole'},{i:'✏️',n:'Technical Communication',d:'Conveying designs clearly through drawings, models, and reports'},{i:'🤝',n:'Collaboration',d:'Large engineering projects are always team efforts'},{i:'🎯',n:'Precision',d:'Errors in engineering can have serious safety consequences'},{i:'💡',n:'Innovation',d:'The best engineers find solutions that did not exist before'}],
+steps:['<strong>Take AP Physics 1 and AP Calculus BC</strong> — both are required for admission to accredited engineering programs.','<strong>Join your school\'s robotics or engineering club</strong> — hands-on building experience is what sets applicants apart.','<strong>Compete in Science Olympiad or similar events</strong> to apply engineering thinking under real time pressure.','<strong>Learn Fusion 360 or Tinkercad</strong> — free CAD tools used by professionals, and a powerful portfolio piece.','<strong>Research summer STEM programs</strong> at the University of Washington, Washington State University, or local community colleges.'],
+rel:[{i:'✈️',n:'Aerospace'},{i:'⚡',n:'Electrical Eng.'},{i:'🏗️',n:'Civil Engineering'},{i:'💻',n:'Computer Eng.'}],
+rv:[]
+},
+{id:'law',ico:'⚖️',nm:'Law & Government',sd:'Argue cases, write laws, and shape how society works.',sal:'$80K',gr:'+9%',car:'8+',dem:'✅ Stable',e:'$50K–$65K',m:'$75K–$110K',s:'$130K–$250K+',
+desc:'Lawyers, judges, legislators, and policy analysts shape the rules that govern how society operates. This career demands rigorous logical thinking, exceptional writing, and the ability to build and defend a case under pressure.',
+tasks:['Research case law and statutory authority to build legal arguments','Represent and counsel clients through litigation or transactions','Draft legislation, contracts, motions, and regulatory filings','Analyze the real-world impact of laws and government decisions','Advise clients on compliance, rights, and legal strategy'],
+cls:[
+{n:'AP Government & Politics',d:'How laws are created, challenged, and applied — the foundation of any government or legal career.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'AP Language & Composition',d:'Advanced rhetorical writing and argumentation — the core skill of legal practice.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'Debate / Speech',d:'The practiced skill of arguing any position clearly and persuasively under pressure.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+],
+sk:[{i:'💬',n:'Argumentation',d:'Building airtight, logically sound cases from evidence'},{i:'📚',n:'Legal Research',d:'Locating, reading, and applying statutes and precedents'},{i:'✍️',n:'Precise Writing',d:'Every word in a legal document carries weight'},{i:'🧩',n:'Critical Analysis',d:'Spotting weaknesses in opposing arguments'},{i:'🎭',n:'Public Speaking',d:'Commanding respect in a courtroom or legislative chamber'},{i:'⚖️',n:'Ethical Judgment',d:'Navigating complex situations where the right answer is not obvious'}],
+steps:['<strong>Join debate team</strong> — the most direct preparation for a legal career that high school offers.','<strong>Take AP Government and AP Language & Composition</strong> — the foundational courses for political science and pre-law.','<strong>Attend a city council meeting, school board hearing, or open court session</strong> — observe how real decisions are made.','<strong>Seek an internship or volunteer role</strong> with a local law firm, city government, or advocacy organization.','<strong>Read landmark Supreme Court opinions</strong> like Brown v. Board of Education — understanding legal reasoning starts with reading it.'],
+rel:[{i:'🏛️',n:'Politics & Policy'},{i:'🤝',n:'Diplomacy'},{i:'📋',n:'Paralegal Work'},{i:'🏢',n:'Human Rights'}],
+rv:[]
+},
+{id:'arts',ico:'🎬',nm:'Arts & Media',sd:'Create content, films, designs, and music that shapes culture.',sal:'$58K',gr:'+12%',car:'15+',dem:'📱 Digital Boom',e:'$35K–$48K',m:'$55K–$75K',s:'$90K–$150K+',
+desc:'Designers, filmmakers, photographers, musicians, and content creators shape how the world communicates, entertains itself, and processes emotion. The digital economy has opened more doors for creative careers than any previous era.',
+tasks:['Design logos, brand systems, and visual identities for companies and individuals','Produce, edit, and distribute video, audio, or written content','Develop and execute digital marketing campaigns across social platforms','Pitch creative concepts and collaborate with clients, agencies, or studios','Build loyal audiences and communities around original creative work'],
+cls:[
+{n:'Digital Media / Video Production',d:'Hands-on filmmaking, video editing, audio production, and digital storytelling.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+{n:'AP Art History',d:'The history and principles of visual art — foundational context for anyone working in design or media.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'AP Language & Composition',d:'Storytelling and written communication — the backbone of journalism, advertising, and content creation.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+],
+sk:[{i:'✏️',n:'Visual Design',d:'Creating work that looks intentional and communicates clearly'},{i:'💡',n:'Originality',d:'Generating concepts that have not been seen before'},{i:'📖',n:'Storytelling',d:'Shaping a narrative that holds an audience\'s attention'},{i:'⚡',n:'Adaptability',d:'Platforms, tools, and trends shift constantly in media'},{i:'💬',n:'Pitching',d:'Selling your ideas clearly to clients, directors, or collaborators'},{i:'🎯',n:'Polish',d:'Professional-quality output requires meticulous attention to detail'}],
+steps:['<strong>Build your portfolio today</strong> — post your work to Instagram, Behance, YouTube, or a personal site. Volume and consistency matter.','<strong>Take every available digital media and art class</strong> throughout high school — each one adds a real skill.','<strong>Learn the Adobe Creative Suite</strong> — Photoshop, Premiere Pro, and Illustrator are industry standards employers expect.','<strong>Create a personal brand</strong> — in creative industries, your online presence is your resume and your showcase.','<strong>Submit to student film festivals, design competitions, or art exhibitions</strong> — external recognition opens doors.'],
+rel:[{i:'📸',n:'Photography'},{i:'🎵',n:'Music Production'},{i:'🎮',n:'Game Design'},{i:'📣',n:'Marketing & Brand'}],
+rv:[]
+},
+{id:'trades',ico:'🔧',nm:'Trades & Skilled Work',sd:'Build and maintain the infrastructure the world depends on.',sal:'$68K',gr:'+11%',car:'10+',dem:'🔥 High Need',e:'$40K–$54K',m:'$60K–$78K',s:'$80K–$120K+',
+desc:'Electricians, plumbers, HVAC technicians, welders, and mechanics build and maintain the physical systems civilization depends on. Demand for skilled tradespeople is at historic highs — and the pay is excellent, often without the burden of student loan debt.',
+tasks:['Install and maintain electrical, plumbing, HVAC, or mechanical systems','Read and execute technical blueprints and engineering schematics','Diagnose system failures and develop cost-effective repair solutions','Verify all work complies with local building codes and safety standards','Operate and maintain specialized equipment and hand tools safely'],
+cls:[
+{n:'Technical Education / Shop',d:'Hands-on fabrication, welding, carpentry, and construction fundamentals.',r:null,df:'Medium',lv:'Regular',rv:[],tc:[]},
+{n:'Applied Math / Algebra 2',d:'The practical math used every day in trades — measurements, load calculations, and circuit math.',r:null,df:'Medium',lv:'Regular',rv:[],tc:[]},
+{n:'Engineering Design / CTE',d:'Blueprint reading, CAD introduction, and project planning fundamentals.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+],
+sk:[{i:'🔨',n:'Technical Skill',d:'Mastering the tools and methods specific to your trade'},{i:'🔎',n:'Precision',d:'Safety and quality depend on doing it right the first time'},{i:'🧩',n:'Problem Solving',d:'Every job site presents a unique, real-world challenge'},{i:'💪',n:'Physical Readiness',d:'Trades work often involves demanding physical conditions'},{i:'📋',n:'Code Compliance',d:'Building and safety regulations are not optional'},{i:'💬',n:'Professionalism',d:'Working directly with clients requires reliability and clear communication'}],
+steps:['<strong>Take every CTE and shop class your school offers</strong> — employers value demonstrable hands-on skills above almost everything else.','<strong>Research union apprenticeship programs in Washington State</strong> — many pay you while you train and lead directly to full-time employment.','<strong>Get your OSHA 10 card</strong> — a basic workplace safety certification required by most construction and trades employers.','<strong>Job shadow a licensed tradesperson for a day</strong> — there is no substitute for seeing the real work environment.','<strong>Look into community college CTE programs</strong> — many can be completed in 1–2 years at very low cost, often while still in high school.'],
+rel:[{i:'⚡',n:'Electrical Work'},{i:'🔩',n:'Plumbing'},{i:'🏗️',n:'Construction Mgmt'},{i:'🚗',n:'Auto Mechanics'}],
+rv:[]
+},
+{id:'edu',ico:'📚',nm:'Education',sd:'Shape the next generation of thinkers, leaders, and problem-solvers.',sal:'$58K',gr:'+8%',car:'8+',dem:'📈 Growing',e:'$38K–$50K',m:'$52K–$68K',s:'$70K–$95K+',
+desc:'Teachers, counselors, and school administrators are among the most influential people in any community. Education is a stable, meaningful profession — and Washington State consistently needs qualified educators, especially in STEM, special education, and bilingual instruction.',
+tasks:['Design and deliver lessons that engage students with different learning styles','Assess student understanding through formative and summative evaluation','Provide constructive, actionable feedback that helps students grow','Build trusting relationships with students, families, and support staff','Collaborate with administration, counselors, and specialist teachers'],
+cls:[
+{n:'AP Psychology',d:'Understanding how people learn, develop, and behave — the academic foundation for teaching and counseling.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'AP Language & Composition',d:'Advanced writing and communication skills every educator needs to teach, assess, and advocate effectively.',r:null,df:'Medium',lv:'AP',rv:[],tc:[]},
+{n:'Child Development / Sociology',d:'How children grow physically, cognitively, and socially — essential context for K-12 educators.',r:null,df:'Easy',lv:'Regular',rv:[],tc:[]},
+],
+sk:[{i:'❤️',n:'Empathy',d:'Understanding each student as an individual with unique needs and strengths'},{i:'💬',n:'Communication',d:'Explaining complex ideas in ways that are accessible and engaging'},{i:'⏱️',n:'Patience',d:'Learning takes time — for some students, more time than others'},{i:'🎭',n:'Creativity',d:'The best lessons do not come from a textbook alone'},{i:'🧩',n:'Differentiation',d:'Adapting instruction to meet students where they are'},{i:'🤝',n:'Relationship',d:'Trust between teacher and student is the foundation of real learning'}],
+steps:['<strong>Start tutoring peers or younger students now</strong> — real teaching experience before college is rare and valuable.','<strong>Volunteer at an elementary school, after-school program, or summer camp</strong> to get direct classroom exposure.','<strong>Take AP Psychology and Child Development</strong> — both are foundational for education and counseling degree programs.','<strong>Find or start a Future Educators of America chapter</strong> at your school.','<strong>Study the teachers who inspire you</strong> — observe what they do differently, and begin developing your own approach.'],
+rel:[{i:'🎓',n:'School Counseling'},{i:'🏫',n:'Administration'},{i:'🌍',n:'Special Education'},{i:'📖',n:'School Librarian'}],
+rv:[]
+},
+];
+
+function renderHomeGrid(){
+  document.getElementById('pw-home-grid').innerHTML=PW.map((p,i)=>`
+    <div class="pw-card reveal rv${i%4}" onclick="openPW(${i})">
+      <span class="pic-ico">${p.ico}</span>
+      <div class="pic-name">${p.nm}</div>
+      <div class="pic-desc">${p.sd}</div>
+      <div class="pic-careers">${p.cls.slice(0,3).map(c=>`<div class="pic-career">${c.n}</div>`).join('')}</div>
+      <div class="pic-salary">💰 Avg. ${p.sal}/yr</div>
+      <div class="pic-arrow">View Pathway <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>`).join('');
+  initReveal();
 }
 
-// ── NAV ───────────────────────────────────────────────────────────────────────
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
+function openPW(i){
+  const p=PW[i]; openCls=null;
+  document.getElementById('nav-home-links').style.display='none';
+  document.getElementById('nav-pw-crumb').style.display='flex';
+  document.getElementById('crumb-name').textContent=p.nm;
+  document.getElementById('view-home').classList.remove('active');
+  document.getElementById('view-pathway').classList.add('active');
   window.scrollTo(0,0);
-  if(id!=='admin') document.getElementById('bottom-nav').style.display=(id==='admin')?'none':'flex';
-  // Reset pending banner when navigating away from write
-  if(id!=='write'){
-    const p=document.getElementById('pending-banner');if(p)p.classList.add('hide');
-    const s=document.getElementById('submit-btn-wrap');if(s){s.style.opacity='1';s.style.pointerEvents='auto';}
-  }
+  document.getElementById('pw-hero-band').innerHTML=`
+    <div class="pw-hero-inner">
+      <div>
+        <div class="pw-badge">${p.ico} ${p.nm}</div>
+        <div class="pw-name">${p.nm}</div>
+        <div class="pw-desc">${p.desc}</div>
+        <div class="pw-kpis">
+          <div class="pw-kpi"><div class="pw-kpi-n">${p.sal}</div><div class="pw-kpi-l">Avg. Salary</div></div>
+          <div class="pw-kpi" style="padding-left:26px"><div class="pw-kpi-n">${p.gr}</div><div class="pw-kpi-l">Job Growth</div></div>
+          <div class="pw-kpi" style="padding-left:26px"><div class="pw-kpi-n">${p.car}</div><div class="pw-kpi-l">Career Options</div></div>
+        </div>
+      </div>
+      <div class="pw-hero-right">
+        <div class="pw-demand"><div class="pw-demand-n">${p.dem}</div><div class="pw-demand-l">Job Demand</div></div>
+        <button class="btn-save ${saved[p.id]?'saved':''}" onclick="toggleSave('${p.id}',${i})">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="${saved[p.id]?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          ${saved[p.id]?'Saved!':'Save Pathway'}
+        </button>
+      </div>
+    </div>`;
+  document.getElementById('pw-sal-band').innerHTML=`
+    <div class="sal-inner">
+      <div class="sal-title">💰 Salary Breakdown — ${p.nm}</div>
+      <div class="sal-levels">
+        <div class="sal-lv"><div class="sal-lbl">Entry Level</div><div class="sal-n">${p.e}</div><div class="sal-sub">0–3 years experience</div><div class="sal-bar"><div class="sal-bar-fill" style="width:33%"></div></div></div>
+        <div class="sal-lv"><div class="sal-lbl">Mid Level</div><div class="sal-n">${p.m}</div><div class="sal-sub">4–9 years experience</div><div class="sal-bar"><div class="sal-bar-fill" style="width:62%"></div></div></div>
+        <div class="sal-lv"><div class="sal-lbl">Senior Level</div><div class="sal-n">${p.s}</div><div class="sal-sub">10+ years experience</div><div class="sal-bar"><div class="sal-bar-fill" style="width:100%"></div></div></div>
+      </div>
+      <div class="sal-note">* Salary depends on experience, location, and education level. Source: U.S. Bureau of Labor Statistics estimates.</div>
+    </div>`;
+  renderPWMain(p,i);
+  renderPWAside(p,i);
 }
-function goHome(){showPage('home');setbn('bn-home');}
-function setbn(id){document.querySelectorAll('#bottom-nav .tab-btn').forEach(b=>b.classList.remove('on'));const el=document.getElementById(id);if(el)el.classList.add('on');}
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-function toast(msg){const el=document.getElementById('toast-el');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2800);}
+function renderPWMain(p,pi){
+  // Merge seed reviews with approved reviews for this pathway
+  const session   = window.DB ? DB.getSession() : null;
+  const isStudent = !session || session.role === 's';
+  const approved  = window.DB ? DB.getApproved().filter(r => r.pathway === p.nm) : [];
+  const allReviews= [...p.rv, ...approved.map(r => ({c:r.className, s:r.rating, t:r.text, sch: r.reviewerName || 'Anonymous'}))];
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-populateSchoolSelect();
-renderPathways();
-renderSchoolList('');
-updateAdminBadge();
+  // Teacher info for classes
+  const teacherInfo = window.DB ? DB.getTeacherInfo() : {};
+
+  // Submit review form — only for logged-in students
+  const reviewForm = session && session.role === 's' ? `
+    <div class="sc" id="submit-review-card">
+      <div class="sc-lbl">✍️ Write a Review</div>
+      <div class="sc-title">Share your experience</div>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.6">Your review goes to moderation first and will appear once approved by our team.</p>
+      <div style="margin-bottom:12px">
+        <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px">Class Name <span style="color:var(--red)">*</span></label>
+        <input id="rv-class" type="text" placeholder="e.g. AP Biology" list="rv-class-list"
+          style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+        <datalist id="rv-class-list">${p.cls.map(c=>`<option value="${c.n}">`).join('')}</datalist>
+      </div>
+      <div style="margin-bottom:12px">
+        <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px">Rating <span style="color:var(--red)">*</span></label>
+        <div id="star-picker" style="display:flex;gap:6px;font-size:1.6rem;cursor:pointer" onmouseleave="renderStarPicker(window._rvRating||0)">
+          ${[1,2,3,4,5].map(n=>`<span onclick="window._rvRating=${n};renderStarPicker(${n})" onmouseover="renderStarPicker(${n})" style="transition:transform .1s" data-star="${n}">☆</span>`).join('')}
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text2);display:block;margin-bottom:6px">Your Review <span style="color:var(--red)">*</span></label>
+        <textarea id="rv-text" placeholder="What did you think of this class? Be honest and helpful…"
+          style="width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;resize:vertical;min-height:80px;transition:border-color .2s"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div id="rv-submit-msg" style="display:none;font-size:12px;color:var(--green);font-weight:500;margin-bottom:8px">✓ Review submitted! It will appear once approved by our team.</div>
+      <div id="rv-submit-err" style="display:none;font-size:12px;color:var(--red);margin-bottom:8px"></div>
+      <button onclick="submitReview('${p.nm}',${pi})"
+        style="background:var(--gold);color:#fff;border:none;border-radius:99px;padding:10px 24px;font-family:var(--disp);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s"
+        onmouseover="this.style.background='#a86508'" onmouseout="this.style.background='var(--gold)'">
+        Submit Review →
+      </button>
+    </div>` : !session ? `
+    <div class="sc" style="background:var(--gold-p);border-color:rgba(201,125,16,.18)">
+      <div class="sc-lbl">✍️ Write a Review</div>
+      <div class="sc-title" style="font-size:1.2rem">Sign in to leave a review</div>
+      <p style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px">Create a free student account to share your experience with these classes.</p>
+      <button onclick="openSignUp()" style="background:var(--gold);color:#fff;border:none;border-radius:99px;padding:9px 22px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer">Sign Up Free →</button>
+    </div>` : '';
+
+  document.getElementById('pw-main').innerHTML=`
+    <div class="sc"><div class="sc-lbl">What You Actually Do</div><div class="sc-title">Day in the life of a ${p.nm} professional</div><div class="task-list">${p.tasks.map(t=>`<div class="task-item"><div class="task-dot"></div><div class="task-text">${t}</div></div>`).join('')}</div></div>
+    <div class="sc"><div class="sc-lbl">⭐ Recommended Classes</div><div class="sc-title">Best classes for ${p.nm}</div><p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.6">Click any class to see teacher ratings and student reviews.</p><div class="cls-list" id="cls-list">${renderCls(p,pi,teacherInfo)}</div></div>
+    <div class="sc">
+      <div class="sc-lbl">🔥 Best Teachers</div>
+      <div class="sc-title">Top-rated teachers for ${p.nm}</div>
+      ${(() => {
+        const allTeachers = p.cls.flatMap(c=>c.tc).sort((a,b)=>b.s-a.s).slice(0,4);
+        if (allTeachers.length === 0) {
+          return `<div style="text-align:center;padding:32px 0;color:var(--text2)">
+            <div style="font-size:1.8rem;margin-bottom:10px">👩‍🏫</div>
+            <div style="font-family:var(--serif);font-size:1.1rem;color:var(--text);margin-bottom:6px;font-weight:300">No teachers listed yet</div>
+            <div style="font-size:13px;line-height:1.6">Teachers can sign up and add their class info using a Teacher account.</div>
+            <button onclick="AUTH.openModal('signup')" style="margin-top:14px;background:var(--gold);color:#fff;border:none;border-radius:99px;padding:8px 20px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;">Join as Teacher →</button>
+          </div>`;
+        }
+        return `<div class="teacher-list">${allTeachers.map(t=>`<div class="t-card"><div class="t-head"><div class="t-ava" style="background:${tC(t.n)}">${tI(t.n)}</div><div class="t-info"><div class="t-name">${t.n}</div><div class="t-class">${t.c}</div></div><div><div class="t-score">${t.s}</div><div class="t-denom">/ 5.0</div></div></div><div class="t-stars">${strs(Math.round(t.s))}</div><div class="t-tags">${t.tg.map(x=>`<span class="t-tag">${x}</span>`).join('')}</div></div>`).join('')}</div>`;
+      })()}
+    </div>
+    <div class="sc"><div class="sc-lbl">Student Reviews</div><div class="sc-title">What students say about these classes</div><div class="rv-list">${allReviews.length ? allReviews.map(r=>`<div class="rv-item"><div class="rv-top"><span class="rv-course">${r.c}</span><span class="rv-stars">${strs(r.s)}</span></div><div class="rv-text">"${r.t}"</div><div class="rv-meta"><span class="rv-school">${r.sch}</span><button class="rv-help" onclick="this.textContent='👍 Helpful!';this.classList.add('voted');this.disabled=true">👍 Helpful</button></div></div>`).join('') : '<div style="color:var(--text2);font-size:13px;padding:12px 0">No reviews yet — be the first to review this pathway!</div>'}</div></div>
+    ${reviewForm}
+    <div class="sc"><div class="sc-lbl">Skills You Need</div><div class="sc-title">What it takes to succeed in ${p.nm}</div><div class="skills-grid">${p.sk.map(s=>`<div class="skill-item"><div class="skill-ico">${s.i}</div><div><div class="skill-name">${s.n}</div><div class="skill-desc">${s.d}</div></div></div>`).join('')}</div></div>
+    <div class="sc"><div class="sc-lbl">🚀 Next Steps</div><div class="sc-title">What to do right now</div><p style="font-size:13px;color:var(--text2);margin-bottom:14px">Concrete actions you can take today.</p><div class="steps-list">${p.steps.map((s,si)=>`<div class="step-item"><div class="step-num">${si+1}</div><div class="step-text">${s}</div></div>`).join('')}</div></div>`;
+
+  // Init star picker
+  window._rvRating = 0;
+  window.renderStarPicker = function(hovered) {
+    const stars = document.querySelectorAll('#star-picker span');
+    stars.forEach((el, i) => {
+      el.textContent = i < hovered ? '★' : '☆';
+      el.style.color = i < hovered ? 'var(--gold-s)' : 'var(--text2)';
+      el.style.transform = i < hovered ? 'scale(1.15)' : 'scale(1)';
+    });
+  };
+}
+
+function renderCls(p, pi, teacherInfo) {
+  teacherInfo = teacherInfo || (window.DB ? DB.getTeacherInfo() : {});
+  return p.cls.map((c,ci)=>{
+    const dc  = c.df==='Easy'?'cb-e':c.df==='Medium'?'cb-m':'cb-h';
+    const lc  = c.lv==='AP'?'cb-ap':c.lv==='Honors'?'cb-hon':'';
+    const key = `${p.id}__${c.n}`;
+    const ti  = teacherInfo[key];
+    const teacherNote = ti ? `
+      <div style="background:rgba(27,58,107,.06);border:1px solid rgba(27,58,107,.12);border-radius:8px;padding:10px 13px;margin-top:10px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--navy);margin-bottom:6px">📌 Teacher Note — ${ti.updatedBy || 'Teacher'}</div>
+        ${ti.description ? `<div style="font-size:12px;color:var(--text);margin-bottom:4px">${ti.description}</div>` : ''}
+        ${ti.difficulty  ? `<div style="font-size:11px;color:var(--text2);margin-bottom:2px"><strong>Difficulty:</strong> ${ti.difficulty}</div>` : ''}
+        ${ti.tips        ? `<div style="font-size:11px;color:var(--text2)"><strong>Tips:</strong> ${ti.tips}</div>` : ''}
+      </div>` : '';
+    return`<div class="cls-card ${openCls===ci?'open':''}" onclick="toggleCls(${ci},${pi})">
+      <div class="cls-top"><div><div class="cls-name">${c.n}</div><div class="cls-desc">${c.d}</div></div><div style="text-align:right;flex-shrink:0">${c.r !== null ? `<div class="cls-score">${c.r}</div><div class="cls-denom">/ 5.0</div>` : `<div style="font-size:10px;color:var(--text2);font-family:var(--sans);line-height:1.3;max-width:64px">No ratings<br>yet</div>`}</div></div>
+      <div class="cls-badges"><span class="cbadge ${dc}">${c.df}</span>${lc?`<span class="cbadge ${lc}">${c.lv}</span>`:''}</div>
+      <div class="cls-expand">
+        ${teacherNote}
+        <div class="cls-exp-lbl" style="margin-top:${ti?'12px':'0'}">Top Teachers</div>
+        ${c.tc.map(t=>`<div class="ctr-row"><div class="ctr-ava" style="background:${tC(t.n)}">${tI(t.n)}</div><div class="ctr-name">${t.n}</div><div><div class="ctr-score">${t.s}</div><div class="ctr-stars">${strs(Math.round(t.s))}</div></div></div>`).join('')}
+        <div class="cls-exp-lbl" style="margin-top:10px">Student Reviews</div>
+        ${c.rv.map(r=>`<div class="cls-rv">${r}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCls(ci,pi){
+  openCls=openCls===ci?null:ci;
+  document.getElementById('cls-list').innerHTML=renderCls(PW[pi],pi);
+}
+
+function renderPWAside(p,pi){
+  // Build a reliable index map by pathway id
+  const idMap={};PW.forEach((pw,i)=>idMap[pw.id]=i);
+  // Map related career names to pathway ids
+  const relMap={
+    'Data Science':'tech','Cybersecurity':'tech','Web Dev':'tech','Web Development':'tech','AI & ML':'tech','AI':'tech',
+    'Biomedical Research':'health','Dentistry':'health','Pharmacy':'health','Physical Therapy':'health',
+    'Finance & Investing':'biz','Marketing':'biz','Entrepreneurship':'biz','Human Resources':'biz',
+    'Aerospace':'eng','Electrical Eng.':'eng','Civil Engineering':'eng','Computer Eng.':'eng',
+    'Politics & Policy':'law','Diplomacy':'law','Paralegal Work':'law','Human Rights':'law',
+    'Photography':'arts','Music Production':'arts','Game Design':'arts','Marketing & Brand':'arts',
+    'Electrical Work':'trades','Plumbing':'trades','Construction Mgmt':'trades','Auto Mechanics':'trades',
+    'School Counseling':'edu','Administration':'edu','Special Education':'edu','School Librarian':'edu',
+  };
+  document.getElementById('pw-aside').innerHTML=`
+    <div class="save-box">
+      <div class="save-box-title">📌 Save this pathway</div>
+      <div class="save-box-sub">Bookmark ${p.nm} to track your progress and come back later.</div>
+      <button class="save-box-btn ${saved[p.id]?'saved':''}" onclick="toggleSave('${p.id}',${pi})">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="${saved[p.id]?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        ${saved[p.id]?'Saved!':'Save Pathway'}
+      </button>
+    </div>
+    <div class="aside-box">
+      <div class="aside-lbl">Related Careers</div>
+      <div class="aside-ttl">Keep exploring</div>
+      <div class="rel-list">
+        ${p.rel.map(r=>{
+          const targetId=relMap[r.n];
+          const ri=targetId!==undefined?idMap[targetId]:-1;
+          // Also try direct pathway name match as fallback
+          const riFallback=ri>=0?ri:PW.findIndex(pw=>pw.nm.toLowerCase().split('&')[0].trim().includes(r.n.toLowerCase().split(' ')[0].toLowerCase()));
+          const finalIdx=ri>=0?ri:riFallback;
+          const clickable=finalIdx>=0&&finalIdx!==pi;
+          return`<div class="rel-item" onclick="${clickable?`openPW(${finalIdx})`:`showToast('More pathways coming soon!')`}" style="cursor:pointer">
+            <span class="rel-ico">${r.i}</span>
+            <span class="rel-name">${r.n}</span>
+            <span class="rel-arr" style="color:${clickable?'var(--gold)':'var(--text2)'}">→</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="stats-box">
+      <div class="aside-lbl" style="margin-bottom:12px">Path Stats</div>
+      <div class="sbr"><span class="sbr-lbl">Avg. Salary</span><span class="sbr-val" style="color:var(--gold)">${p.sal}</span></div>
+      <div class="sbr"><span class="sbr-lbl">Job Growth</span><span class="sbr-val" style="color:var(--green)">${p.gr}</span></div>
+      <div class="sbr"><span class="sbr-lbl">Career Options</span><span class="sbr-val">${p.car}</span></div>
+      <div class="sbr"><span class="sbr-lbl">Demand</span><span class="sbr-val" style="font-size:12px">${p.dem}</span></div>
+      <div class="sbr"><span class="sbr-lbl">Entry Salary</span><span class="sbr-val" style="font-size:12px">${p.e}</span></div>
+    </div>`;
+}
+
+function toggleSave(id,pi){
+  saved[id]=!saved[id];
+  openPW(pi);
+  showToast(saved[id]?'Pathway saved! 📌':'Pathway removed.');
+}
+
+function showHome(){
+  document.getElementById('view-home').classList.add('active');
+  document.getElementById('view-pathway').classList.remove('active');
+  document.getElementById('nav-home-links').style.display='flex';
+  document.getElementById('nav-pw-crumb').style.display='none';
+  window.scrollTo(0,0);
+}
+
+function goScroll(id){
+  if(!document.getElementById('view-home').classList.contains('active')){showHome();setTimeout(()=>{const el=document.querySelector(id);if(el)el.scrollIntoView({behavior:'smooth'});},100);return;}
+  const el=document.querySelector(id);if(el)el.scrollIntoView({behavior:'smooth'});
+}
+
+// Auth bridge — these delegate to window.AUTH (set by the Firebase module script)
+// They are safe to call before AUTH loads because AUTH is set synchronously
+function openModal(){
+  if(window.AUTH) AUTH.openModal('signin');
+  else { document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function openSignUp(){
+  if(window.AUTH) AUTH.openModal('signup');
+  else { document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closeModal(){
+  if(window.AUTH) AUTH.closeModal();
+  else { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+}
+function setModalMode(mode){
+  if(window.AUTH) { AUTH.setMode(mode); return; }
+  // Fallback if AUTH not ready yet
+  const isSignin=mode==='signin';
+  const si_c=document.getElementById('modal-signin-content');
+  const su_c=document.getElementById('modal-signup-content');
+  const ve_c=document.getElementById('modal-verify-content');
+  if(si_c) si_c.style.display=isSignin?'block':'none';
+  if(su_c) su_c.style.display=isSignin?'none':'block';
+  if(ve_c) ve_c.style.display='none';
+  const si=document.getElementById('mode-signin'),su=document.getElementById('mode-signup');
+  if(si){si.style.background=isSignin?'var(--gold)':'none';si.style.color=isSignin?'#fff':'var(--text2)';}
+  if(su){su.style.background=isSignin?'none':'var(--gold)';su.style.color=isSignin?'var(--text2)':'#fff';}
+}
+function setMTab(t){ if(window.AUTH) AUTH.setRole(t==='s'?'student':t==='t'?'teacher':'admin'); }
+
+function showToast(msg){
+  const el=document.getElementById('toast');
+  if(!el) return;
+  el.textContent=msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+function initReveal(){
+  const obs=new IntersectionObserver(e=>{
+    e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});
+  },{threshold:.1,rootMargin:'0px 0px -24px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ── Review submission (students only) ────────────────────────
+window.submitReview = function(pathwayName, pi) {
+  const className = (document.getElementById('rv-class')?.value || '').trim();
+  const rating    = window._rvRating || 0;
+  const text      = (document.getElementById('rv-text')?.value || '').trim();
+  const errEl     = document.getElementById('rv-submit-err');
+  const msgEl     = document.getElementById('rv-submit-msg');
+
+  if (errEl) errEl.style.display = 'none';
+  if (msgEl) msgEl.style.display = 'none';
+
+  if (!className) { if(errEl){errEl.textContent='Please enter the class name.';errEl.style.display='block';} return; }
+  if (!rating)    { if(errEl){errEl.textContent='Please select a star rating.';errEl.style.display='block';} return; }
+  if (!text || text.length < 10) { if(errEl){errEl.textContent='Please write at least 10 characters.';errEl.style.display='block';} return; }
+
+  const session = DB.getSession();
+  const review  = {
+    id:           'rv_' + Date.now(),
+    uid:          session?.uid || 'anon',
+    reviewerName: session?.name || 'Anonymous Student',
+    pathway:      pathwayName,
+    className,
+    rating,
+    text,
+    ts:           Date.now(),
+    status:       'pending',
+  };
+
+  const pending = DB.getPending();
+  pending.push(review);
+  DB.savePending(pending);
+
+  // Show success
+  if (msgEl) msgEl.style.display = 'block';
+  // Clear form
+  const cls = document.getElementById('rv-class');
+  const txt = document.getElementById('rv-text');
+  if (cls) cls.value = '';
+  if (txt) txt.value = '';
+  window._rvRating = 0;
+  if (window.renderStarPicker) renderStarPicker(0);
+  // Update admin count badge if visible
+  updatePendingCount && updatePendingCount();
+  showToast('Review submitted! It will appear after moderation. 📋');
+};
+
+renderHomeGrid();
+initReveal();
+</script>
+
+<!-- ── SCHOOL SEARCH MODAL ── -->
+<div class="school-modal-bg" id="school-modal-bg" onclick="if(event.target===this)SEARCH.closeModal()">
+  <div class="school-modal" style="position:relative">
+    <button class="sm-close" onclick="SEARCH.closeModal()">✕</button>
+    <div class="sm-head">
+      <div class="sm-school-name" id="sm-name"></div>
+      <div class="sm-district" id="sm-district"></div>
+    </div>
+    <div class="sm-body" id="sm-body"></div>
+  </div>
+</div>
+
+<script>
+/* ── SCHOOL SEARCH ────────────────────────────────────────────
+   Washington high schools database + autocomplete + school modal.
+   Self-contained in window.SEARCH — no dependencies on other modules.
+──────────────────────────────────────────────────────────────── */
+window.SEARCH = (function() {
+
+  // ── Washington High School Database ──────────────────────────
+  const SCHOOLS = [
+    // Edmonds School District
+    { name:'Meadowdale High School',     district:'Edmonds SD',   city:'Lynnwood',       tags:['CTE','AVID','Running Start'],    status:'live' },
+    { name:'Edmonds-Woodway High School',district:'Edmonds SD',   city:'Edmonds',        tags:['IB','Running Start'],            status:'coming' },
+    { name:'Lynnwood High School',       district:'Edmonds SD',   city:'Lynnwood',       tags:['Running Start','CTE'],           status:'coming' },
+    { name:'Mountlake Terrace High',     district:'Edmonds SD',   city:'Mountlake Terrace',tags:['Running Start'],              status:'coming' },
+    { name:'Scriber Lake High School',   district:'Edmonds SD',   city:'Lynnwood',       tags:['Alternative'],                  status:'coming' },
+    // Mukilteo School District
+    { name:'Kamiak High School',         district:'Mukilteo SD',  city:'Mukilteo',       tags:['AP','CTE','Robotics','AVID'],    status:'live' },
+    { name:'Mariner High School',        district:'Mukilteo SD',  city:'Everett',        tags:['AP','Running Start'],            status:'coming' },
+    { name:'Henry M. Jackson High School',district:'Everett SD',  city:'Mill Creek',     tags:['AP','IB'],                      status:'coming' },
+    // Seattle Public Schools
+    { name:'Garfield High School',       district:'Seattle SD',   city:'Seattle',        tags:['AP','IB','Jazz'],               status:'coming' },
+    { name:'Roosevelt High School',      district:'Seattle SD',   city:'Seattle',        tags:['AP','IB'],                      status:'coming' },
+    { name:'Ballard High School',        district:'Seattle SD',   city:'Seattle',        tags:['AP','CTE'],                     status:'coming' },
+    { name:'Franklin High School',       district:'Seattle SD',   city:'Seattle',        tags:['AP','Running Start'],            status:'coming' },
+    { name:'Ingraham High School',       district:'Seattle SD',   city:'Seattle',        tags:['IB','Running Start'],            status:'coming' },
+    { name:'Lincoln High School',        district:'Seattle SD',   city:'Seattle',        tags:['New','AP'],                     status:'coming' },
+    { name:'Rainier Beach High School',  district:'Seattle SD',   city:'Seattle',        tags:['STEM'],                         status:'coming' },
+    { name:'West Seattle High School',   district:'Seattle SD',   city:'Seattle',        tags:['AP','CTE'],                     status:'coming' },
+    // Bellevue School District
+    { name:'Bellevue High School',       district:'Bellevue SD',  city:'Bellevue',       tags:['AP','IB'],                      status:'coming' },
+    { name:'Newport High School',        district:'Bellevue SD',  city:'Bellevue',       tags:['AP'],                           status:'coming' },
+    { name:'Interlake High School',      district:'Bellevue SD',  city:'Bellevue',       tags:['AP','STEM'],                    status:'coming' },
+    { name:'Sammamish High School',      district:'Bellevue SD',  city:'Bellevue',       tags:['AP','IB'],                      status:'coming' },
+    // Issaquah School District
+    { name:'Issaquah High School',       district:'Issaquah SD',  city:'Issaquah',       tags:['AP','Running Start'],            status:'coming' },
+    { name:'Liberty High School',        district:'Issaquah SD',  city:'Issaquah',       tags:['AP'],                           status:'coming' },
+    { name:'Skyline High School',        district:'Issaquah SD',  city:'Sammamish',      tags:['AP','CTE'],                     status:'coming' },
+    // Lake Washington School District
+    { name:'Eastlake High School',       district:'Lake Washington SD', city:'Sammamish', tags:['AP'],                         status:'coming' },
+    { name:'Lake Washington High School',district:'Lake Washington SD', city:'Kirkland',  tags:['AP','IB'],                    status:'coming' },
+    { name:'Redmond High School',        district:'Lake Washington SD', city:'Redmond',   tags:['AP','STEM'],                  status:'coming' },
+    { name:'Juanita High School',        district:'Lake Washington SD', city:'Kirkland',  tags:['AP'],                         status:'coming' },
+    // Northshore School District
+    { name:'Bothell High School',        district:'Northshore SD', city:'Bothell',       tags:['AP','IB','CTE'],               status:'coming' },
+    { name:'Inglemoor High School',      district:'Northshore SD', city:'Kenmore',       tags:['AP','IB'],                     status:'coming' },
+    { name:'Woodinville High School',    district:'Northshore SD', city:'Woodinville',   tags:['AP'],                          status:'coming' },
+    // Everett School District
+    { name:'Everett High School',        district:'Everett SD',   city:'Everett',        tags:['AP','CTE'],                    status:'coming' },
+    { name:'Cascade High School',        district:'Everett SD',   city:'Everett',        tags:['AP'],                          status:'coming' },
+    // Marysville School District
+    { name:'Marysville-Pilchuck High',   district:'Marysville SD',city:'Marysville',     tags:['CTE','Running Start'],         status:'coming' },
+    { name:'Marysville-Getchell High',   district:'Marysville SD',city:'Marysville',     tags:['CTE'],                        status:'coming' },
+    // Shoreline School District
+    { name:'Shorewood High School',      district:'Shoreline SD', city:'Shoreline',      tags:['AP','IB'],                     status:'coming' },
+    { name:'Shorecrest High School',     district:'Shoreline SD', city:'Shoreline',      tags:['AP'],                          status:'coming' },
+    // Renton School District
+    { name:'Hazen High School',          district:'Renton SD',    city:'Renton',         tags:['AP','CTE'],                    status:'coming' },
+    { name:'Lindbergh High School',      district:'Renton SD',    city:'Renton',         tags:['AP'],                          status:'coming' },
+    { name:'Renton High School',         district:'Renton SD',    city:'Renton',         tags:['AP'],                          status:'coming' },
+    // Federal Way School District
+    { name:'Federal Way High School',    district:'Federal Way SD',city:'Federal Way',   tags:['AP','CTE'],                    status:'coming' },
+    { name:'Decatur High School',        district:'Federal Way SD',city:'Federal Way',   tags:['AP'],                          status:'coming' },
+    { name:'Todd Beamer High School',    district:'Federal Way SD',city:'Federal Way',   tags:['CTE'],                         status:'coming' },
+    // Kent School District
+    { name:'Kent-Meridian High School',  district:'Kent SD',      city:'Kent',           tags:['CTE','Running Start'],         status:'coming' },
+    { name:'Kentwood High School',       district:'Kent SD',      city:'Covington',      tags:['AP'],                          status:'coming' },
+    { name:'Kentlake High School',       district:'Kent SD',      city:'Kent',           tags:['CTE'],                         status:'coming' },
+    // Auburn School District
+    { name:'Auburn High School',         district:'Auburn SD',    city:'Auburn',         tags:['AP','CTE'],                    status:'coming' },
+    { name:'Auburn Riverside High',      district:'Auburn SD',    city:'Auburn',         tags:['AP'],                          status:'coming' },
+    { name:'Auburn Mountainview High',   district:'Auburn SD',    city:'Auburn',         tags:['AP','Running Start'],          status:'coming' },
+  ];
+
+  // ── State ────────────────────────────────────────────────────
+  let results   = [];
+  let activeIdx = -1;
+  let selectedSchool = null;
+
+  // ── Helpers ──────────────────────────────────────────────────
+  const inp  = () => document.getElementById('nav-search-input');
+  const drop = () => document.getElementById('nav-search-dropdown');
+
+  function highlight(text, query) {
+    if (!query) return text;
+    const re = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function openDrop() { drop().classList.add('open'); }
+  function closeDrop() { drop().classList.remove('open'); activeIdx = -1; }
+
+  function renderDrop(query) {
+    const dd = drop();
+    if (!results.length) {
+      dd.innerHTML = `<div class="nsd-empty">No schools found for "<strong>${query}</strong>"</div>`;
+      openDrop();
+      return;
+    }
+    dd.innerHTML = results.map((s, i) => `
+      <div class="nsd-item${i === activeIdx ? ' active' : ''}" role="option"
+           onclick="SEARCH.selectSchool(${i})"
+           onmouseenter="SEARCH.setActive(${i})">
+        <span class="nsd-icon">${s.status === 'live' ? '✅' : '🏫'}</span>
+        <span class="nsd-label">${highlight(s.name, query)}</span>
+        <span class="nsd-district">${s.city}</span>
+      </div>`).join('');
+    openDrop();
+  }
+
+  // ── Public API ───────────────────────────────────────────────
+  return {
+
+    onInput(val) {
+      const q = val.trim();
+      if (!q) { closeDrop(); return; }
+      results = SCHOOLS.filter(s =>
+        s.name.toLowerCase().includes(q.toLowerCase()) ||
+        s.city.toLowerCase().includes(q.toLowerCase()) ||
+        s.district.toLowerCase().includes(q.toLowerCase())
+      ).slice(0, 8);
+      activeIdx = -1;
+      renderDrop(q);
+    },
+
+    onFocus() {
+      const q = (inp()?.value || '').trim();
+      if (q && results.length) openDrop();
+    },
+
+    onKeyDown(e) {
+      if (!drop().classList.contains('open')) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, results.length - 1);
+        renderDrop((inp()?.value || '').trim());
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        renderDrop((inp()?.value || '').trim());
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIdx >= 0 && results[activeIdx]) {
+          this.selectSchool(activeIdx);
+        } else if (results.length) {
+          this.selectSchool(0);
+        }
+      } else if (e.key === 'Escape') {
+        closeDrop();
+        inp()?.blur();
+      }
+    },
+
+    setActive(i) { activeIdx = i; },
+
+    selectSchool(i) {
+      selectedSchool = results[i];
+      if (!selectedSchool) return;
+      inp().value = selectedSchool.name;
+      closeDrop();
+      this.openModal(selectedSchool);
+    },
+
+    openModal(school) {
+      // Fill modal content
+      document.getElementById('sm-name').textContent = school.name;
+      document.getElementById('sm-district').textContent = `${school.district} · ${school.city}, WA`;
+
+      const body = document.getElementById('sm-body');
+      const isLive = school.status === 'live';
+
+      body.innerHTML = `
+        <div class="sm-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${school.city}, Washington
+        </div>
+        <div class="sm-info-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          ${school.district}
+        </div>
+        <div style="margin:14px 0 6px">
+          ${school.tags.map(t => `<span class="sm-tag">${t}</span>`).join('')}
+        </div>
+        <div style="height:1px;background:var(--border);margin:18px 0"></div>
+
+        ${isLive ? `
+          <div class="sm-section-lbl">✅ Available on Lernix</div>
+          <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px">
+            ${school.name} is live on Lernix. Browse teacher ratings, read student reviews, and explore career pathways mapped to classes offered at this school.
+          </p>
+          <button class="sm-cta" onclick="SEARCH.closeModal();showHome();setTimeout(()=>goScroll('#pathways'),100)">
+            Explore Pathways →
+          </button>
+          <button style="width:100%;margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid rgba(27,58,107,.2);border-radius:99px;padding:10px;font-family:var(--disp);font-size:12px;font-weight:600;cursor:pointer;" onclick="SEARCH.closeModal();openSignUp()">
+            Sign Up &amp; Leave a Review
+          </button>
+        ` : `
+          <div class="sm-section-lbl">📋 Coming Soon</div>
+          <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px">
+            ${school.name} isn't on Lernix yet. You can help by reaching out — or sign up now so you're ready when your school goes live.
+          </p>
+          <a href="mailto:lernixhs@gmail.com?subject=Add ${encodeURIComponent(school.name)} to Lernix&body=Hi, I would like to request that ${encodeURIComponent(school.name)} in ${school.city} be added to Lernix." class="sm-cta" style="display:block;text-align:center;text-decoration:none;">
+            Request My School →
+          </a>
+          <button style="width:100%;margin-top:10px;background:transparent;color:var(--text2);border:1.5px solid var(--border);border-radius:99px;padding:10px;font-family:var(--disp);font-size:12px;font-weight:500;cursor:pointer;" onclick="SEARCH.closeModal();openSignUp()">
+            Sign Up Anyway — It's Free
+          </button>
+        `}`;
+
+      document.getElementById('school-modal-bg').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    },
+
+    closeModal() {
+      document.getElementById('school-modal-bg').classList.remove('open');
+      document.body.style.overflow = '';
+    },
+  };
+
+})();
+
+// Close dropdown when clicking outside the search area
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('nav-search-wrap')?.contains(e.target)) {
+    document.getElementById('nav-search-dropdown')?.classList.remove('open');
+  }
+});
+
+// Escape key closes school modal
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('school-modal-bg')?.classList.contains('open')) {
+    SEARCH.closeModal();
+  }
+});
 </script>
 </body>
 </html>
